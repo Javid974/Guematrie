@@ -1,0 +1,55 @@
+<div class="table-container">
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th class="narrow-column"></th>
+          <th class="bordered-column">Vibration Interieure</th>
+          <th class="bordered-column">Étape de croissance</th>
+          <th class="bordered-column">Sommation vibration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let syllable of syllables; let i = index">
+          <td class="narrow-column">
+            <div *ngFor="let letter of syllable.split('')">
+              {{ letter }}
+            </div>
+          </td>
+          <td class="bordered-column">
+            <div *ngFor="let pair of vibration[i]">
+              <span>{{ pair[0] }}</span
+              >&nbsp;<span>{{ pair[1] }}</span>
+            </div>
+          </td>
+          <td class="bordered-column">Donnée 2</td>
+          <td
+            class="bordered-column no-padding"
+            *ngIf="i === 0"
+            [attr.rowspan]="2"
+          >
+            <table>
+              <tr></tr>
+              <tr>
+                <td>
+                  1314<br />
+                  <br />
+                  1000 blabla<br />
+                  300 blabla <br />
+                  14 blabla<br />
+                </td>
+              </tr>
+              <tr>
+                <th>Tarot</th>
+              </tr>
+              <tr class="no-bottom-border">
+                <td>Contenu Ligne 2</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- Autres lignes de données -->
+      </tbody>
+    </table>
+  </div>
+</div>

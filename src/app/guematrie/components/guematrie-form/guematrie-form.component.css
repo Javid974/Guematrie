@@ -1,0 +1,85 @@
+/* Style pour le conteneur principal de la page */
+body, html {
+
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alignez les éléments en haut */
+    align-items: center;
+    height: 100vh; /* Utilisez toute la hauteur de la fenêtre */
+    padding: 20px; /* Ajoutez du padding pour ne pas coller au bord de la fenêtre */
+  }
+
+  .error-message {
+    color: red; /* Couleur rouge pour le texte */
+     /* Caché par défaut, sera affiché si un champ est invalide */
+}
+
+  
+  .title-container h1 {
+    font-family: 'Roboto', sans-serif; /* Police Google typique */
+    color: #4285F4; /* Couleur bleue de Google */
+    text-align: center;
+    margin-top: 110%;
+    font-size: 28px; /* Taille ajustable selon vos préférences */
+    margin-bottom: 20px; /* Espacement entre le titre et le formulaire */
+  }
+  /* Style pour le conteneur du formulaire */
+  .form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 400px; /* ou une autre valeur selon la largeur désirée */
+    width: 80%; /* cela rendra le conteneur réactif */
+    min-width: 300px; /* une largeur minimale pour s'assurer qu'il ne devienne pas trop petit */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  /* ... autres styles ... */
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px; /* Taille de la police */
+    color: #333; /* Couleur de la police */
+    font-weight: bold; /* Gras */
+
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 8px 10px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  
+  
+  .submit-button {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #45a049;
+  }
