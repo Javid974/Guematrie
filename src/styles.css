@@ -3,3 +3,11 @@ body, html {
     height: 100%;
     margin: 0;
 }
+
+.title-container {
+    text-align: center; /* Centrer le titre */
+    margin-top: 30px; /* Marge au-dessus du titre */
+    margin-bottom: 20px; /* Marge en dessous du titre, avant le tableau */
+  }
+  
+  
