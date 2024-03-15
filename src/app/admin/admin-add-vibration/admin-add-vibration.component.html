@@ -1,4 +1,10 @@
-<form [formGroup]="vibrationsForm" >
+
+
+  <div class="title-container">
+    <h1>Ajouter des vibrations</h1>
+  </div>
+
+  <form [formGroup]="vibrationsForm" >
     <div formArrayName="vibrations">
       <div *ngFor="let vibration of vibrationsControls; let i = index" [formGroupName]="i">
         <input formControlName="letter" placeholder="Lettre" required>
@@ -9,8 +15,11 @@
           <option [value]="vibrationTypes.MinorVibration">Vibration Mineure</option>
         </select>
         <textarea formControlName="description" placeholder="Description" required></textarea>
+        <button type="button" (click)="removeVibrationFormGroup(i)">Retirer</button>
+
         <button *ngIf="i === vibrationsControls.length - 1" (click)="addVibrationFormGroup()">Ajouter</button>
       </div>
     </div>
   </form>
-  
+
+

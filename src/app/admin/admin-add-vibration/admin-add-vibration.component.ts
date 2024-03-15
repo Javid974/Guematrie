@@ -40,6 +40,13 @@ export class AdminAddVibrationComponent implements OnInit {
       
   }
 
+  removeVibrationFormGroup(index: number): void {
+    const vibrations = this.vibrationsForm.get('vibrations') as FormArray;
+    if (vibrations && index > -1) {
+      vibrations.removeAt(index);
+    }
+  }
+  
   get vibrationsControls() {
     return (this.vibrationsForm.get('vibrations') as FormArray).controls;
   }

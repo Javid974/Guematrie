@@ -1,9 +1,11 @@
 /* Style pour le conteneur principal du formulaire */
+
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    margin-left: 150px;
   }
 
   /* Conteneur de chaque groupe de champs */
@@ -15,6 +17,7 @@ form {
     justify-content: center; /* Distribue uniformément les éléments avec un espace entre eux */
     flex-wrap: wrap;
     gap: 10px; 
+
     width: 90%; /* Ajustez la largeur selon le design souhaité */
     max-width: 800px; /* Empêche le formulaire de devenir trop large sur les grands écrans */
   }
@@ -24,9 +27,13 @@ form {
   /* Style général pour les éléments de formulaire */
   input, select, textarea, button {
     margin: 0 8px; /* Espacement entre les éléments */
-    border: 1px solid #ccc;
+  
     border-radius: 4px;
     
+  }
+
+  input, select, textarea{
+    border: 1px solid #ccc;
   }
   
   input, select {
@@ -50,23 +57,36 @@ form {
   textarea {
     flex: none;
     min-height: 80px; /* Hauteur minimale plus grande */
-    width: 59%; /* Prend toute la largeur disponible */
+    width: 55.5%; /* Prend toute la largeur disponible */
     padding: 10px; /* Padding interne pour l'espace autour du texte */
     margin-top: 8px; /* Ajoute de l'espace au-dessus du textarea */
     margin-bottom: 8px; /* Ajoute de l'espace en dessous du textarea */
     height: 40px;
   }
   /* Bouton avec style supplémentaire */
+
+
+  button:hover {
+    background-color: #0e7ef4;
+  }
   button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white;
+    margin: 5px;
+    padding: 5px 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    width: 61%; /* Optionnel: pour étendre le bouton à la largeur du formulaire */
+    width: 58%; 
   }
-  button:hover {
-    background-color: #0056b3;
+  
+  /* Style pour le bouton d'ajout */
+  button[type="button"]:last-child {
+    background-color: #0e7ef4; 
+    color: white;
+  }
+  
+  /* Style pour le bouton de suppression */
+  button[type="button"]:not(:last-child) {
+    background-color: #4CAF50; /* Rouge */
+    color: white;
   }
   
