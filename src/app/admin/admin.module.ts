@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminEditVibrationComponent } from './admin-edit-vibration/admin-edit-vibration.component';
+import { AdminAddVibrationComponent } from './admin-add-vibration/admin-add-vibration.component';
 
 
 @NgModule({
   declarations: [
     AdminDashboardComponent,
-    AdminEditVibrationComponent
+    AdminEditVibrationComponent,
+    AdminAddVibrationComponent
   ],
   imports: [
     CommonModule,

@@ -2,10 +2,13 @@
 <div class="title-container">
   <h1>Tableau des vibrations</h1>
 </div>
+
 <div class="edit-mode-toggle">
-  <!-- Exemple en utilisant la classe sur le conteneur du lien -->
-  <a [routerLink]="'/admin/edit'" class="edit-mode-toggle-link">Activer le Mode Édition</a>
+  <a [routerLink]="'/admin/add'" class="edit-mode-toggle-link">Mode Ajout</a>
+  <span class="separator">|</span>
+  <a [routerLink]="'/admin/edit'" class="edit-mode-toggle-link">Mode Édition</a>
 </div>
+
 <hr class="table-separator"/>
 <table class="table-container">
   <thead>

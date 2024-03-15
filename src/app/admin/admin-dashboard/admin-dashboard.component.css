@@ -2,6 +2,15 @@
   width: 80%; /* Définit la largeur du conteneur à 80% de la largeur du parent */
 }
 
+.table-separator {
+  border: 0; /* Enlève la bordure par défaut du hr */
+  height: 1px; /* Épaisseur du trait de séparation ajustée à 1 pixel */
+  background-color: rgb(166, 170, 175); /* Couleur du trait */
+  width: 80%; /* Assure que le hr s'étend sur toute la largeur */
+  margin-left: auto; /* Centrage du hr */
+  margin-right: auto; /* Centrage du hr */
+}
+
 tr:not(:last-child) td {
   border-bottom: 1px solid #ddd; /* Ajustez le style de bordure comme nécessaire */
 }  
@@ -33,11 +42,7 @@ tr:not(:last-child) td {
 
 }
 
-.table-separator {
-  border: 0; /* Enlève la bordure par défaut du hr */
-  height: 1px; /* Épaisseur du trait de séparation ajustée à 1 pixel */
-  background-color: rgb(166, 170, 175); /* Couleur du trait */
-  width: 80%; /* Assure que le hr s'étend sur toute la largeur */
-  margin-left: auto; /* Centrage du hr */
-  margin-right: auto; /* Centrage du hr */
+.separator {
+  margin: 0 10px; /* Ajoute un peu d'espace autour du séparateur */
+  color: #333; /* Vous pouvez ajuster la couleur selon le thème de votre site */
 }
