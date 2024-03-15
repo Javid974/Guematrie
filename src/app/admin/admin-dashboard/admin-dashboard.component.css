@@ -1,26 +1,43 @@
-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  table, th, td {
-    border: 1px solid black;
-  }
-  
-  th, td {
-    padding: 8px;
-    text-align: left;
-  }
-  
-  thead {
-    background-color: #f2f2f2;
-  }
-  
-  .title-container {
-    text-align: center; /* Centrer le titre */
-    margin-top: 30px; /* Marge au-dessus du titre */
-    margin-bottom: 20px; /* Marge en dessous du titre, avant le tableau */
-  }
-  
-  /* Ajoutez d'autres styles ici selon vos préférences */
-  
+.table-container {
+  width: 80%; /* Définit la largeur du conteneur à 80% de la largeur du parent */
+}
+
+tr:not(:last-child) td {
+  border-bottom: 1px solid #ddd; /* Ajustez le style de bordure comme nécessaire */
+}  
+
+.edit-mode-toggle a, /* Si vous appliquez la classe directement au conteneur du lien */
+.edit-mode-toggle-link /* Ou si vous préférez appliquer la classe directement au lien */ {
+  color: #007bff; /* Bleu typique des liens */
+  text-decoration: none; /* Enlève le soulignement par défaut */
+  font-size: 16px; /* Taille de la police pour la lisibilité */
+  transition: text-decoration 0.3s ease-in-out; /* Transition fluide pour le soulignement */
+}
+
+.edit-mode-toggle a:hover,
+.edit-mode-toggle-link:hover {
+  text-decoration: underline; /* Souligne le lien au survol pour indiquer la cliquabilité */
+  color: #0056b3; /* Assombrit légèrement le bleu pour le feedback au survol */
+}
+
+.edit-mode-toggle a:active,
+.edit-mode-toggle-link:active {
+  color: #004085; /* Bleu plus foncé lors du clic pour le feedback d'interaction */
+}
+
+.edit-mode-toggle {
+  text-align: center; /* Centre le contenu horizontalement */
+  width: 100%; /* Assurez-vous que le conteneur prend toute la largeur */
+  margin-top: 20px; /* Espacement au-dessus, ajustez selon le besoin */
+  margin-bottom: 20px; /* Espacement en dessous, ajustez selon le besoin */
+
+}
+
+.table-separator {
+  border: 0; /* Enlève la bordure par défaut du hr */
+  height: 1px; /* Épaisseur du trait de séparation ajustée à 1 pixel */
+  background-color: rgb(166, 170, 175); /* Couleur du trait */
+  width: 80%; /* Assure que le hr s'étend sur toute la largeur */
+  margin-left: auto; /* Centrage du hr */
+  margin-right: auto; /* Centrage du hr */
+}

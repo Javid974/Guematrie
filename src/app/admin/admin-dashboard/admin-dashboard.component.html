@@ -1,23 +1,28 @@
-<div>
-  <div class="title-container">
-    <h1>Tableau des vibrations</h1>
-  </div>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th></th>
-        <!-- Première colonne sans titre -->
-        <th>Vibration</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let vibration of vibrations">
-        <td>{{ vibration.letter }}</td>
-        <td>{{ vibration.vibration }}</td>
-        <td>{{ vibration.description }}</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="title-container">
+  <h1>Tableau des vibrations</h1>
 </div>
+<div class="edit-mode-toggle">
+  <!-- Exemple en utilisant la classe sur le conteneur du lien -->
+  <a [routerLink]="'/admin/edit'" class="edit-mode-toggle-link">Activer le Mode Édition</a>
+</div>
+<hr class="table-separator"/>
+<table class="table-container">
+  <thead>
+    <tr>
+      <th></th>
+      <!-- Première colonne sans titre -->
+      <th class="bordered-column">Vibration</th>
+      <th class="bordered-column">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let vibration of vibrations">
+      <td>{{ vibration.letter }}</td>
+      <td class="bordered-column">{{ vibration.vibration }}</td>
+      <td class="bordered-column">{{ vibration.description }}</td>
+    </tr>
+  </tbody>
+</table>
+
+

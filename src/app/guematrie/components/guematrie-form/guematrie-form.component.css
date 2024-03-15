@@ -18,9 +18,8 @@ body, html {
   .error-message {
     color: red; /* Couleur rouge pour le texte */
      /* Caché par défaut, sera affiché si un champ est invalide */
-}
+    }
 
-  
   .title-container h1 {
     font-family: 'Roboto', sans-serif; /* Police Google typique */
     color: #4285F4; /* Couleur bleue de Google */
@@ -29,6 +28,13 @@ body, html {
     font-size: 28px; /* Taille ajustable selon vos préférences */
     margin-bottom: 20px; /* Espacement entre le titre et le formulaire */
   }
+
+  /* Pour réinitialiser les styles */
+.title-container.exclude-style {
+  text-align: left; /* Ou la valeur par défaut */
+  margin-top: 0; /* Ou la valeur par défaut */
+  margin-bottom: 0; /* Ou la valeur par défaut */
+}
   /* Style pour le conteneur du formulaire */
   .form-container {
     position: absolute;
@@ -67,8 +73,6 @@ body, html {
     box-sizing: border-box;
   }
 
-  
-  
   .submit-button {
     width: 100%;
     background-color: #4CAF50;

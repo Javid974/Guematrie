@@ -1,28 +1,12 @@
-.table-container {
-    width: 95%; /* Définit la largeur du conteneur à 80% de la largeur du parent */
-    margin: 0 auto; /* Centre le conteneur sur la page */
-    overflow-x: auto; /* Ajoute un défilement horizontal si le tableau dépasse la largeur du conteneur */
-    margin-top: 20px; /* Ajoutez une marge en haut */
 
-}
-
-  /* Style pour les colonnes avec bordure */
-.bordered-column {
-  border-left: 1px solid #ddd; /* Bordure verticale sur le côté gauche */
-}
 
 /* Style pour le tableau */
 .table-container table {
   border-collapse: collapse; /* Pour s'assurer que les bordures des cellules se collent */
 }
-
-/* Style pour les cellules du tableau */
-.table-container th, 
-.table-container td {
-  padding: 8px; /* Espace intérieur pour chaque cellule */
-  text-align: left; /* Alignement du texte à gauche */
+.table-container {
+  width: 90%; /* Définit la largeur du conteneur à 90% de la largeur du parent */
 }
-
 /* Éliminer la bordure de la première colonne (colonne étroite) */
 .table-container table th:first-child, 
 .table-container table td:first-child {
@@ -41,8 +25,6 @@ table {
 }
   
 th, td {
-    text-align: left;
-    padding: 8px;
     border-bottom: 1px solid #ddd; /* Ligne de séparation subtile */
 }
   
@@ -53,11 +35,6 @@ th, td {
 .narrow-column div {
     display: block; /* Chaque lettre sur une nouvelle ligne */
   }
-  
-th {
-    background-color: #f8f8f8; /* Couleur de fond pour les en-têtes */
-    color: #333; /* Couleur du texte des en-têtes */
-}
   
 .no-bottom-border td {
   border-bottom: none;

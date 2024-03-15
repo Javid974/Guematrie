@@ -8,6 +8,32 @@ body, html {
     text-align: center; /* Centrer le titre */
     margin-top: 30px; /* Marge au-dessus du titre */
     margin-bottom: 20px; /* Marge en dessous du titre, avant le tableau */
-  }
+}
   
+.table-container {
+     /* Définit la largeur du conteneur à 80% de la largeur du parent */
+    margin: 0 auto; /* Centre le conteneur sur la page */
+    overflow-x: auto; /* Ajoute un défilement horizontal si le tableau dépasse la largeur du conteneur */
+    margin-top: 20px; /* Ajoutez une marge en haut */
+}
+
+th {
+    background-color: #f8f8f8; /* Couleur de fond pour les en-têtes */
+    color: #333; /* Couleur du texte des en-têtes */
+}
+
+/* Style pour les cellules du tableau */
+.table-container th, 
+.table-container td {
+  padding: 8px; /* Espace intérieur pour chaque cellule */
+  text-align: left; /* Alignement du texte à gauche */
+}
+
+/* Style pour les colonnes avec bordure */
+.bordered-column {
+    border-left: 1px solid #ddd; /* Bordure verticale sur le côté gauche */
+}
+
+
+
   
