@@ -15,7 +15,7 @@
           <option [value]="vibrationTypes.MinorVibration">Vibration Mineure</option>
         </select>
         <textarea formControlName="description" placeholder="Description" required></textarea>
-        <button type="button" (click)="removeVibrationFormGroup(i)">Retirer</button>
+        <button type="button"  class="remove-btn" (click)="removeVibrationFormGroup(i)" [disabled]="vibrationsControls.length <= 1">Retirer</button>
 
         <button *ngIf="i === vibrationsControls.length - 1" (click)="addVibrationFormGroup()">Ajouter</button>
       </div>
