@@ -16,6 +16,7 @@
       <th></th>
       <!-- Première colonne sans titre -->
       <th class="bordered-column">Vibration</th>
+      <th class="bordered-column">Type de Vibration</th>
       <th class="bordered-column">Description</th>
     </tr>
   </thead>
@@ -23,6 +24,7 @@
     <tr *ngFor="let vibration of vibrations">
       <td>{{ vibration.letter }}</td>
       <td class="bordered-column">{{ vibration.vibration }}</td>
+      <td class="bordered-column">{{ getVibrationTypeDescription(vibration.vibrationType) }}</td>
       <td class="bordered-column">{{ vibration.description }}</td>
     </tr>
   </tbody>

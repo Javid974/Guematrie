@@ -1,5 +1,9 @@
+import { VibrationTypeEnum } from "src/app/emum/vibration-type.enum";
+
 export interface Vibration {
   letter: string;
-  vibration: string; // Type changé en string
+  vibration: string; 
   description: string;
+  vibrationType: VibrationTypeEnum
 }
+

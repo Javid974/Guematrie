@@ -1,1 +1,16 @@
-<p>admin-add-vibration works!</p>
+<form [formGroup]="vibrationsForm" >
+    <div formArrayName="vibrations">
+      <div *ngFor="let vibration of vibrationsControls; let i = index" [formGroupName]="i">
+        <input formControlName="letter" placeholder="Lettre" required>
+        <input formControlName="vibration" placeholder="Vibration" required>
+        <select formControlName="vibrationType" required>
+          <option value="" disabled>Choisir le type</option>
+          <option [value]="vibrationTypes.MajorVibration">Vibration Majeure</option>
+          <option [value]="vibrationTypes.MinorVibration">Vibration Mineure</option>
+        </select>
+        <textarea formControlName="description" placeholder="Description" required></textarea>
+        <button *ngIf="i === vibrationsControls.length - 1" (click)="addVibrationFormGroup()">Ajouter</button>
+      </div>
+    </div>
+  </form>
+  
