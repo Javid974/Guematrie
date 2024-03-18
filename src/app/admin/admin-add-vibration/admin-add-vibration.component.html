@@ -4,22 +4,47 @@
     <h1>Ajouter des vibrations</h1>
   </div>
 
-  <form [formGroup]="vibrationsForm" >
+  <form [formGroup]="vibrationsForm" (ngSubmit)="onSubmit()">
     <div formArrayName="vibrations">
       <div *ngFor="let vibration of vibrationsControls; let i = index" [formGroupName]="i">
+        <div *ngIf="isControlInvalid(i, 'letter')" class="error-message">Lettre est requise.</div>
         <input formControlName="letter" placeholder="Lettre" required>
-        <input formControlName="vibration" placeholder="Vibration" required>
+      
+       
+
+        <input type="number" formControlName="vibration" placeholder="Vibration" required>
+
         <select formControlName="vibrationType" required>
           <option value="" disabled>Choisir le type</option>
           <option [value]="vibrationTypes.MajorVibration">Vibration Majeure</option>
           <option [value]="vibrationTypes.MinorVibration">Vibration Mineure</option>
         </select>
-        <textarea formControlName="description" placeholder="Description" required></textarea>
-        <button type="button"  class="remove-btn" (click)="removeVibrationFormGroup(i)" [disabled]="vibrationsControls.length <= 1">Retirer</button>
 
-        <button *ngIf="i === vibrationsControls.length - 1" (click)="addVibrationFormGroup()">Ajouter</button>
+        <select formControlName="vibrationColor" required>
+          <option value="" disabled>Choisir la couleur</option>
+          <option [value]="vibrationColor.Green">Feux vert</option>
+          <option [value]="vibrationColor.Red">Feux Rogue</option>
+          <option [value]="vibrationColor.Orange">Feux Orange</option>
+        </select>
+  
+        
+        <textarea formControlName="description" placeholder="Description" required></textarea>
+        
+        <label>
+          <input type="checkbox" formControlName="karmic">
+          Karmique
+        </label>
+
+        <label>
+          <input type="checkbox" formControlName="consciousness">
+          Conscience
+        </label>
+
+        <button type="button"  class="remove-btn" (click)="removeVibrationFormGroup(i)" [disabled]="vibrationsControls.length <= 1">Retirer</button>
+        <button class="add-btn" *ngIf="i === vibrationsControls.length - 1" (click)="addVibrationFormGroup()">Ajouter</button>
       </div>
     </div>
+    <button class="submit-btn" type="submit">Soumettre</button>
   </form>
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { VibrationColorEnum } from 'src/app/emum/vibration-color.enum';
 import { VibrationTypeEnum } from 'src/app/emum/vibration-type.enum';
 import { Vibration } from 'src/models/vibration.model'; // Assurez-vous que le chemin d'importation est correct
 
@@ -9,8 +10,8 @@ import { Vibration } from 'src/models/vibration.model'; // Assurez-vous que le c
 })
 export class AdminDashboardComponent implements OnInit {
   vibrations: Vibration[] = [
-    { letter: 'A', vibration: '100Hz', vibrationType: VibrationTypeEnum.MajorVibration, description: 'Initial vibration' },
-    { letter: 'B', vibration: '200Hz', vibrationType: VibrationTypeEnum.MinorVibration, description: 'Secondary vibration' },
+    { letter: 'A', vibration: 12, vibrationType: VibrationTypeEnum.MajorVibration, vibrationColor: VibrationColorEnum.Green, description: 'Initial vibration', karmic:false, consciousness:false },
+    { letter: 'B', vibration: 13, vibrationType: VibrationTypeEnum.MinorVibration, vibrationColor: VibrationColorEnum.Green, description: 'Secondary vibration', karmic:false, consciousness:false },
     // Ajoutez d'autres vibrations ici selon le besoin
   ];
 
