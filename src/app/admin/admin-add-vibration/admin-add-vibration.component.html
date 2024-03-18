@@ -10,6 +10,8 @@
         <div>
           <span *ngIf="isControlInvalid(i, 'letter')" class="error-message">Lettre est requise.</span>
           <span *ngIf="isControlInvalid(i, 'vibration')" class="error-message">vibration est requise.</span>
+          <span *ngIf="isControlInvalid(i, 'vibrationType')" class="error-message">vibration est requise.</span>
+          <span *ngIf="isControlInvalid(i, 'vibrationColor')" class="error-message">vibration est requise.</span>
         </div>
         <input formControlName="letter" placeholder="Lettre" required>
         <input type="number" formControlName="vibration" placeholder="Vibration" required>
