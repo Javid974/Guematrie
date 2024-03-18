@@ -9,12 +9,13 @@ import { Vibration } from 'src/models/vibration.model';
   templateUrl: './admin-add-vibration.component.html',
   styleUrls: ['./admin-add-vibration.component.css']
 })
+
 export class AdminAddVibrationComponent implements OnInit {
   vibrationsForm: FormGroup;
   vibrationTypes = VibrationTypeEnum;
   vibrationColor = VibrationColorEnum;
   vibrationsList: Vibration[] = [];
-
+  isSubmitted: boolean = false
   constructor(private fb: FormBuilder) {
     this.vibrationsForm = this.fb.group({
       vibrations: this.fb.array([this.createVibrationFormGroup()])
@@ -24,25 +25,28 @@ export class AdminAddVibrationComponent implements OnInit {
   ngOnInit(): void {}
   
   onSubmit() {
-    debugger;
+    this.isSubmitted = true;
     if (this.vibrationsForm.valid) {
-      const formVibrations: Vibration[] = this.vibrationsForm.value.vibrations;
-
-      // Réinitialiser la liste avec les nouvelles valeurs du formulaire
-      this.vibrationsList = [...formVibrations];
-  
-      //  réinitialiser le formulaire lui-même pour une nouvelle saisie
-      this.vibrationsForm.reset();
-    
-      const vibrationsArray = this.vibrationsForm.get('vibrations') as FormArray;
-      vibrationsArray.clear(); 
-      vibrationsArray.push(this.createVibrationFormGroup()); 
+      this.isSubmitted = false;
+      this.resetForm();
     }
   }
 
+
   isControlInvalid(index: number, controlName: string): boolean {
     const control = (this.vibrationsForm.get('vibrations') as FormArray).at(index).get(controlName);
-    return control ? control.invalid && (control.dirty || control.touched) : false;
+    return control ? this.isSubmitted && control.invalid : false;
+  }
+  
+  resetForm(): void {
+    const formVibrations: Vibration[] = this.vibrationsForm.value.vibrations;
+    // Réinitialiser la liste avec les nouvelles valeurs du formulaire
+    this.vibrationsList = [...formVibrations];
+    //  réinitialiser le formulaire lui-même pour une nouvelle saisie
+    this.vibrationsForm.reset();
+    const vibrationsArray = this.vibrationsForm.get('vibrations') as FormArray;
+    vibrationsArray.clear(); 
+    vibrationsArray.push(this.createVibrationFormGroup()); 
   }
   
   createVibrationFormGroup(): FormGroup {
