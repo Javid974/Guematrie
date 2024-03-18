@@ -7,13 +7,13 @@
   <form [formGroup]="vibrationsForm" (ngSubmit)="onSubmit()">
     <div formArrayName="vibrations">
       <div *ngFor="let vibration of vibrationsControls; let i = index" [formGroupName]="i">
-        <div *ngIf="isControlInvalid(i, 'letter')" class="error-message">Lettre est requise.</div>
+        <div>
+          <span *ngIf="isControlInvalid(i, 'letter')" class="error-message">Lettre est requise.</span>
+          <span *ngIf="isControlInvalid(i, 'vibration')" class="error-message">vibration est requise.</span>
+        </div>
         <input formControlName="letter" placeholder="Lettre" required>
-      
-       
-
         <input type="number" formControlName="vibration" placeholder="Vibration" required>
-
+     
         <select formControlName="vibrationType" required>
           <option value="" disabled>Choisir le type</option>
           <option [value]="vibrationTypes.MajorVibration">Vibration Majeure</option>
@@ -27,7 +27,9 @@
           <option [value]="vibrationColor.Orange">Feux Orange</option>
         </select>
   
-        
+        <div>
+          <span *ngIf="isControlInvalid(i, 'description')" class="error-message">Lettre est requise.</span>
+        </div>
         <textarea formControlName="description" placeholder="Description" required></textarea>
         
         <label>
