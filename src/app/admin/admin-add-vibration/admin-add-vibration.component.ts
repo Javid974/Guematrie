@@ -52,7 +52,7 @@ export class AdminAddVibrationComponent implements OnInit {
   createVibrationFormGroup(): FormGroup {
     return this.fb.group({
       letter: ['', Validators.required],
-      vibration: [null, [Validators.required, Validators.min(1)]],
+      vibrationNumber: [null, [Validators.required, Validators.min(1)]],
       vibrationType: ['', Validators.required],
       vibrationColor: ['', Validators.required],
       description: ['', Validators.required],

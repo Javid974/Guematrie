@@ -9,7 +9,7 @@
       <div *ngFor="let vibration of vibrationsControls; let i = index" [formGroupName]="i">
         <div>
           <span *ngIf="isControlInvalid(i, 'letter')" class="error-message">Lettre requise.</span>
-          <span *ngIf="isControlInvalid(i, 'vibration')" class="error-message-vibration">Vibration requise.</span>
+          <span *ngIf="isControlInvalid(i, 'vibrationNumber')" class="error-message-vibration">Vibration requise.</span>
           <span *ngIf="isControlInvalid(i, 'vibrationType')" class="error-message-vibration-type">Type de vibration requis.</span>
           <span *ngIf="isControlInvalid(i, 'vibrationColor')" class="error-message-vibration-color">Couleur requise.</span>
         </div>

@@ -2,8 +2,9 @@ import { VibrationColorEnum } from "src/app/emum/vibration-color.enum";
 import { VibrationTypeEnum } from "src/app/emum/vibration-type.enum";
 
 export interface Vibration {
+  uuid: string;
   letter: string;
-  vibration: number; 
+  vibrationNumber: number; 
   description: string;
   vibrationType: VibrationTypeEnum, 
   vibrationColor:VibrationColorEnum,

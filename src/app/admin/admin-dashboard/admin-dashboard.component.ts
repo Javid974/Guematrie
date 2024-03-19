@@ -10,8 +10,8 @@ import { Vibration } from 'src/models/vibration.model'; // Assurez-vous que le c
 })
 export class AdminDashboardComponent implements OnInit {
   vibrations: Vibration[] = [
-    { letter: 'A', vibration: 12, vibrationType: VibrationTypeEnum.MajorVibration, vibrationColor: VibrationColorEnum.Green, description: 'Initial vibration', karmic:false, consciousness:false },
-    { letter: 'B', vibration: 13, vibrationType: VibrationTypeEnum.MinorVibration, vibrationColor: VibrationColorEnum.Green, description: 'Secondary vibration', karmic:false, consciousness:false },
+    { uuid:'', letter: 'A', vibrationNumber: 12, vibrationType: VibrationTypeEnum.MajorVibration, vibrationColor: VibrationColorEnum.Green, description: 'Initial vibration', karmic:false, consciousness:false },
+    { uuid:'',letter: 'B', vibrationNumber: 13, vibrationType: VibrationTypeEnum.MinorVibration, vibrationColor: VibrationColorEnum.Green, description: 'Secondary vibration', karmic:false, consciousness:false },
     // Ajoutez d'autres vibrations ici selon le besoin
   ];
 
