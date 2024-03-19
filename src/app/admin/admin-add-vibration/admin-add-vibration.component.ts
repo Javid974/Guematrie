@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VibrationColorEnum } from 'src/app/emum/vibration-color.enum';
 import { VibrationTypeEnum } from 'src/app/emum/vibration-type.enum';
 import { Vibration } from 'src/models/vibration.model';
+import { VibrationService } from 'src/services/vibration.service';
 
 @Component({
   selector: 'app-admin-add-vibration',
@@ -16,7 +17,7 @@ export class AdminAddVibrationComponent implements OnInit {
   vibrationColor = VibrationColorEnum;
   vibrationsList: Vibration[] = [];
   isSubmitted: boolean = false
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private vibrationService: VibrationService) {
     this.vibrationsForm = this.fb.group({
       vibrations: this.fb.array([this.createVibrationFormGroup()])
     });
@@ -25,10 +26,17 @@ export class AdminAddVibrationComponent implements OnInit {
   ngOnInit(): void {}
   
   onSubmit() {
+    debugger;
     this.isSubmitted = true;
     if (this.vibrationsForm.valid) {
-      this.isSubmitted = false;
-      this.resetForm();
+      this.vibrationService.saveVibrations(this.vibrationsForm.value.vibrations).subscribe(response => {
+        console.log('Vibrations enregistrées avec succès', response);
+        this.resetForm();
+        this.isSubmitted = false;
+      }, error => {
+        console.error('Erreur lors de l\'enregistrement des vibrations', error);
+        this.isSubmitted = false;
+      });
     }
   }
 

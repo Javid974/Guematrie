@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { GuematrieModule } from './guematrie/guematrie.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, GuematrieModule],
+  imports: [BrowserModule,HttpClientModule, AppRoutingModule, GuematrieModule],
   providers: [],
   bootstrap: [AppComponent],
 })

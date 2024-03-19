@@ -5,18 +5,20 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminEditVibrationComponent } from './admin-edit-vibration/admin-edit-vibration.component';
 import { AdminAddVibrationComponent } from './admin-add-vibration/admin-add-vibration.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
     AdminDashboardComponent,
     AdminEditVibrationComponent,
-    AdminAddVibrationComponent
+    AdminAddVibrationComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class AdminModule { }
