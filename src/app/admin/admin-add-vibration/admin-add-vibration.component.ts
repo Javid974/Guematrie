@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { VibrationColorEnum } from 'src/app/emum/vibration-color.enum';
-import { VibrationTypeEnum } from 'src/app/emum/vibration-type.enum';
+import { VibrationColor } from 'src/app/emum/vibration-color.enum';
+import { VibrationType } from 'src/app/emum/vibration-type.enum';
 import { Vibration } from 'src/models/vibration.model';
 import { VibrationService } from 'src/services/vibration.service';
 
@@ -13,8 +13,8 @@ import { VibrationService } from 'src/services/vibration.service';
 
 export class AdminAddVibrationComponent implements OnInit {
   vibrationsForm: FormGroup;
-  vibrationTypes = VibrationTypeEnum;
-  vibrationColor = VibrationColorEnum;
+  vibrationTypes = VibrationType;
+  vibrationColor = VibrationColor;
   vibrationsList: Vibration[] = [];
   isSubmitted: boolean = false
   constructor(private fb: FormBuilder, private vibrationService: VibrationService) {
@@ -29,6 +29,7 @@ export class AdminAddVibrationComponent implements OnInit {
     debugger;
     this.isSubmitted = true;
     if (this.vibrationsForm.valid) {
+
       this.vibrationService.saveVibrations(this.vibrationsForm.value.vibrations).subscribe(response => {
         console.log('Vibrations enregistrées avec succès', response);
         this.resetForm();
@@ -58,7 +59,9 @@ export class AdminAddVibrationComponent implements OnInit {
   }
   
   createVibrationFormGroup(): FormGroup {
+    const uuid = crypto.randomUUID();
     return this.fb.group({
+      id: [uuid],
       letter: ['', Validators.required],
       vibrationNumber: [null, [Validators.required, Validators.min(1)]],
       vibrationType: ['', Validators.required],
