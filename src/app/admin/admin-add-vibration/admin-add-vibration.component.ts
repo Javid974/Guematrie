@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VibrationColor } from 'src/app/emum/vibration-color.enum';
 import { VibrationType } from 'src/app/emum/vibration-type.enum';
 import { Vibration } from 'src/models/vibration.model';
+import { Vibration2 } from 'src/models/vibration2.model';
 import { VibrationService } from 'src/services/vibration.service';
 
 @Component({
@@ -16,28 +17,45 @@ export class AdminAddVibrationComponent implements OnInit {
   vibrationTypes = VibrationType;
   vibrationColor = VibrationColor;
   vibrationsList: Vibration[] = [];
-  isSubmitted: boolean = false
+  isSubmitted: boolean = false;
+  vibration2: Vibration2[] = [
+    { letter: 'A' },
+    { letter: 'B' },
+    { letter: 'C' }
+  ];
+
   constructor(private fb: FormBuilder, private vibrationService: VibrationService) {
     this.vibrationsForm = this.fb.group({
       vibrations: this.fb.array([this.createVibrationFormGroup()])
+     
     });
+ 
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  
+  }
   
   onSubmit() {
     debugger;
     this.isSubmitted = true;
     if (this.vibrationsForm.valid) {
-
-      this.vibrationService.saveVibrations(this.vibrationsForm.value.vibrations).subscribe(response => {
-        console.log('Vibrations enregistrées avec succès', response);
-        this.resetForm();
-        this.isSubmitted = false;
-      }, error => {
-        console.error('Erreur lors de l\'enregistrement des vibrations', error);
-        this.isSubmitted = false;
+      this.vibrationService.saveVibrations2(this.vibration2).subscribe({
+        next:(v) =>{
+          debugger;
+        }
       });
+      // this.vibrationService.saveVibrations(this.vibrationsForm.value.vibrations).subscribe({next: (v) => {
+      //    console.log('Vibrations enregistrées avec succès', v);
+      //    this.resetForm();
+      //   this.isSubmitted = false;
+      // },
+      // error: (v) => {
+      //   console.error('Erreur lors de l\'enregistrement des vibrations');
+      //   this.isSubmitted = false;
+      // }
+       
+      // });
     }
   }
 

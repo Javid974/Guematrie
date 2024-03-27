@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Vibration } from 'src/models/vibration.model';
+import { Vibration2 } from 'src/models/vibration2.model';
 
 
 @Injectable({
@@ -16,5 +17,9 @@ export class VibrationService {
 
   saveVibrations(vibrations: Vibration[]): Observable<Vibration[]> {
     return this.http.post<Vibration[]>(`${this.apiUrl}/vibrations`, vibrations);
+  }
+
+  saveVibrations2(vibrations: Vibration2[]): Observable<Vibration2[]> {
+    return this.http.post<Vibration2[]>(`${this.apiUrl}/vibrations2`, vibrations);
   }
 }
