@@ -18,15 +18,15 @@
      
         <select formControlName="vibrationType" required>
           <option value="" disabled>Choisir le type</option>
-          <option [value]="vibrationTypes.MajorVibration">Vibration Majeure</option>
-          <option [value]="vibrationTypes.MinorVibration">Vibration Mineure</option>
+          <option [ngValue]="vibrationTypes.MajorVibration">Vibration Majeure</option>
+          <option [ngValue]="vibrationTypes.MinorVibration">Vibration Mineure</option>
         </select>
 
         <select formControlName="vibrationColor" required>
           <option value="" disabled>Choisir la couleur</option>
-          <option [value]="vibrationColor.Green">Feux vert</option>
-          <option [value]="vibrationColor.Red">Feux Rogue</option>
-          <option [value]="vibrationColor.Orange">Feux Orange</option>
+          <option [ngValue]="vibrationColor.Green">Feux vert</option>
+          <option [ngValue]="vibrationColor.Orange">Feux Orange</option>
+          <option [ngValue]="vibrationColor.Red">Feux Rogue</option>
         </select>
   
         <div>
