@@ -18,13 +18,10 @@ export class AdminAddVibrationComponent implements OnInit {
   vibrationsList: Vibration[] = [];
   isSubmitted: boolean = false;
 
-
   constructor(private fb: FormBuilder, private vibrationService: VibrationService) {
     this.vibrationsForm = this.fb.group({
       vibrations: this.fb.array([this.createVibrationFormGroup()])
-     
     });
- 
   }
 
   ngOnInit(): void {

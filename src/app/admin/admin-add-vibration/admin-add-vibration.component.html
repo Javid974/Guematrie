@@ -13,8 +13,10 @@
           <span *ngIf="isControlInvalid(i, 'vibrationType')" class="error-message-vibration-type">Type de vibration requis.</span>
           <span *ngIf="isControlInvalid(i, 'vibrationColor')" class="error-message-vibration-color">Couleur requise.</span>
         </div>
-        <input formControlName="letter" placeholder="Lettre" required>
-        <input type="number" formControlName="vibrationNumber" placeholder="Vibration" required>
+
+        <input formControlName="letter" placeholder="Lettre" required  maxlength="1" pattern="^[A-Za-z]$">
+        
+        <input type="number" formControlName="vibrationNumber" placeholder="Vibration" min="0" required>
      
         <select formControlName="vibrationType" required>
           <option value="" disabled>Choisir le type</option>
@@ -32,6 +34,7 @@
         <div>
           <span *ngIf="isControlInvalid(i, 'description')" class="error-message">Description requise.</span>
         </div>
+        
         <textarea formControlName="description" placeholder="Description" required></textarea>
         
         <label>
