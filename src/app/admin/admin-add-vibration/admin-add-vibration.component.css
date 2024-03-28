@@ -40,32 +40,17 @@
     border: none;
     cursor: pointer;
     border-radius: 4px;
-    /* margin: 5px 26px;
-    padding: 5px 10px;
-   
-
-    
-    width: 93.5%;  */
-  }
-
-  .add-btn {
-    background-color: #4CAF50; 
-  }
-
-  .remove-btn {
-    background-color: #cccccc; 
   }
   
   .remove-btn:disabled {
-    background-color: #cccccc; /* Gris pour indiquer qu'il est désactivé */
+    pointer-events: auto; 
     color: #666666;
     cursor: not-allowed; /* Change le curseur pour indiquer qu'il n'est pas cliquable */
   }
 
   /* Style spécifique pour le bouton Soumettre */
 .submit-btn {
-  background-color: #2196F3; /* Bleu vif pour se démarquer */
-  color: white; /* Texte en blanc pour une bonne lisibilité */
+ /* Texte en blanc pour une bonne lisibilité */
   font-weight: bold; /* Rendre le texte un peu plus gras */
   transition: background-color 0.3s, transform 0.2s; 
 

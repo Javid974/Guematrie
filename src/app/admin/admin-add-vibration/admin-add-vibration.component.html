@@ -63,12 +63,16 @@
           </div>
         </div>
 
-        <button type="button"  class="remove-btn mb-2" (click)="removeVibrationFormGroup(i)" [disabled]="vibrationsControls.length <= 1">Retirer</button>
-        <button class="add-btn" *ngIf="i === vibrationsControls.length - 1" (click)="addVibrationFormGroup()">Ajouter</button>
+        <button type="button"  class="remove-btn btn btn-light mb-2" (click)="removeVibrationFormGroup(i)" [disabled]="vibrationsControls.length <= 1">
+          <i class="bi bi-arrow-up"></i>
+          Retirer</button>
+        <button type="button" class="add-btn btn btn-light" *ngIf="i === vibrationsControls.length - 1" (click)="addVibrationFormGroup()">
+          <i class="bi bi-arrow-down"></i>
+          Ajouter</button>
       </div>
     </div>
     <div>
-      <button class="submit-btn" type="submit">Soumettre</button>
+      <button class="submit-btn btn btn-primary" type="submit">Soumettre</button>
     </div>
 
   </form>
