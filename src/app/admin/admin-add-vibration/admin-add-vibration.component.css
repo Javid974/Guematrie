@@ -1,62 +1,51 @@
 /* Style pour le conteneur principal du formulaire */
 
   form {
-    border: 1px solid #cccccc; /* Contour gris clair */
-    border-radius: 8px; /* Bordures arrondies pour un look moderne */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre subtile pour la profondeur */
-    padding: 20px; /* Espacement intérieur pour ne pas coller les éléments au bord */
+    border: 1px solid #cccccc; 
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px; 
     background-color: #f9f9f9; /* Fond légèrement différent pour distinguer le formulaire */
     width: auto; /* Ajustez selon les besoins */
-    max-width: 780px; /* Limite la largeur maximale du formulaire */
+    max-width: 880px; /* Limite la largeur maximale du formulaire */
     margin: auto; /* Centrage horizontal si le conteneur parent est suffisamment large */
   }
   
   /* Style général pour les éléments de formulaire */
-  input, select, textarea, button {
-    margin: 0 27px; 
-    border-radius: 4px;
-    
-  }
 
   input, select, textarea{
     border: 1px solid #ccc;
   }
   
-  input, select {
-    flex: 1; /* Les champs peuvent grandir mais de manière équilibrée */
-    min-width: 134px; /* Assure une largeur minimale pour la lisibilité */
-    margin-bottom: 8px;
-  }
+
   /* Adaptations pour les éléments spécifiques */
   input, select, button {
-    height: 40px;
-    margin-right: 15px;
-  
-    /* Hauteur standardisée */
+     height: 40px;
+     width: 100%;
   }
 
   input[type="checkbox"] {
-    height: auto; /* Remettre la hauteur à la valeur par défaut ou définir une nouvelle hauteur spécifique */
-    margin-right: 2px; /* Conserver la marge droite si nécessaire */
-    min-width:0px;
+   height: auto;
+   width: auto;
+
   }
 
   textarea {
-    flex: none;
-    min-height: 80px; /* Hauteur minimale plus grande */
-    width: 90.6%; /* Prend toute la largeur disponible */
-    padding: 10px; /* Padding interne pour l'espace autour du texte */
-    margin-bottom: 8px; /* Ajoute de l'espace en dessous du textarea */
-    height: 40px;
+    height: 80px;
+    width: 100%;
+
   }
 
   button {
-    margin: 5px 26px;
-    padding: 5px 10px;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
-    width: 93.5%; 
+    border-radius: 4px;
+    /* margin: 5px 26px;
+    padding: 5px 10px;
+   
+
+    
+    width: 93.5%;  */
   }
 
   .add-btn {
@@ -79,6 +68,7 @@
   color: white; /* Texte en blanc pour une bonne lisibilité */
   font-weight: bold; /* Rendre le texte un peu plus gras */
   transition: background-color 0.3s, transform 0.2s; /* Animation légère */
+  width: 99.1%
 }
 
 .submit-btn:hover {
@@ -93,21 +83,9 @@
 
 .error-message {
   color: red;
-  padding-left: 28px;
+  /* padding-left: 28px; */
 }
 
-.error-message-vibration {
-  color: red;
-  padding-left: 115px;
-}
 
-.error-message-vibration-type {
-  color: red;
-  padding-left: 95px;
-}
 
-.error-message-vibration-color{
-  color: red;
-  padding-left: 18px;
-}
 
