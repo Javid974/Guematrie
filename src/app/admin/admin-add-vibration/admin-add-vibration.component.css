@@ -67,8 +67,8 @@
   background-color: #2196F3; /* Bleu vif pour se démarquer */
   color: white; /* Texte en blanc pour une bonne lisibilité */
   font-weight: bold; /* Rendre le texte un peu plus gras */
-  transition: background-color 0.3s, transform 0.2s; /* Animation légère */
-  width: 99.1%
+  transition: background-color 0.3s, transform 0.2s; 
+
 }
 
 .submit-btn:hover {
