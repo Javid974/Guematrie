@@ -4,7 +4,7 @@ import { VibrationColor } from 'src/app/emum/vibration-color.enum';
 import { VibrationType } from 'src/app/emum/vibration-type.enum';
 import { Vibration } from 'src/models/vibration.model';
 import { VibrationService } from 'src/services/vibration.service';
-
+import * as toastr from 'toastr';
 @Component({
   selector: 'app-admin-add-vibration',
   templateUrl: './admin-add-vibration.component.html',
@@ -17,7 +17,7 @@ export class AdminAddVibrationComponent implements OnInit {
   vibrationColor = VibrationColor;
   vibrationsList: Vibration[] = [];
   isSubmitted: boolean = false;
-
+  showToast = false;
   constructor(private fb: FormBuilder, private vibrationService: VibrationService) {
     this.vibrationsForm = this.fb.group({
       vibrations: this.fb.array([this.createVibrationFormGroup()])
@@ -28,21 +28,40 @@ export class AdminAddVibrationComponent implements OnInit {
   
   }
   
+  showSuccessToast() {
+    toastr.success('Vibrations enregistrées avec succès', 'Succès', {
+      positionClass: 'toast-top-center',
+      timeOut: 2000,
+    });
+  }
+
+  showErrorToast() {
+    toastr.error("Une erreur s'est produite.", '', {
+      positionClass: 'toast-top-center',
+      timeOut: 2000,
+    });
+  }
+
   onSubmit() {
     debugger;
     this.isSubmitted = true;
     if (this.vibrationsForm.valid) {
 
-      this.vibrationService.saveVibrations(this.vibrationsForm.value.vibrations).subscribe({next: (v) => {
-         console.log('Vibrations enregistrées avec succès', v);
-         this.resetForm();
-        this.isSubmitted = false;
-      },
-      error: (v) => {
-        console.error('Erreur lors de l\'enregistrement des vibrations');
-        this.isSubmitted = false;
-      }
-       
+      this.vibrationService.saveVibrations(this.vibrationsForm.value.vibrations).subscribe(
+        {
+          next: (v) => 
+          {
+            console.log('Vibrations enregistrées avec succès', v);
+            this.resetForm();
+            this.isSubmitted = false;
+            this.showSuccessToast();
+          },
+        error: (v) => 
+        {
+          console.error('Erreur lors de l\'enregistrement des vibrations');
+          this.isSubmitted = false;
+          this.showErrorToast();
+        }
       });
     }
   }

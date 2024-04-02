@@ -16,6 +16,9 @@
             "outputPath": "dist/guematrie",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "allowedCommonJsDependencies": [
+              "jquery", "toastr"
+            ],
             "polyfills": [
               "zone.js"
             ],
@@ -27,6 +30,7 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
+              "node_modules/toastr/build/toastr.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -62,11 +66,11 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Guematrie:build:production",
+              "buildTarget": "Guematrie:build:production",
               "port": 4300
             },
             "development": {
-              "browserTarget": "Guematrie:build:development",
+              "buildTarget": "Guematrie:build:development",
               "port": 4300
             }
           },
@@ -75,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Guematrie:build"
+            "buildTarget": "Guematrie:build"
           }
         },
         "test": {
@@ -93,6 +97,7 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
+              "node_modules/toastr/build/toastr.min.css",
               "src/styles.css"
             ],
             "scripts": []
