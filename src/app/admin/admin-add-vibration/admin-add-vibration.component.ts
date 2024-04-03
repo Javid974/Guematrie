@@ -72,7 +72,6 @@ export class AdminAddVibrationComponent implements OnInit {
     }
   }
 
-
   isControlInvalid(index: number, controlName: string): boolean {
     const control = (this.vibrationsForm.get('vibrations') as FormArray).at(index).get(controlName);
     return control ? this.isSubmitted && control.invalid : false;

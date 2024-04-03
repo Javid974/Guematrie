@@ -13,7 +13,7 @@
 <table class="table-container">
   <thead>
     <tr>
-      <th></th>
+      <th>Lettre</th>
       <!-- Première colonne sans titre -->
       <th class="bordered-column">Vibration</th>
       <th class="bordered-column">Type de Vibration</th>
@@ -25,7 +25,7 @@
       <td>{{ vibration.letter }}</td>
       <td class="bordered-column">{{ vibration.vibrationNumber }}</td>
       <td class="bordered-column">{{ getVibrationTypeDescription(vibration.vibrationType) }}</td>
-      <td class="bordered-column">{{ vibration.description }}</td>
+      <td class="bordered-column wide-column">{{ vibration.description }}</td>
     </tr>
   </tbody>
 </table>

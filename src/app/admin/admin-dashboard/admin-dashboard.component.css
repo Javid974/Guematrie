@@ -46,3 +46,8 @@ tr:not(:last-child) td {
   margin: 0 10px; /* Ajoute un peu d'espace autour du séparateur */
   color: #333; /* Vous pouvez ajuster la couleur selon le thème de votre site */
 }
+
+.wide-column {
+  width: 70%; /* Ajustez la largeur selon vos besoins */
+}
+

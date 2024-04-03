@@ -18,4 +18,9 @@ export class VibrationService {
   saveVibrations(vibrations: Vibration[]): Observable<Vibration[]> {
     return this.http.post<Vibration[]>(`${this.apiUrl}/vibrations`, vibrations);
   }
+
+  getAll(): Observable<Vibration[]> {
+    return this.http.get<Vibration[]>(`${this.apiUrl}/vibrations`);
+  }
+
 }
