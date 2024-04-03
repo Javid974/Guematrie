@@ -5,18 +5,23 @@
   </div>
   
   <form class="row g-3" [formGroup]="vibrationsForm" (ngSubmit)="onSubmit()">
+    
+    <div *ngIf="errorMessage" class="error-message">
+      <p>{{ errorMessage }}</p>
+    </div>
+
     <div formArrayName="vibrations">
       <div *ngFor="let vibration of vibrationsControls; let i = index" [formGroupName]="i">
 
         <div  class="row mb-3">
           <div  class="col-md-3">
             <input formControlName="letter" placeholder="Lettre" required  maxlength="1" pattern="^[A-Za-z]$">
-            <span *ngIf="isControlInvalid(i, 'letter')" class="error-message small-text">Lettre requise.</span>
+            <span *ngIf="isControlInvalid(i, 'letter')" class="error small-text">Lettre requise.</span>
           </div>
 
           <div  class="col-md-3">
             <input type="number" formControlName="vibrationNumber" placeholder="Vibration" min="0" required>
-            <span *ngIf="isControlInvalid(i, 'vibrationNumber')" class="error-message">Vibration requise.</span>
+            <span *ngIf="isControlInvalid(i, 'vibrationNumber')" class="error">Vibration requise.</span>
           </div>
       
           <div  class="col-md-3">
@@ -25,7 +30,7 @@
               <option [ngValue]="vibrationTypes.MajorVibration">Vibration Majeure</option>
               <option [ngValue]="vibrationTypes.MinorVibration">Vibration Mineure</option>
             </select>
-            <span *ngIf="isControlInvalid(i, 'vibrationType')" class="error-message">Type de vibration requis.</span>
+            <span *ngIf="isControlInvalid(i, 'vibrationType')" class="error">Type de vibration requis.</span>
           </div>
 
           <div  class="col-md-3">
@@ -35,14 +40,14 @@
               <option [ngValue]="vibrationColor.Orange">Feux Orange</option>
               <option [ngValue]="vibrationColor.Red">Feux Rogue</option>
             </select>
-            <span *ngIf="isControlInvalid(i, 'vibrationColor')" class="error-message">Couleur requise.</span>
+            <span *ngIf="isControlInvalid(i, 'vibrationColor')" class="error">Couleur requise.</span>
           </div>
         </div>
 
         <div class="row mb-3">
           <div  class="col-12">
             <textarea formControlName="description" placeholder="Description" required></textarea>
-            <span *ngIf="isControlInvalid(i, 'description')" class="error-message">Description requise.</span>
+            <span *ngIf="isControlInvalid(i, 'description')" class="error">Description requise.</span>
           </div>
         </div>
 

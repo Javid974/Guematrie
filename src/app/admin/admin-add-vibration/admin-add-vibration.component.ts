@@ -12,12 +12,15 @@ import * as toastr from 'toastr';
 })
 
 export class AdminAddVibrationComponent implements OnInit {
-  vibrationsForm: FormGroup;
-  vibrationTypes = VibrationType;
-  vibrationColor = VibrationColor;
-  vibrationsList: Vibration[] = [];
-  isSubmitted: boolean = false;
-  showToast = false;
+  
+  public vibrationsForm: FormGroup;
+  public vibrationTypes = VibrationType;
+  public vibrationColor = VibrationColor;
+  public vibrationsList: Vibration[] = [];
+  public isSubmitted: boolean = false;
+  public showToast = false;
+  public errorMessage: string = '';
+
   constructor(private fb: FormBuilder, private vibrationService: VibrationService) {
     this.vibrationsForm = this.fb.group({
       vibrations: this.fb.array([this.createVibrationFormGroup()])
@@ -44,6 +47,7 @@ export class AdminAddVibrationComponent implements OnInit {
 
   onSubmit() {
     debugger;
+    this.errorMessage = '';
     this.isSubmitted = true;
     if (this.vibrationsForm.valid) {
 
@@ -58,7 +62,9 @@ export class AdminAddVibrationComponent implements OnInit {
           },
         error: (v) => 
         {
+          debugger;
           console.error('Erreur lors de l\'enregistrement des vibrations');
+          this.errorMessage = v.error;
           this.isSubmitted = false;
           this.showErrorToast();
         }

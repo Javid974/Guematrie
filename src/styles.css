@@ -35,6 +35,16 @@ th {
     border-left: 1px solid #ddd; /* Bordure verticale sur le côté gauche */
 }
 
-
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    background-color: #ffcccc;
+    border: 1px solid #ff9999;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
 
   
