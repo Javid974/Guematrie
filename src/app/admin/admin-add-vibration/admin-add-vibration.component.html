@@ -3,7 +3,11 @@
   <div class="title-container">
     <h1>Ajouter des vibrations</h1>
   </div>
-  
+
+  <div class="edit-mode-toggle">
+    <a [routerLink]="'/admin/'" class="edit-mode-toggle-link">Visualiser vibration</a>
+  </div>
+
   <form class="row g-3" [formGroup]="vibrationsForm" (ngSubmit)="onSubmit()">
     
     <div *ngIf="errorMessage" class="error-message">

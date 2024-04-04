@@ -30,6 +30,13 @@ th {
   text-align: left; /* Alignement du texte à gauche */
 }
 
+.table-hover tbody tr:hover {
+    background-color: #f5f5f5;
+    /* Change la couleur de fond de la ligne au survol */
+    cursor: pointer;
+    /* Change le curseur pour indiquer qu'il s'agit d'un élément cliquable */
+  }
+  
 /* Style pour les colonnes avec bordure */
 .bordered-column {
     border-left: 1px solid #ddd; /* Bordure verticale sur le côté gauche */
@@ -46,5 +53,31 @@ th {
     margin-bottom: 20px;
   }
   
-
+  .edit-mode-toggle a, /* Si vous appliquez la classe directement au conteneur du lien */
+  .edit-mode-toggle-link /* Ou si vous préférez appliquer la classe directement au lien */ {
+    color: #007bff; /* Bleu typique des liens */
+    text-decoration: none; /* Enlève le soulignement par défaut */
+    font-size: 16px; /* Taille de la police pour la lisibilité */
+    transition: text-decoration 0.3s ease-in-out; /* Transition fluide pour le soulignement */
+  }
+  
+  .edit-mode-toggle a:hover,
+  .edit-mode-toggle-link:hover {
+    text-decoration: underline; /* Souligne le lien au survol pour indiquer la cliquabilité */
+    color: #0056b3; /* Assombrit légèrement le bleu pour le feedback au survol */
+  }
+  
+  .edit-mode-toggle a:active,
+  .edit-mode-toggle-link:active {
+    color: #004085; /* Bleu plus foncé lors du clic pour le feedback d'interaction */
+  }
+  
+  .edit-mode-toggle {
+    text-align: center; /* Centre le contenu horizontalement */
+    width: 100%; /* Assurez-vous que le conteneur prend toute la largeur */
+    margin-top: 20px; /* Espacement au-dessus, ajustez selon le besoin */
+    margin-bottom: 20px; /* Espacement en dessous, ajustez selon le besoin */
+  
+  }
+  
   
