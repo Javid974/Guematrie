@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { VibrationColor } from 'src/app/emum/vibration-color.enum';
 import { VibrationType } from 'src/app/emum/vibration-type.enum';
@@ -13,6 +14,11 @@ import { VibrationService } from 'src/services/vibration.service';
 export class AdminEditVibrationComponent {
   public vibration: Vibration;
   public vibrationId: string | null = '';
+  public vibrationsForm: FormGroup;
+  public isSubmitted: boolean = false;
+  public vibrationTypes = VibrationType;
+  public vibrationColor = VibrationColor;
+  
   constructor(
     private vibrationService: VibrationService,
     private route: ActivatedRoute)
@@ -27,6 +33,17 @@ export class AdminEditVibrationComponent {
       karmic:false,
       consciousness:false
     }
+
+    this.vibrationsForm = new FormGroup({
+      letter: new FormControl('', [Validators.required]),
+      vibrationNumber: new FormControl('', [Validators.required, Validators.min(1)]), 
+      vibrationType: new FormControl('', [Validators.required]),
+      vibrationColor:new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+      karmic: new FormControl(false),
+      consciousness:new FormControl(false),
+    });
+
   }
 
   ngOnInit() {
@@ -35,6 +52,15 @@ export class AdminEditVibrationComponent {
       this.vibration = vibration;
     });
 
+  }
+
+  isControlInvalid(controlName: string): boolean {
+    const control = this.vibrationsForm.get(controlName);
+    return control !== null && this.isSubmitted && control.invalid;
+  }
+
+  onSubmit() {
+    this.isSubmitted = true;
   }
 
 }

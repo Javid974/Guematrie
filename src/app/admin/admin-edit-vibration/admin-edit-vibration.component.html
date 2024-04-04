@@ -1,1 +1,69 @@
-<p>admin-edit-vibration works!</p>
+<div class="title-container">
+    <h1>Editer des vibrations</h1>
+</div>
+
+<div class="edit-mode-toggle">
+    <a [routerLink]="'/admin/'" class="edit-mode-toggle-link">Visualiser vibration</a>
+</div>
+<form [formGroup]="vibrationsForm" class="row g-3"  (ngSubmit)="onSubmit()">
+
+    <div  class="row mb-3">
+        <div  class="col-md-3">
+            <input formControlName="letter"  [(ngModel)]="vibration.letter" placeholder="Lettre" required  maxlength="1" pattern="^[A-Za-z]$">
+            <span *ngIf="isControlInvalid('letter')" class="error small-text">Lettre requise.</span>
+        </div>
+ 
+        <div  class="col-md-3">
+            <input type="number" [(ngModel)]="vibration.vibrationNumber" formControlName="vibrationNumber" placeholder="Vibration" min="0" required>
+            <span *ngIf="isControlInvalid('vibrationNumber')" class="error">Vibration requise.</span>
+        </div>
+  
+        <div  class="col-md-3">
+            <select  [(ngModel)]="vibration.vibrationType" formControlName="vibrationType" required>
+            <option value="" disabled>Choisir le type</option>
+            <option [ngValue]="vibrationTypes.MajorVibration">Vibration Majeure</option>
+            <option [ngValue]="vibrationTypes.MinorVibration">Vibration Mineure</option>
+            </select>
+            <span *ngIf="isControlInvalid('vibrationType')" class="error">Type de vibration requis.</span>
+        </div>
+
+        <div  class="col-md-3">
+            <select [(ngModel)]="vibration.vibrationColor" formControlName="vibrationColor" required>
+              <option value="" disabled>Choisir la couleur</option>
+              <option [ngValue]="vibrationColor.Green">Feux vert</option>
+              <option [ngValue]="vibrationColor.Orange">Feux Orange</option>
+              <option [ngValue]="vibrationColor.Red">Feux Rogue</option>
+            </select>
+            <span *ngIf="isControlInvalid('vibrationColor')" class="error">Couleur requise.</span>
+        </div>
+
+    </div>
+    
+    <div class="row mb-3">
+        <div  class="col-12">
+            <textarea [(ngModel)]="vibration.description" formControlName="description" placeholder="Description" required></textarea>
+            <span *ngIf="isControlInvalid( 'description')" class="error">Description requise.</span>
+          </div>
+    </div>
+
+    <div class="row mb-3">
+        <div  class="col-md-2">
+          <label>
+            <input [(ngModel)]="vibration.karmic" type="checkbox" formControlName="karmic">
+            Karmique
+          </label>
+        </div>
+
+        <div  class="col-md-2">
+          <label>
+            <input [(ngModel)]="vibration.consciousness" type="checkbox" formControlName="consciousness">
+            Conscience
+          </label>
+        </div>
+      </div>
+
+    <div>
+        <button class="submit-btn btn btn-primary" type="submit">Soumettre</button>
+    </div>
+  
+</form>
