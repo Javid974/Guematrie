@@ -7,7 +7,7 @@ import { AdminAddVibrationComponent } from './admin-add-vibration/admin-add-vibr
 
 const routes: Routes = [
   { path: '', component: AdminDashboardComponent },
-  { path: 'edit', component: AdminEditVibrationComponent },
+  { path: 'edit/:id', component: AdminEditVibrationComponent },
   { path: 'add', component: AdminAddVibrationComponent },
 ];
 

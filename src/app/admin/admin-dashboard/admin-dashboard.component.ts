@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { VibrationColor } from 'src/app/emum/vibration-color.enum';
 import { VibrationType} from 'src/app/emum/vibration-type.enum';
 import { Vibration } from 'src/models/vibration.model'; // Assurez-vous que le chemin d'importation est correct
@@ -13,7 +14,8 @@ export class AdminDashboardComponent implements OnInit {
   vibrations: Vibration[] = [
   ];
 
-  constructor(private vibrationService: VibrationService) {}
+  constructor(private vibrationService: VibrationService,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.vibrationService.getAll().subscribe(
@@ -28,6 +30,10 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
+  onRowClick(vibration: Vibration) {
+    this.router.navigate(['/admin/edit', vibration.id]);
+  }
+
   getVibrationTypeDescription(vibrationType: VibrationType): string {
     switch (vibrationType) {
       case VibrationType.MajorVibration:
@@ -38,4 +44,5 @@ export class AdminDashboardComponent implements OnInit {
         return 'Type Inconnu';
     }
   }
+
 }

@@ -6,7 +6,7 @@
 <div class="edit-mode-toggle">
   <a [routerLink]="'/admin/add'" class="edit-mode-toggle-link">Mode Ajout</a>
   <span class="separator">|</span>
-  <a [routerLink]="'/admin/edit'" class="edit-mode-toggle-link">Mode Édition</a>
+  <a [routerLink]="''" class="edit-mode-toggle-link">Retour a la génération</a>
 </div>
 
 <hr class="table-separator"/>
@@ -21,7 +21,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let vibration of vibrations">
+    <tr *ngFor="let vibration of vibrations" (click)="onRowClick(vibration)">
       <td>{{ vibration.letter }}</td>
       <td class="bordered-column">{{ vibration.vibrationNumber }}</td>
       <td class="bordered-column">{{ getVibrationTypeDescription(vibration.vibrationType) }}</td>
