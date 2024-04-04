@@ -23,4 +23,8 @@ export class VibrationService {
     return this.http.get<Vibration[]>(`${this.apiUrl}/vibrations`);
   }
 
+  get(id: string|null): Observable<Vibration> {
+    return this.http.get<Vibration>(`${this.apiUrl}/vibrations/${id}`);
+  }
+
 }
