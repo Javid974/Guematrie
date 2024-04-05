@@ -71,7 +71,28 @@
   </div>
   
   <div>
-    <button class="submit-btn btn btn-primary" type="submit">Supprimer</button>
+    <button class="submit-btn btn btn-primary" type="button" (click)="openModal()">Supprimer</button>
   </div>
 
 </form>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true" [ngClass]="{'show': showModal}" *ngIf="showModal" style="display:block; background: rgba(0,0,0,0.5);">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirmation de suppression</h5>
+        <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Êtes-vous sûr de vouloir supprimer cet élément ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+        <button type="button" class="btn btn-danger" (click)="deleteItem()">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>

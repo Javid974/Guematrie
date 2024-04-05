@@ -71,6 +71,72 @@ form {
   /* padding-left: 28px; */
 }
 
+/* Assurez-vous que le modal est centré et visible au-dessus du backdrop */
+.modal {
+  display: block; /* Remplacé par 'none' en absence du modal */
+  position: fixed;
+  z-index: 1050;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  opacity: 1; /* Pour animation */
+  visibility: visible;
+  transition: opacity .15s linear;
+}
 
+/* Animation d'apparition */
+.show .modal {
+  opacity: 1;
+}
 
+/* Style supplémentaire pour le contenu du modal si nécessaire */
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: .3rem;
+  outline: 0;
+}
+
+/* Styles pour le header, le body et le footer du modal */
+.modal-header, .modal-body, .modal-footer {
+  padding: 1rem;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-top: 1px solid #dee2e6;
+}
+
+.close {
+  width: auto;
+  height: auto;
+  float: right; /* Pour aligner le bouton à droite */
+  /* Si vous préférez que le bouton soit toujours dans le coin supérieur droit, indépendamment du flux du document : */
+  position: absolute;
+  right: 1rem; /* Ajustez la distance du bord droit selon vos besoins */
+  top: 1rem; /* Ajustez la distance du bord supérieur selon vos besoins */
+  background: transparent; /* Pour un fond transparent */
+  border: none; /* Supprime la bordure par défaut */
+  padding: 0; /* Supprime le padding par défaut pour réduire la taille si nécessaire */
+  color: inherit; /* Hérite la couleur du parent ou peut être défini explicitement */
+  cursor: pointer; /* Change le curseur en pointeur pour indiquer la fonctionnalité de clic */
+}
 

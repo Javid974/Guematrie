@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VibrationColor } from 'src/app/emum/vibration-color.enum';
 import { VibrationType } from 'src/app/emum/vibration-type.enum';
 import { Vibration } from 'src/models/vibration.model';
@@ -20,10 +20,12 @@ export class AdminEditVibrationComponent {
   public vibrationTypes = VibrationType;
   public vibrationColor = VibrationColor;
   public errorMessage: string = '';
+  public showModal: boolean = false;
 
   constructor(
     private vibrationService: VibrationService,
-    private route: ActivatedRoute)
+    private route: ActivatedRoute,
+    private router: Router)
   {
     this.vibration = {
       id: '',
@@ -56,8 +58,42 @@ export class AdminEditVibrationComponent {
 
   }
 
-  showSuccessToast() {
-    toastr.success('Vibrations enregistrées avec succès', 'Succès', {
+  openModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
+
+  deleteItem() {
+
+    this.vibrationService.delete(this.vibration.id).subscribe(
+      {
+        next: (v) => 
+          {
+            console.log('Vibrations mise à jour avec succès', v);
+            this.isSubmitted = false;
+            const message = 'Vibrations suprrimé avec succès'
+            this.showSuccessToast(message);
+            this.router.navigate(['/admin']);
+          },
+        error: (v) => 
+          {
+            console.error('Erreur lors de l\'enregistrement des vibrations');
+            this.errorMessage = v.error;
+            this.isSubmitted = false;
+            this.showErrorToast();
+          
+          }
+      })
+
+    this.closeModal();
+
+  }
+
+  showSuccessToast(message: string) {
+    toastr.success(message, 'Succès', {
       positionClass: 'toast-top-center',
       timeOut: 2000,
     });
@@ -85,7 +121,8 @@ export class AdminEditVibrationComponent {
             {
               console.log('Vibrations mise à jour avec succès', v);
               this.isSubmitted = false;
-              this.showSuccessToast();
+              const message = 'Vibrations mise à jour avec succès'
+              this.showSuccessToast(message);
             },
           error: (v) => 
             {

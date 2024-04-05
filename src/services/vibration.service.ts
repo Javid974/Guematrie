@@ -31,4 +31,8 @@ export class VibrationService {
     return this.http.put(`${this.apiUrl}/vibrations/${vibration.id}`, vibration);
   }
 
+  delete (id : string) : Observable<any> {
+    return this.http.delete(`${this.apiUrl}/vibrations/${id}`);
+  }
+
 }
