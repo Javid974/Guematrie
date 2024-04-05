@@ -27,4 +27,8 @@ export class VibrationService {
     return this.http.get<Vibration>(`${this.apiUrl}/vibrations/${id}`);
   }
 
+  update(vibration: Vibration): Observable<any> {
+    return this.http.put(`${this.apiUrl}/vibrations/${vibration.id}`, vibration);
+  }
+
 }

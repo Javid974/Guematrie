@@ -1,55 +1,46 @@
-/* Style pour le conteneur principal de la page */
 body, html {
+  font-family: Arial, sans-serif;
+}
 
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-  }
+.title-container h1 {
+  margin: 0 0 20px 0; 
+  font-family: 'Roboto', sans-serif; /* Police Google typique */
+  color: #4285F4; /* Couleur bleue de Google */
+  text-align: center;
+  font-size: 28px; 
+}
 
-  .main-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Alignez les éléments en haut */
-    align-items: center;
-    height: 100vh; /* Utilisez toute la hauteur de la fenêtre */
-    padding: 20px; /* Ajoutez du padding pour ne pas coller au bord de la fenêtre */
-  }
-
-  .error-message {
-    color: red; /* Couleur rouge pour le texte */
-     /* Caché par défaut, sera affiché si un champ est invalide */
-    }
-
+@media (max-width: 600px) {
   .title-container h1 {
-    font-family: 'Roboto', sans-serif; /* Police Google typique */
-    color: #4285F4; /* Couleur bleue de Google */
-    text-align: center;
-    margin-top: 110%;
-    font-size: 28px; /* Taille ajustable selon vos préférences */
-    margin-bottom: 20px; /* Espacement entre le titre et le formulaire */
+    font-size: 5vw; /* Augmentez la taille de police sur les petits écrans */
   }
+}
 
-  /* Pour réinitialiser les styles */
+.form-container {
+/* Ajoutez une marge en haut pour le séparer du titre */
+  width: 90%; /* Rendez-le un peu plus réactif */
+  max-width: 500px; /* Limitez la largeur maximale */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  min-width: 300px; /* une largeur minimale pour s'assurer qu'il ne devienne pas trop petit */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+    /* Pour réinitialiser les styles */
 .title-container.exclude-style {
   text-align: left; /* Ou la valeur par défaut */
   margin-top: 0; /* Ou la valeur par défaut */
   margin-bottom: 0; /* Ou la valeur par défaut */
 }
-  /* Style pour le conteneur du formulaire */
-  .form-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 400px; /* ou une autre valeur selon la largeur désirée */
-    width: 80%; /* cela rendra le conteneur réactif */
-    min-width: 300px; /* une largeur minimale pour s'assurer qu'il ne devienne pas trop petit */
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  }
-  
   /* ... autres styles ... */
-  
+  .error-message {
+    color: red; /* Couleur rouge pour le texte */
+     /* Caché par défaut, sera affiché si un champ est invalide */
+    }
+
   .form-group {
     margin-bottom: 15px;
   }

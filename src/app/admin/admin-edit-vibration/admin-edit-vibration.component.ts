@@ -5,6 +5,7 @@ import { VibrationColor } from 'src/app/emum/vibration-color.enum';
 import { VibrationType } from 'src/app/emum/vibration-type.enum';
 import { Vibration } from 'src/models/vibration.model';
 import { VibrationService } from 'src/services/vibration.service';
+import * as toastr from 'toastr';
 
 @Component({
   selector: 'app-admin-edit-vibration',
@@ -18,7 +19,8 @@ export class AdminEditVibrationComponent {
   public isSubmitted: boolean = false;
   public vibrationTypes = VibrationType;
   public vibrationColor = VibrationColor;
-  
+  public errorMessage: string = '';
+
   constructor(
     private vibrationService: VibrationService,
     private route: ActivatedRoute)
@@ -54,6 +56,20 @@ export class AdminEditVibrationComponent {
 
   }
 
+  showSuccessToast() {
+    toastr.success('Vibrations enregistrées avec succès', 'Succès', {
+      positionClass: 'toast-top-center',
+      timeOut: 2000,
+    });
+  }
+
+  showErrorToast() {
+    toastr.error("Une erreur s'est produite.", '', {
+      positionClass: 'toast-top-center',
+      timeOut: 2000,
+    });
+  }
+
   isControlInvalid(controlName: string): boolean {
     const control = this.vibrationsForm.get(controlName);
     return control !== null && this.isSubmitted && control.invalid;
@@ -61,6 +77,26 @@ export class AdminEditVibrationComponent {
 
   onSubmit() {
     this.isSubmitted = true;
+    this.errorMessage = '';
+    if (this.vibrationsForm.valid) {
+      this.vibrationService.update(this.vibration).subscribe(
+        {
+          next: (v) => 
+            {
+              console.log('Vibrations mise à jour avec succès', v);
+              this.isSubmitted = false;
+              this.showSuccessToast();
+            },
+          error: (v) => 
+            {
+              console.error('Erreur lors de l\'enregistrement des vibrations');
+              this.errorMessage = v.error;
+              this.isSubmitted = false;
+              this.showErrorToast();
+            }
+        }
+      );
+    }
   }
 
 }

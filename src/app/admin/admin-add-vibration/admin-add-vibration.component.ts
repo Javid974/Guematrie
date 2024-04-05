@@ -46,7 +46,6 @@ export class AdminAddVibrationComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
     this.errorMessage = '';
     this.isSubmitted = true;
     if (this.vibrationsForm.valid) {
@@ -60,14 +59,13 @@ export class AdminAddVibrationComponent implements OnInit {
             this.isSubmitted = false;
             this.showSuccessToast();
           },
-        error: (v) => 
-        {
-          debugger;
-          console.error('Erreur lors de l\'enregistrement des vibrations');
-          this.errorMessage = v.error;
-          this.isSubmitted = false;
-          this.showErrorToast();
-        }
+          error: (v) => 
+          {
+            console.error('Erreur lors de l\'enregistrement des vibrations');
+            this.errorMessage = v.error;
+            this.isSubmitted = false;
+            this.showErrorToast();
+          }
       });
     }
   }
