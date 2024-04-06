@@ -17,7 +17,8 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "allowedCommonJsDependencies": [
-              "jquery", "toastr"
+              "jquery", "toastr",
+              "file-saver","CommonJS"
             ],
             "polyfills": [
               "zone.js"

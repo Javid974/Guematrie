@@ -25,3 +25,12 @@ tr:not(:last-child) td {
   width: 70%; /* Ajustez la largeur selon vos besoins */
 }
 
+.bottomContainer {
+ 
+  padding-top: 10px;
+  width: 80%; 
+  margin-left: auto; /* Centrage du hr */
+  margin-right: auto; /* Centrage du hr */
+
+  /* Annule la marge par défaut */
+}

@@ -35,4 +35,8 @@ export class VibrationService {
     return this.http.delete(`${this.apiUrl}/vibrations/${id}`);
   }
 
+  downloadFile(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/vibrations/download`, { responseType: 'blob' });
+  }
+
 }
