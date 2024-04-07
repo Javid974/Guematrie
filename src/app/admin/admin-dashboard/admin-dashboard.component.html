@@ -36,7 +36,8 @@
     <div class="row">
       <div class="col text-left">
         <button (click)="onDownloadClick()">Download JSON</button>
-        <!-- <app-download-json (download)="handleDownload()"></app-download-json>  -->
+        <button (click)="openFileSelector()">Importer JSON</button>
+        <input type="file" #fileInput accept=".json" style="display: none" (change)="onFileSelected($event)" />
       </div>
     </div>
   </div>

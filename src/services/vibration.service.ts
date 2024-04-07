@@ -39,4 +39,10 @@ export class VibrationService {
     return this.http.get(`${this.apiUrl}/vibrations/download`, { responseType: 'blob' });
   }
 
+  importFile(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file, file.name);
+    return this.http.post(`${this.apiUrl}/movies/import`, formData);
+  }
+
 }
