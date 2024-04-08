@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { VibrationColor } from 'src/app/emum/vibration-color.enum';
 import { VibrationType} from 'src/app/emum/vibration-type.enum';
@@ -16,7 +16,7 @@ import { saveAs } from 'file-saver'; // npm install --save file-saver @types/fil
 export class AdminDashboardComponent implements OnInit {
   
   vibrations: Vibration[] = [];
-  fileInput: ElementRef | undefined;
+  @ViewChild('fileInput') fileInput: ElementRef | undefined;
 
 
   constructor(private vibrationService: VibrationService,
@@ -49,12 +49,14 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   openFileSelector() {
+
     if (this.fileInput) {
       this.fileInput.nativeElement.click();
     }
   }
 
   onFileSelected(event: Event): void {
+    debugger;
     const input = event.target as HTMLInputElement;
     if (input && input.files && input.files.length) {
       // Now, you can safely assume the first file is the one you need
