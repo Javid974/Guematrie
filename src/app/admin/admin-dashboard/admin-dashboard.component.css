@@ -21,8 +21,12 @@ tr:not(:last-child) td {
   color: #333; /* Vous pouvez ajuster la couleur selon le thème de votre site */
 }
 
-.wide-column {
-  width: 70%; /* Ajustez la largeur selon vos besoins */
+.wide-large-column {
+  width: 60%; /* Ajustez la largeur selon vos besoins */
+}
+
+.wide-medium-column {
+  width: 15%; /* Ajustez la largeur selon vos besoins */
 }
 
 .bottomContainer {
