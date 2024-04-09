@@ -42,7 +42,7 @@ export class VibrationService {
   importFile(file: File): Observable<any> {
     const formData = new FormData();
     formData.append('file', file, file.name);
-    return this.http.post(`${this.apiUrl}/movies/import`, formData);
+    return this.http.post(`${this.apiUrl}/vibrations/import`, formData);
   }
 
 }

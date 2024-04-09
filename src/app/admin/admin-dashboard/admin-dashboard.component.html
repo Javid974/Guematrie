@@ -32,15 +32,16 @@
       </tr>
     </tbody>
   </table>  
-  <div class="bottomContainer">
-    <div class="row">
-      <div class="col text-left">
-        <button (click)="onDownloadClick()">Download JSON</button>
-        <button (click)="openFileSelector()">Importer JSON</button>
-        <input type="file" #fileInput accept=".json" style="display: none" (change)="onFileSelected($event)" />
-      </div>
+</div>
+<div class="bottomContainer">
+  <div class="row">
+    <div class="col text-left">
+      <button (click)="onDownloadClick()">Download JSON</button>
+      <button (click)="openFileSelector()">Importer JSON</button>
+      <input type="file" #fileInput accept=".json" style="display: none" (change)="onFileSelected($event)" />
     </div>
   </div>
 </div>
+
 
 

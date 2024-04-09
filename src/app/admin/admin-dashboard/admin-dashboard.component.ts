@@ -5,6 +5,8 @@ import { VibrationType} from 'src/app/emum/vibration-type.enum';
 import { Vibration } from 'src/models/vibration.model';
 import { VibrationService } from 'src/services/vibration.service';
 import { saveAs } from 'file-saver'; // npm install --save file-saver @types/file-saver
+import * as toastr from 'toastr';
+import { catchError, switchMap, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -37,7 +39,6 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   onDownloadClick() {
-    // Votre logique de téléchargement ici
      this.vibrationService.downloadFile().subscribe({
       next: (blob: any) => {
         saveAs(blob, 'vibrations.json');
@@ -56,29 +57,29 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   onFileSelected(event: Event): void {
-    debugger;
     const input = event.target as HTMLInputElement;
-    if (input && input.files && input.files.length) {
-      // Now, you can safely assume the first file is the one you need
-      const file: File = input.files[0];
-      
-      this.vibrationService.importFile(file).subscribe({
-      
-        next: (response: any) => {
-          console.log('Réponse du serveur:', response);
-          toastr.success('Films correctement sauvegardé!', '', {
-            positionClass: 'toast-top-center',
-            timeOut: 2000,
-          });
-        },
-        // error: (err) => {
-        //   this.errorMessage = err;
-        // },
+    if (!input?.files?.length) return;
   
-      });
-    }
-
+    const file: File = input.files[0];
+    
+    this.vibrationService.importFile(file).pipe(
+      switchMap(response => {
+        console.log('Réponse du serveur:', response);
+        toastr.success('Vibrations correctement sauvegardé!', '', {
+          positionClass: 'toast-top-center',
+          timeOut: 2000,
+        });
+        return this.vibrationService.getAll();
+      }),
+      catchError(error => {
+        console.error('Erreur lors de l\'importation ou de la récupération des données', error);
+        return throwError(() => new Error('Erreur lors de l\'opération'));
+      })
+    ).subscribe({
+      next: (vibrations) => this.vibrations = vibrations,
+    });
   }
+  
 
   getVibrationTypeDescription(vibrationType: VibrationType): string {
     switch (vibrationType) {
