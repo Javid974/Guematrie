@@ -21,4 +21,8 @@ export class VibrationTableComponent {
       [4, 'test34'],
     ],
   ];
+
+  ngOnInit(): void {
+
+  }
 }
