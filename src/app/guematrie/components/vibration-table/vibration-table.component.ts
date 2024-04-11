@@ -14,7 +14,7 @@ export class VibrationTableComponent {
   @Input() title: string = '';
   syllables: string[] = ['Ja', 'vid'];
 
- vibration2: Vibration[][] = [
+ vibrations: Vibration[][] = [
     [
       {
         id: '1',
@@ -63,6 +63,9 @@ export class VibrationTableComponent {
           next: (v) => 
           {
            
+          },
+          error: (v) => {
+            debugger;
           }
       });
     }
