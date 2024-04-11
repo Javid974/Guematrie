@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { GuematrieService } from 'src/services/guematrie.service';
 
 @Component({
   selector: 'app-vibration-table',
@@ -6,7 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./vibration-table.component.css'],
 })
 export class VibrationTableComponent {
-  @Input() name: string = '';
+  @Input() firstName: string = '';
   @Input() title: string = '';
   syllables: string[] = ['Ja', 'vid'];
 
@@ -22,7 +23,18 @@ export class VibrationTableComponent {
     ],
   ];
 
-  ngOnInit(): void {
+  constructor(private guematrieService: GuematrieService) {}
 
+  ngOnInit(): void {
+    debugger;
+    if (this.title === 'Vibration Interieure'){
+      this.guematrieService.generate(this.firstName).subscribe(
+        {
+          next: (v) => 
+          {
+           
+          }
+      });
+    }
   }
 }
