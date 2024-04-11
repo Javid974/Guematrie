@@ -17,9 +17,9 @@
             </div>
           </td>
           <td class="bordered-column">
-            <div *ngFor="let pair of vibration[i]">
-              <span>{{ pair[0] }}</span
-              >&nbsp;<span>{{ pair[1] }}</span>
+            <div *ngFor="let vibration of vibration2[i]">
+              <span>{{ vibration.vibrationNumber }}</span
+              >&nbsp;<span>{{ vibration.description }}</span>
             </div>
           </td>
           <td class="bordered-column">Donnée 2</td>
