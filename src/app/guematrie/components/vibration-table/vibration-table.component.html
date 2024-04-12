@@ -1,5 +1,8 @@
-<div class="table-container">
 
+<div class="table-container">
+  <div *ngIf="errorMessage" class="error-message">
+    <p class="center"><b>{{ errorMessage }}</b></p>
+  </div>
     <table>
       <thead>
         <tr>

@@ -35,7 +35,7 @@
           <select [(ngModel)]="vibration.vibrationColor" formControlName="vibrationColor" required>
             <option value="" disabled>Choisir la couleur</option>
             <option [ngValue]="vibrationColor.Green">Feux vert</option>
-            <option [ngValue]="vibrationColor.Orange">Feux Orange</option>
+            <option [ngValue]="vibrationColor.GreenYellow">Feux Orange</option>
             <option [ngValue]="vibrationColor.Red">Feux Rogue</option>
           </select>
           <span *ngIf="isControlInvalid('vibrationColor')" class="error">Couleur requise.</span>

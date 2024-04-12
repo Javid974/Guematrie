@@ -40,9 +40,10 @@
           <div  class="col-md-3">
             <select formControlName="vibrationColor" required>
               <option value="" disabled>Choisir la couleur</option>
-              <option [ngValue]="vibrationColor.Green">Feux vert</option>
-              <option [ngValue]="vibrationColor.Orange">Feux Orange</option>
-              <option [ngValue]="vibrationColor.Red">Feux Rogue</option>
+              <option [ngValue]="vibrationColor.Green">{{ getVibrationColorDescription(vibrationColor.Green) }}</option>
+              <option [ngValue]="vibrationColor.Yellow">{{ getVibrationColorDescription(vibrationColor.Yellow) }}</option>
+              <option [ngValue]="vibrationColor.GreenYellow">{{ getVibrationColorDescription(vibrationColor.GreenYellow) }}</option>
+              <option [ngValue]="vibrationColor.Red">{{ getVibrationColorDescription(vibrationColor.Red) }}</option>
             </select>
             <span *ngIf="isControlInvalid(i, 'vibrationColor')" class="error">Couleur requise.</span>
           </div>

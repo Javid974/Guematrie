@@ -35,11 +35,6 @@ body, html {
   margin-top: 0; /* Ou la valeur par défaut */
   margin-bottom: 0; /* Ou la valeur par défaut */
 }
-  /* ... autres styles ... */
-  .error-message {
-    color: red; /* Couleur rouge pour le texte */
-     /* Caché par défaut, sera affiché si un champ est invalide */
-    }
 
   .form-group {
     margin-bottom: 15px;

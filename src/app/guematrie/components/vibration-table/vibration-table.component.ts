@@ -10,11 +10,12 @@ import { GuematrieService } from 'src/services/guematrie.service';
   styleUrls: ['./vibration-table.component.css'],
 })
 export class VibrationTableComponent {
+
   @Input() firstName: string = '';
   @Input() title: string = '';
-  syllables: string[] = ['Ja', 'vid'];
-
- vibrations: Vibration[][] = [
+  syllables: string[] = [];
+  errorMessage : string = '';
+  vibrations: Vibration[][] = [
     [
       {
         id: '1',
@@ -32,7 +33,7 @@ export class VibrationTableComponent {
         vibrationNumber: 1,
         description: 'test2',
         vibrationType: VibrationType.MajorVibration,
-        vibrationColor: VibrationColor.Orange,
+        vibrationColor: VibrationColor.GreenYellow,
         karmic: true,
         consciousness: false
       },
@@ -66,6 +67,7 @@ export class VibrationTableComponent {
           },
           error: (v) => {
             debugger;
+            this.errorMessage = v.error;
           }
       });
     }

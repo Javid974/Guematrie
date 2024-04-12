@@ -7,6 +7,7 @@ import { VibrationService } from 'src/services/vibration.service';
 import { saveAs } from 'file-saver'; // npm install --save file-saver @types/file-saver
 import * as toastr from 'toastr';
 import { catchError, switchMap, throwError } from 'rxjs';
+import { DisplayService } from 'src/services/display.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -18,10 +19,14 @@ import { catchError, switchMap, throwError } from 'rxjs';
 export class AdminDashboardComponent implements OnInit {
   
   vibrations: Vibration[] = [];
+  majorVibrations: Vibration[] = [];
+  minorVibrations: Vibration[] = [];
+  letterVibration: Vibration[] = [];
   @ViewChild('fileInput') fileInput: ElementRef | undefined;
 
 
   constructor(private vibrationService: VibrationService,
+              private displayService: DisplayService,
               private router: Router) {}
 
   ngOnInit(): void {
@@ -30,6 +35,16 @@ export class AdminDashboardComponent implements OnInit {
         next: (v) => 
         {
           this.vibrations = v;
+
+          this.majorVibrations = this.vibrations
+          .filter((vibration) => vibration.vibrationType == VibrationType.MajorVibration)
+          .sort((a, b) => a.vibrationNumber - b.vibrationNumber);
+
+          this.minorVibrations = this.vibrations
+          .filter((vibration) => vibration.vibrationType == VibrationType.MinorVibration)
+          .sort((a, b) => a.vibrationNumber - b.vibrationNumber);
+
+          this.letterVibration = this.vibrations.filter((vibration) => vibration.letter !== null);
         }
     });
   }
@@ -92,17 +107,8 @@ export class AdminDashboardComponent implements OnInit {
     }
   }
 
-  getVibrationColorDescription(vibrationType:   VibrationColor): string {
-    switch (vibrationType) {
-      case VibrationColor.Orange:
-        return 'Orange';
-      case VibrationColor.Green:
-        return 'Vert';
-      case VibrationColor.Red:
-        return 'Rouge';
-      default:
-        return 'Couleur Inconnu';
-    }
+  getVibrationColorDescription(vibrationColor: VibrationColor): string {
+    return this.displayService.getVibrationColorDescription(vibrationColor);
   }
 
 }

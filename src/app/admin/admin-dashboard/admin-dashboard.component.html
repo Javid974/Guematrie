@@ -9,7 +9,11 @@
   <a [routerLink]="''" class="edit-mode-toggle-link">Generer guematrie</a>
 </div>
 
-<div *ngIf="vibrations && vibrations.length > 0">
+<div *ngIf="majorVibrations && majorVibrations.length > 0" class="title-container">
+  <h2>Vibration Majeur</h2>
+</div>
+
+<div *ngIf="majorVibrations && majorVibrations.length > 0">
   <hr class="table-separator"/>
   <table class="table-container table-hover">
     <thead>
@@ -20,23 +24,87 @@
         <th class="bordered-column">Couleur de la Vibration</th>
         <th class="bordered-column">Vibration Karmique</th>
         <th class="bordered-column">Vibration de conscience</th>
-        <th class="bordered-column">Type de Vibration</th>
         <th class="bordered-column">Description</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let vibration of vibrations" (click)="onRowClick(vibration)">
+      <tr *ngFor="let vibration of majorVibrations" (click)="onRowClick(vibration)">
         <td>{{ vibration.letter }}</td>
         <td class="bordered-column">{{ vibration.vibrationNumber }}</td>
         <td class="bordered-column">{{ getVibrationColorDescription(vibration.vibrationColor) }}</td>
         <td class="bordered-column"><input type="checkbox" [checked]="vibration.karmic"></td>
         <td class="bordered-column"><input type="checkbox" [checked]="vibration.consciousness"></td>
-        <td class="bordered-column wide-medium-column">{{ getVibrationTypeDescription(vibration.vibrationType) }}</td>
+
         <td class="bordered-column wide-large-column">{{ vibration.description }}</td>
       </tr>
     </tbody>
   </table>  
 </div>
+
+<div *ngIf="minorVibrations && minorVibrations.length > 0" class="title-container">
+  <h2>Vibration Mineur</h2>
+</div>
+
+<div *ngIf="minorVibrations && minorVibrations.length > 0">
+  <hr class="table-separator"/>
+  <table class="table-container table-hover">
+    <thead>
+      <tr>
+        <th>Lettre</th>
+        <!-- Première colonne sans titre -->
+        <th class="bordered-column">Vibration</th>
+        <th class="bordered-column">Couleur de la Vibration</th>
+        <th class="bordered-column">Vibration Karmique</th>
+        <th class="bordered-column">Vibration de conscience</th>
+        <th class="bordered-column">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vibration of minorVibrations" (click)="onRowClick(vibration)">
+        <td>{{ vibration.letter }}</td>
+        <td class="bordered-column">{{ vibration.vibrationNumber }}</td>
+        <td class="bordered-column">{{ getVibrationColorDescription(vibration.vibrationColor) }}</td>
+        <td class="bordered-column"><input type="checkbox" [checked]="vibration.karmic"></td>
+        <td class="bordered-column"><input type="checkbox" [checked]="vibration.consciousness"></td>
+
+        <td class="bordered-column wide-large-column">{{ vibration.description }}</td>
+      </tr>
+    </tbody>
+  </table>  
+</div>
+
+<div *ngIf="letterVibration && letterVibration.length > 0" class="title-container">
+  <h2>Corespodance alphabet et vibration</h2>
+</div>
+
+<div *ngIf="letterVibration && letterVibration.length > 0">
+  <hr class="table-separator"/>
+  <table class="table-container table-hover">
+    <thead>
+      <tr>
+        <th>Lettre</th>
+        <!-- Première colonne sans titre -->
+        <th class="bordered-column">Vibration</th>
+        <th class="bordered-column">Couleur de la Vibration</th>
+        <th class="bordered-column">Vibration Karmique</th>
+        <th class="bordered-column">Vibration de conscience</th>
+        <th class="bordered-column">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vibration of letterVibration" (click)="onRowClick(vibration)">
+        <td>{{ vibration.letter }}</td>
+        <td class="bordered-column">{{ vibration.vibrationNumber }}</td>
+        <td class="bordered-column">{{ getVibrationColorDescription(vibration.vibrationColor) }}</td>
+        <td class="bordered-column"><input type="checkbox" [checked]="vibration.karmic"></td>
+        <td class="bordered-column"><input type="checkbox" [checked]="vibration.consciousness"></td>
+
+        <td class="bordered-column wide-large-column">{{ vibration.description }}</td>
+      </tr>
+    </tbody>
+  </table>  
+</div>
+
 <div class="bottomContainer">
   <div class="row">
     <div class="col text-left">
