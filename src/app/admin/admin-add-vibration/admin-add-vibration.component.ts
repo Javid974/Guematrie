@@ -17,7 +17,6 @@ export class AdminAddVibrationComponent implements OnInit {
   public vibrationsForm: FormGroup;
   public vibrationTypes = VibrationType;
   public vibrationColor = VibrationColor;
-  colorEntries = Object.entries(VibrationColor).filter(entry => !isNaN(Number(entry[1])));
   public vibrationsList: Vibration[] = [];
   public isSubmitted: boolean = false;
   public showToast = false;

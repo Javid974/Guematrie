@@ -77,7 +77,11 @@ th {
     width: 100%; /* Assurez-vous que le conteneur prend toute la largeur */
     margin-top: 20px; /* Espacement au-dessus, ajustez selon le besoin */
     margin-bottom: 20px; /* Espacement en dessous, ajustez selon le besoin */
-  
   }
+
+  .center {
+    text-align: center; /* Centrer */
+  }
+  
   
   
