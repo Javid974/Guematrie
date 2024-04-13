@@ -3,7 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VibrationColor } from 'src/app/emum/vibration-color.enum';
 import { VibrationType } from 'src/app/emum/vibration-type.enum';
+import { Color } from 'src/models/color.model';
 import { Vibration } from 'src/models/vibration.model';
+import { DisplayService } from 'src/services/display.service';
 import { VibrationService } from 'src/services/vibration.service';
 import * as toastr from 'toastr';
 
@@ -21,9 +23,11 @@ export class AdminEditVibrationComponent {
   public vibrationColor = VibrationColor;
   public errorMessage: string = '';
   public showModal: boolean = false;
+  public colors: Array<Color> = [];
 
   constructor(
     private vibrationService: VibrationService,
+    private displayService : DisplayService,
     private route: ActivatedRoute,
     private router: Router)
   {
@@ -55,7 +59,7 @@ export class AdminEditVibrationComponent {
     this.vibrationService.get(this.vibrationId).subscribe((vibration) => {
       this.vibration = vibration;
     });
-
+    this.colors = this.displayService.getColors();
   }
 
   openModal() {
