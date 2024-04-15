@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { VibrationColor } from 'src/app/emum/vibration-color.enum';
 import { VibrationType } from 'src/app/emum/vibration-type.enum';
 import { Color } from 'src/models/color.model';
+import { Type } from 'src/models/type.model';
 import { Vibration } from 'src/models/vibration.model';
 import { DisplayService } from 'src/services/display.service';
 import { VibrationService } from 'src/services/vibration.service';
@@ -24,6 +25,7 @@ export class AdminEditVibrationComponent {
   public errorMessage: string = '';
   public showModal: boolean = false;
   public colors: Array<Color> = [];
+  public types: Array<Type> = [];
 
   constructor(
     private vibrationService: VibrationService,
@@ -60,6 +62,7 @@ export class AdminEditVibrationComponent {
       this.vibration = vibration;
     });
     this.colors = this.displayService.getColors();
+    this.types = this.displayService.getTypes();
   }
 
   openModal() {

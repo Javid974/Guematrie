@@ -31,8 +31,9 @@
           <div  class="col-md-3">
             <select formControlName="vibrationType" required>
               <option value="" disabled>Choisir le type</option>
-              <option [ngValue]="vibrationTypes.MajorVibration">Vibration Majeure</option>
-              <option [ngValue]="vibrationTypes.MinorVibration">Vibration Mineure</option>
+              <option *ngFor="let type of types" [ngValue]="type.value">
+                {{ type.text }}
+              </option>
             </select>
             <span *ngIf="isControlInvalid(i, 'vibrationType')" class="error">Type de vibration requis.</span>
           </div>

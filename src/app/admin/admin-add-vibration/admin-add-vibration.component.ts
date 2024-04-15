@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VibrationColor } from 'src/app/emum/vibration-color.enum';
 import { VibrationType } from 'src/app/emum/vibration-type.enum';
 import { Color } from 'src/models/color.model';
+import { Type } from 'src/models/type.model';
 import { Vibration } from 'src/models/vibration.model';
 import { DisplayService } from 'src/services/display.service';
 import { VibrationService } from 'src/services/vibration.service';
@@ -23,6 +24,7 @@ export class AdminAddVibrationComponent implements OnInit {
   public showToast = false;
   public errorMessage: string = '';
   public colors: Array<Color> = [];
+  public types: Array<Type> = [];
 
   constructor(private fb: FormBuilder, private vibrationService: VibrationService, private displayService: DisplayService) {
     this.vibrationsForm = this.fb.group({
@@ -33,6 +35,7 @@ export class AdminAddVibrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.colors = this.displayService.getColors();
+    this.types = this.displayService.getTypes();
   }
   
   showSuccessToast() {
