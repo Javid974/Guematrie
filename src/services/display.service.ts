@@ -37,9 +37,9 @@ export class DisplayService {
   getVibrationTypeDescription(vibrationType : VibrationType) : string {
     switch (vibrationType) {
       case VibrationType.MajorVibration:
-        return 'Vibration Majeur';
+        return 'Vibration Majeure';
       default:
-        return 'Vibration Mineur';
+        return 'Vibration Mineure';
     }
   }
 

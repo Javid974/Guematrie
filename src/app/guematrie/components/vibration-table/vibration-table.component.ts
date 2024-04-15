@@ -14,10 +14,8 @@ export class VibrationTableComponent {
 
   @Input() firstName: string = '';
   @Input() title: string = '';
-  syllables: string[] = [];
   errorMessage : string = '';
-  vibrations: Vibration[][] = [[ ]];
-  public result: InnerVibrationResult | undefined;
+  innerVibrationResult: InnerVibrationResult = { syllabes: [], innerVibration: [[]] };
 
   constructor(private guematrieService: GuematrieService) {}
 
@@ -27,14 +25,27 @@ export class VibrationTableComponent {
       this.guematrieService.generate(this.firstName).subscribe(
         {
           next: (vibrationResult: InnerVibrationResult) => {
-            this.result = vibrationResult;
-            this.syllables = this.result.syllabes;
-            this.vibrations = this.result.innerVibration;
+            this.innerVibrationResult = vibrationResult;
           },
           error: (v) => {
             this.errorMessage = v.error;
           }
       });
+    }
+  }
+
+ getColor(vibrationColor: VibrationColor): string {
+    switch (vibrationColor) {
+      case VibrationColor.Red:
+        return 'red';
+      case VibrationColor.Green:
+        return 'green';
+      case VibrationColor.Yellow:
+        return 'yellow';
+      case VibrationColor.GreenYellow:
+        return 'orange';
+      default:
+        return 'transparent';
     }
   }
 }
