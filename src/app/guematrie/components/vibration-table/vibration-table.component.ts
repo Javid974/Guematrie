@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { VibrationColor } from 'src/app/emum/vibration-color.enum';
 import { VibrationType } from 'src/app/emum/vibration-type.enum';
+import { InnerVibrationResult } from 'src/models/innerVibrationResult.model';
 import { Vibration } from 'src/models/vibration.model';
 import { GuematrieService } from 'src/services/guematrie.service';
 
@@ -15,58 +16,22 @@ export class VibrationTableComponent {
   @Input() title: string = '';
   syllables: string[] = [];
   errorMessage : string = '';
-  vibrations: Vibration[][] = [
-    [
-      {
-        id: '1',
-        letter: 'A',
-        vibrationNumber: 600,
-        description: 'text',
-        vibrationType: VibrationType.MajorVibration,
-        vibrationColor: VibrationColor.Green,
-        karmic: false,
-        consciousness: true
-      },
-      {
-        id: '2',
-        letter: 'B',
-        vibrationNumber: 1,
-        description: 'test2',
-        vibrationType: VibrationType.MajorVibration,
-        vibrationColor: VibrationColor.GreenYellow,
-        karmic: true,
-        consciousness: false
-      },
-    ],
-    [
-      {
-        id: '3',
-        letter: 'C',
-        vibrationNumber: 700,
-        description: 'test3',
-        vibrationType: VibrationType.MajorVibration,
-        vibrationColor: VibrationColor.Red,
-        karmic: false,
-        consciousness: true
-      },
-      // ... Ajoutez d'autres objets Vibration si nécessaire
-    ],
-  ];
-  
+  vibrations: Vibration[][] = [[ ]];
+  public result: InnerVibrationResult | undefined;
 
   constructor(private guematrieService: GuematrieService) {}
 
   ngOnInit(): void {
-    debugger;
+ 
     if (this.title === 'Vibration Interieure'){
       this.guematrieService.generate(this.firstName).subscribe(
         {
-          next: (v) => 
-          {
-           
+          next: (vibrationResult: InnerVibrationResult) => {
+            this.result = vibrationResult;
+            this.syllables = this.result.syllabes;
+            this.vibrations = this.result.innerVibration;
           },
           error: (v) => {
-            debugger;
             this.errorMessage = v.error;
           }
       });
