@@ -30,22 +30,16 @@
           </td>
     
           <td class="bordered-column">
-
-            <div>
-              {{ growthStage.stage[i] }}
-            </div>
-            &nbsp;
-              <br/>
-       
+            <div> {{ growthStage.stage[i] }} <br/><br/>
               <div *ngFor="let detail of growthStage.stageDetail[i]">
                 <div class="circle" [ngStyle]="{'background-color':'Green'}">
                   <span>{{detail}}</span>
                 </div>
                 &nbsp;<span>vdd</span>
               </div>
-     
-     
+            </div>
           </td>
+          
           <td
             class="bordered-column no-padding"
             *ngIf="i === 0"
