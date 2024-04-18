@@ -44,7 +44,7 @@ th, td {
     padding: 0 !important; /* Éliminer le rembourrage pour les cellules */
   }
   
-  .circle, .circle {
+  .circle {
     display: inline-flex;
     justify-content: center; /* Centre horizontalement */
     align-items: center;     /* Centre verticalement */

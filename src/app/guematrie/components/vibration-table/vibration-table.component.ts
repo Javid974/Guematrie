@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { VibrationColor } from 'src/app/emum/vibration-color.enum';
 import { VibrationType } from 'src/app/emum/vibration-type.enum';
+import { GrowthStage } from 'src/models/growthStage.model';
 import { InnerVibrationResult } from 'src/models/innerVibrationResult.model';
 import { Vibration } from 'src/models/vibration.model';
 import { GuematrieService } from 'src/services/guematrie.service';
@@ -16,6 +17,7 @@ export class VibrationTableComponent {
   @Input() title: string = '';
   errorMessage : string = '';
   innerVibrationResult: InnerVibrationResult = { syllabes: [], innerVibration: [[]] };
+  growthStage: GrowthStage = { stage :[12,13,14], stageDetail: [[10,2],[10,3],[10,4] ]  };
 
   constructor(private guematrieService: GuematrieService) {}
 
