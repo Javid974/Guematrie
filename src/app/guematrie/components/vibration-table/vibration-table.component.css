@@ -57,4 +57,17 @@ th, td {
     font-weight: bold;
   }
   
-  
+  .circleWhite {
+    display: inline-flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center;     /* Centre verticalement */
+    text-align: center;      /* Assure le centrage du texte si nécessaire */
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 5px;
+    color: black;            /* Couleur du texte en noir */
+    font-weight: bold;       /* Texte en gras */
+    background-color: white; /* Fond blanc du cercle */
+    border: 2px solid black; /* Bordure noire */
+  }

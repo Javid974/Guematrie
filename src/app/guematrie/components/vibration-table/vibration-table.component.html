@@ -30,12 +30,13 @@
           </td>
     
           <td class="bordered-column">
-            <div> {{ growthStage.stage[i] }} <br/><br/>
-              <div *ngFor="let detail of growthStage.stageDetail[i]">
+            <div> <div class="circleWhite">{{ growthStage.stage[i] }}</div>
+              <div *ngFor="let detail of growthStage.stageDetail[i]; let isLast = last">
                 <div class="circle" [ngStyle]="{'background-color':'Green'}">
                   <span>{{detail}}</span>
                 </div>
                 &nbsp;<span>vdd</span>
+                <span *ngIf="!isLast" style="font-weight: bold;"> lié à</span>
               </div>
             </div>
           </td>
