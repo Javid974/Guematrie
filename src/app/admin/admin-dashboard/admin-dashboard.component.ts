@@ -18,10 +18,12 @@ import { DisplayService } from 'src/services/display.service';
 
 export class AdminDashboardComponent implements OnInit {
   
-  vibrations: Vibration[] = [];
-  majorVibrations: Vibration[] = [];
-  minorVibrations: Vibration[] = [];
-  letterVibration: Vibration[] = [];
+  public vibrations: Vibration[] = [];
+  public majorVibrations: Vibration[] = [];
+  public minorVibrations: Vibration[] = [];
+  public letterVibration: Vibration[] = [];
+  public errorMessage: string = '';
+
   @ViewChild('fileInput') fileInput: ElementRef | undefined;
 
 
@@ -45,7 +47,11 @@ export class AdminDashboardComponent implements OnInit {
           .sort((a, b) => a.vibrationNumber - b.vibrationNumber);
 
           this.letterVibration = this.vibrations.filter((vibration) => vibration.letter !== null);
-        }
+        },
+        error: (err) => {
+          console.error('Erreur a la recuperation des vibrations:', err.error);
+          this.errorMessage = err.error;
+        },
     });
   }
 

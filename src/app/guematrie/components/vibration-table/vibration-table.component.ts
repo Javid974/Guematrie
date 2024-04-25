@@ -44,7 +44,7 @@ export class VibrationTableComponent {
         return 'green';
       case VibrationColor.Yellow:
         return 'yellow';
-      case VibrationColor.GreenYellow:
+      case VibrationColor.Orange:
         return 'orange';
       default:
         return 'transparent';

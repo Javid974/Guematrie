@@ -12,6 +12,9 @@
 <div *ngIf="majorVibrations && majorVibrations.length > 0" class="title-container">
   <h2>Vibration Majeure</h2>
 </div>
+<div *ngIf="errorMessage" class="error-message">
+  <p>{{ errorMessage }}</p>
+</div>
 
 <div *ngIf="majorVibrations && majorVibrations.length > 0">
   <hr class="table-separator"/>

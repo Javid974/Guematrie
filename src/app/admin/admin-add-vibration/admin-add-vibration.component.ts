@@ -97,7 +97,7 @@ export class AdminAddVibrationComponent implements OnInit {
     const uuid = crypto.randomUUID();
     return this.fb.group({
       id: [uuid],
-      letter: ['', Validators.required],
+      letter: [null],
       vibrationNumber: [null, [Validators.required, Validators.min(1)]],
       vibrationType: [null, Validators.required],
       vibrationColor: [null, Validators.required],

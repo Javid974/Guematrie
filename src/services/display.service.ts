@@ -15,7 +15,7 @@ export class DisplayService {
   constructor() {
     this.colors = [
       { text: this.getVibrationColorDescription(VibrationColor.Green), value: VibrationColor.Green },
-      { text: this.getVibrationColorDescription(VibrationColor.GreenYellow), value: VibrationColor.GreenYellow },
+      { text: this.getVibrationColorDescription(VibrationColor.Orange), value: VibrationColor.Orange },
       { text: this.getVibrationColorDescription(VibrationColor.Yellow), value: VibrationColor.Yellow },
       { text: this.getVibrationColorDescription(VibrationColor.Red), value: VibrationColor.Red },
     ];
@@ -45,7 +45,7 @@ export class DisplayService {
 
   getVibrationColorDescription(vibrationColor:   VibrationColor): string {
     switch (vibrationColor) {
-      case VibrationColor.GreenYellow:
+      case VibrationColor.Orange:
         return 'Vert/Jaune';
       case VibrationColor.Green:
         return 'Vert';
