@@ -23,6 +23,7 @@
           <td class="bordered-column">
             <div *ngFor="let vibration of innerVibrationResult.innerVibration[i]">
               <div class="circle" [ngStyle]="{'background-color': getColor(vibration.vibrationColor)}">
+           
                 <span>{{ vibration.vibrationNumber }}</span>
               </div>
               &nbsp;<span>{{ vibration.description }}</span>
@@ -30,12 +31,12 @@
           </td>
     
           <td class="bordered-column">
-            <div> <div class="circleWhite">{{ growthStage.stage[i] }}</div>
-              <div *ngFor="let detail of growthStage.stageDetail[i]; let isLast = last">
-                <div class="circle" [ngStyle]="{'background-color':'Green'}">
-                  <span>{{detail}}</span>
+            <div> <div *ngIf="innerVibrationResult.growthStage.stage[i] as vibration" class="circleWhite">{{ vibration.vibrationNumber }}</div>
+              <div *ngFor="let detail of innerVibrationResult.growthStage.stageDetail[i]; let isLast = last">
+                <div class="circle" [ngStyle]="{'background-color': getColor(detail.vibrationColor)}">
+                  <span>{{detail.vibrationNumber}}</span>
                 </div>
-                &nbsp;<span>vdd</span>
+                &nbsp;<span>{{detail.description}}</span>
                 <span *ngIf="!isLast" style="font-weight: bold;"> lié à</span>
               </div>
             </div>

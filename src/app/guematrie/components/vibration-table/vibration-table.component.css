@@ -69,5 +69,5 @@ th, td {
     color: black;            /* Couleur du texte en noir */
     font-weight: bold;       /* Texte en gras */
     background-color: white; /* Fond blanc du cercle */
-    border: 2px solid black; /* Bordure noire */
+    border: 1px solid black; /* Bordure noire */
   }

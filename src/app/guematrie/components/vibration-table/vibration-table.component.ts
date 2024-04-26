@@ -16,8 +16,8 @@ export class VibrationTableComponent {
   @Input() firstName: string = '';
   @Input() title: string = '';
   errorMessage : string = '';
-  innerVibrationResult: InnerVibrationResult = { syllabes: [], innerVibration: [[]] };
-  growthStage: GrowthStage = { stage :[12,13,14], stageDetail: [[10,2],[10,3],[10,4] ]  };
+  innerVibrationResult: InnerVibrationResult = { syllabes: [], innerVibration: [[]], growthStage:{stageDetail:[[]], stage:[]} };
+
 
   constructor(private guematrieService: GuematrieService) {}
 
@@ -27,6 +27,7 @@ export class VibrationTableComponent {
       this.guematrieService.generate(this.firstName).subscribe(
         {
           next: (vibrationResult: InnerVibrationResult) => {
+            debugger;
             this.innerVibrationResult = vibrationResult;
           },
           error: (v) => {
@@ -43,7 +44,7 @@ export class VibrationTableComponent {
       case VibrationColor.Green:
         return 'green';
       case VibrationColor.Yellow:
-        return 'yellow';
+        return '#dbdb31';
       case VibrationColor.Orange:
         return 'orange';
       default:
