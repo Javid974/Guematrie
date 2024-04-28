@@ -27,7 +27,6 @@ export class VibrationTableComponent {
       this.guematrieService.generate(this.firstName).subscribe(
         {
           next: (vibrationResult: InnerVibrationResult) => {
-            debugger;
             this.innerVibrationResult = vibrationResult;
           },
           error: (v) => {
@@ -51,4 +50,16 @@ export class VibrationTableComponent {
         return 'transparent';
     }
   }
+
+  getFormattedVibrationNumber(vibration: any): string {
+    let formattedNumber = `${vibration.vibrationNumber}`;
+    if (vibration.karmic) {
+      formattedNumber += '*';
+    }
+    if (vibration.consiousness) {
+      formattedNumber += '**';
+    }
+    return formattedNumber;
+  }
+
 }

@@ -24,7 +24,7 @@
             <div *ngFor="let vibration of innerVibrationResult.innerVibration[i]">
               <div class="circle" [ngStyle]="{'background-color': getColor(vibration.vibrationColor)}">
            
-                <span>{{ vibration.vibrationNumber }}</span>
+                <span>{{ getFormattedVibrationNumber(vibration) }}</span>
               </div>
               &nbsp;<span>{{ vibration.description }}</span>
             </div>
@@ -34,7 +34,7 @@
             <div> <div *ngIf="innerVibrationResult.growthStage.stage[i] as vibrationNumber" class="circleWhite">{{ vibrationNumber }}</div>
               <div *ngFor="let detail of innerVibrationResult.growthStage.stageDetail[i]; let isLast = last">
                 <div class="circle" [ngStyle]="{'background-color': getColor(detail.vibrationColor)}">
-                  <span>{{detail.vibrationNumber}}</span>
+                  <span>{{ getFormattedVibrationNumber(detail)}}</span>
                 </div>
                 &nbsp;<span>{{detail.description}}</span>
                 <span *ngIf="!isLast" style="font-weight: bold;"> lié à</span>
