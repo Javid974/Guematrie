@@ -79,18 +79,18 @@ export class AdminEditVibrationComponent {
       {
         next: (v) => 
           {
-            console.log('Vibrations mise à jour avec succès', v);
+            console.log('Vibrations supprimé avec succès', v);
             this.isSubmitted = false;
             const message = 'Vibrations suprrimé avec succès'
-            this.showSuccessToast(message);
+            this.displayService.showSuccessToast(message);
             this.router.navigate(['/admin']);
           },
         error: (v) => 
           {
-            console.error('Erreur lors de l\'enregistrement des vibrations');
+            console.error('Erreur lors de la supression des vibrations');
             this.errorMessage = v.error;
             this.isSubmitted = false;
-            this.showErrorToast();
+            this.displayService.showErrorToast('Erreur lors de la supression des vibrations');
           
           }
       })
@@ -99,19 +99,6 @@ export class AdminEditVibrationComponent {
 
   }
 
-  showSuccessToast(message: string) {
-    toastr.success(message, 'Succès', {
-      positionClass: 'toast-top-center',
-      timeOut: 2000,
-    });
-  }
-
-  showErrorToast() {
-    toastr.error("Une erreur s'est produite.", '', {
-      positionClass: 'toast-top-center',
-      timeOut: 2000,
-    });
-  }
 
   isControlInvalid(controlName: string): boolean {
     const control = this.vibrationsForm.get(controlName);
@@ -129,14 +116,14 @@ export class AdminEditVibrationComponent {
               console.log('Vibrations mise à jour avec succès', v);
               this.isSubmitted = false;
               const message = 'Vibrations mise à jour avec succès'
-              this.showSuccessToast(message);
+              this.displayService.showSuccessToast(message);
             },
           error: (v) => 
             {
-              console.error('Erreur lors de l\'enregistrement des vibrations');
+              console.error('Erreur lors de la mise à jour des vibrations');
               this.errorMessage = v.error;
               this.isSubmitted = false;
-              this.showErrorToast();
+              this.displayService.showErrorToast('Erreur lors de la mise à jour des vibrations');
             }
         }
       );

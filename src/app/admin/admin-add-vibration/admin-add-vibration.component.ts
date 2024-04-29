@@ -37,20 +37,6 @@ export class AdminAddVibrationComponent implements OnInit {
     this.colors = this.displayService.getColors();
     this.types = this.displayService.getTypes();
   }
-  
-  showSuccessToast() {
-    toastr.success('Vibrations enregistrées avec succès', 'Succès', {
-      positionClass: 'toast-top-center',
-      timeOut: 2000,
-    });
-  }
-
-  showErrorToast() {
-    toastr.error("Une erreur s'est produite.", '', {
-      positionClass: 'toast-top-center',
-      timeOut: 2000,
-    });
-  }
 
   onSubmit() {
     this.errorMessage = '';
@@ -64,14 +50,14 @@ export class AdminAddVibrationComponent implements OnInit {
             console.log('Vibrations enregistrées avec succès', v);
             this.resetForm();
             this.isSubmitted = false;
-            this.showSuccessToast();
+            this.displayService.showSuccessToast('Vibrations enregistrées avec succès');
           },
           error: (v) => 
           {
             console.error('Erreur lors de l\'enregistrement des vibrations');
             this.errorMessage = v.error;
             this.isSubmitted = false;
-            this.showErrorToast();
+            this.displayService.showErrorToast('Erreur lors de l\'enregistrement des vibrations');
           }
       });
     }

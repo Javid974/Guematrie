@@ -58,4 +58,17 @@ export class DisplayService {
     }
   }
   
+  showSuccessToast(message:string) {
+    toastr.success(message, 'Succès', {
+      positionClass: 'toast-top-center',
+      timeOut: 2000,
+    });
+  }
+
+  showErrorToast(message:string) {
+    toastr.error(message, '', {
+      positionClass: 'toast-top-center',
+      timeOut: 2000,
+    });
+  }
 }
