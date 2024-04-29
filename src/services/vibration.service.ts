@@ -5,8 +5,6 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Vibration } from 'src/models/vibration.model';
 
-
-
 @Injectable({
   providedIn: 'root'
 })

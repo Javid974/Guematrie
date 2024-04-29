@@ -6,6 +6,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AdminEditVibrationComponent } from './admin-edit-vibration/admin-edit-vibration.component';
 import { AdminAddVibrationComponent } from './admin-add-vibration/admin-add-vibration.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminTarotComponent } from './admin-tarot/admin-tarot.component';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
     AdminDashboardComponent,
     AdminEditVibrationComponent,
     AdminAddVibrationComponent,
+    AdminTarotComponent
   ],
   imports: [
     CommonModule,

@@ -22,7 +22,7 @@
           
           <td class="bordered-column">
             <div *ngFor="let vibration of innerVibrationResult.innerVibration[i]">
-              <div class="circle" [ngStyle]="{'background-color': getColor(vibration.vibrationColor)}">
+              <div class="circleLarge" [ngStyle]="{'background-color': getColor(vibration.vibrationColor)}">
            
                 <span>{{ getFormattedVibrationNumber(vibration) }}</span>
               </div>
@@ -31,9 +31,9 @@
           </td>
     
           <td class="bordered-column">
-            <div> <div *ngIf="innerVibrationResult.growthStage.stage[i] as vibrationNumber" class="circleWhite">{{ vibrationNumber }}</div>
+            <div> <div *ngIf="innerVibrationResult.growthStage.stage[i] as vibrationNumber" class="circleWhiteLarge">{{ vibrationNumber }}</div>
               <div *ngFor="let detail of innerVibrationResult.growthStage.stageDetail[i]; let isLast = last">
-                <div class="circle" [ngStyle]="{'background-color': getColor(detail.vibrationColor)}">
+                <div class="circleLarge" [ngStyle]="{'background-color': getColor(detail.vibrationColor)}">
                   <span>{{ getFormattedVibrationNumber(detail)}}</span>
                 </div>
                 &nbsp;<span>{{detail.description}}</span>
@@ -51,11 +51,15 @@
               <tr></tr>
               <tr>
                 <td>
-                  1314<br />
-                  <br />
-                  1000 blabla<br />
-                  300 blabla <br />
-                  14 blabla<br />
+                  <div class="circleWhiteLarge">{{innerVibrationResult.vibrationSummation.summation}}</div>
+                  <div *ngFor="let detail of innerVibrationResult.vibrationSummation.summationDetail; let isLast = last">
+                    <div class="circleLarge" [ngStyle]="{'background-color': getColor(detail.vibrationColor)}">
+                      <span>{{ getFormattedVibrationNumber(detail)}}</span>
+                    </div>
+                    &nbsp;<span>{{detail.description}}</span>
+                    <span *ngIf="!isLast" style="font-weight: bold;"> lié à</span>
+                  </div>
+          
                 </td>
               </tr>
               <tr>

@@ -16,7 +16,7 @@ export class VibrationTableComponent {
   @Input() firstName: string = '';
   @Input() title: string = '';
   errorMessage : string = '';
-  innerVibrationResult: InnerVibrationResult = { syllabes: [], innerVibration: [[]], growthStage:{stageDetail:[[]], stage:[]} };
+  innerVibrationResult: InnerVibrationResult = { syllabes: [], innerVibration: [[]], growthStage:{stageDetail:[[]], stage:[]}, vibrationSummation:{summationDetail:[], summation:0} };
 
 
   constructor(private guematrieService: GuematrieService) {}
@@ -27,6 +27,7 @@ export class VibrationTableComponent {
       this.guematrieService.generate(this.firstName).subscribe(
         {
           next: (vibrationResult: InnerVibrationResult) => {
+            debugger;
             this.innerVibrationResult = vibrationResult;
           },
           error: (v) => {

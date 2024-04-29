@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminEditVibrationComponent } from './admin-edit-vibration/admin-edit-vibration.component';
 import { AdminAddVibrationComponent } from './admin-add-vibration/admin-add-vibration.component';
+import { AdminTarotComponent } from './admin-tarot/admin-tarot.component';
 
 
 const routes: Routes = [
   { path: '', component: AdminDashboardComponent },
   { path: 'edit/:id', component: AdminEditVibrationComponent },
   { path: 'add', component: AdminAddVibrationComponent },
+  { path: 'tarot', component: AdminTarotComponent },
 ];
 
 
