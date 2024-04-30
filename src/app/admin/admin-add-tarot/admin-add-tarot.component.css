@@ -1,0 +1,57 @@
+/* Style pour le conteneur principal du formulaire */
+
+form {
+    border: 1px solid #cccccc; 
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px; 
+    background-color: #f9f9f9; /* Fond légèrement différent pour distinguer le formulaire */
+    width: auto; /* Ajustez selon les besoins */
+    max-width: 880px; /* Limite la largeur maximale du formulaire */
+    margin: auto; /* Centrage horizontal si le conteneur parent est suffisamment large */
+  }
+  
+  input, select, textarea{
+    border: 1px solid #ccc;
+  }
+  
+  input, select, button {
+    height: 40px;
+    width: 100%;
+ }
+
+ textarea {
+   height: 80px;
+   width: 100%;
+
+ }
+
+ button {
+   border: none;
+   cursor: pointer;
+   border-radius: 4px;
+ }
+ 
+ .remove-btn:disabled {
+    pointer-events: auto; 
+    color: #666666;
+    cursor: not-allowed; /* Change le curseur pour indiquer qu'il n'est pas cliquable */
+  }
+
+  /* Style spécifique pour le bouton Soumettre */
+.submit-btn {
+ /* Texte en blanc pour une bonne lisibilité */
+  font-weight: bold; /* Rendre le texte un peu plus gras */
+  transition: background-color 0.3s, transform 0.2s; 
+
+}
+
+.submit-btn:hover {
+  background-color: #0b7dda; /* Un bleu un peu plus foncé au survol */
+ 
+}
+
+.submit-btn:active {
+  background-color: #005a9c; /* Bleu plus foncé lors du clic */
+  transform: scale(0.95); /* Réduction légère lors du clic */
+}

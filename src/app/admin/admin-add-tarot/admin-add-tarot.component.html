@@ -1,1 +1,39 @@
-<p>admin-add-tarot works!</p>
+<div class="title-container">
+    <h1>Ajouter des cartes de tarots</h1>
+</div>
+
+<div class="edit-mode-toggle">
+    <a [routerLink]="'/admin/tarot'" class="edit-mode-toggle-link">Visualiser les cartes</a>
+</div>
+
+<form class="row g-3" [formGroup]="tarotForm" (ngSubmit)="onSubmit()">
+    <div formArrayName="cards">
+        <div *ngFor="let card of cards.controls; let i = index" [formGroupName]="i">
+            <div  class="row mb-3">
+                <div  class="col-12">
+                    <input formControlName="name" placeholder="Nom de la carte" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div  class="col-12">
+                    <textarea formControlName="description" placeholder="Description de la carte" required></textarea>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div  class="col-12">
+                    <input type="file" formControlName="image"  accept="image/*" required>
+                </div>
+            </div>
+            
+            <button type="button" class="remove-btn btn btn-light mb-2" (click)="removeCard(i)" [disabled]="cardsControls.length <= 1">
+                <i class="bi bi-arrow-up"></i>
+                Retirer
+            </button>
+            <button type="button" class="add-btn btn btn-light" *ngIf="i === cardsControls.length - 1" (click)="addCard()">
+                <i class="bi bi-arrow-down"></i>
+                Ajouter
+            </button>
+        </div>
+    </div>
+    <button class="submit-btn btn btn-primary" type="submit">Submit</button>
+</form>
