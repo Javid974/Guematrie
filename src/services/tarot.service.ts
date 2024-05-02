@@ -16,4 +16,8 @@ import { InnerVibrationResult } from "src/models/innerVibrationResult.model";
     getAll(): Observable<any> {
         return this.http.get(`${this.apiUrl}/tarot`);
       }
+
+    saveTarotCards(formData: FormData): Observable<any> {
+      return this.http.post(this.apiUrl, formData);
+    }
   }
