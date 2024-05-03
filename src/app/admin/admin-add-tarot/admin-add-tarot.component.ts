@@ -10,7 +10,7 @@ import { TarotService } from 'src/services/tarot.service';
 export class AdminAddTarotComponent implements OnInit {
 
   public tarotForm: FormGroup;
-
+  public uploadedFile: File[] = [] ;
   constructor(private fb: FormBuilder, private tarotService: TarotService) {
     this.tarotForm = this.fb.group({
       cards: this.fb.array([this.newCard()])
@@ -50,16 +50,14 @@ export class AdminAddTarotComponent implements OnInit {
     debugger;
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;
-    const fileControl = card.get('image');
+  
     if (fileList && fileList.length > 0) {
       const file = fileList[0];
-      const imageFrom= card.get('image');
-      // Stockez le fichier dans une propriété du composant pour une utilisation ultérieure
-      if (imageFrom)
-        imageFrom.setValue(fileControl);
-  
-      // Optionnellement, mettez à jour un autre champ du formulaire ou une propriété pour afficher le nom du fichier
-     // card.get('imageName').setValue(file.name);
+
+      // Ajouter le fichier à la liste s'il n'est pas déjà présent
+      if (!this.uploadedFile.includes(file)) {
+        this.uploadedFile.push(file);
+      }
     }
   }
 
@@ -70,9 +68,9 @@ export class AdminAddTarotComponent implements OnInit {
       debugger;
       const cardData = card.value;
       formData.append(`cards[${index}].name`, cardData.name);
-      formData.append(`cards[${index}].description`, cardData.description);
-      formData.append(`cards[${index}].file`, cardData.image);
-      formData.append(`cards[${index}].imagePath`, cardData.image);
+    
+      formData.append(`cards[${index}].file`, this.uploadedFile[index]);
+
     });
 
     this.tarotService.saveTarotCards(formData).subscribe({

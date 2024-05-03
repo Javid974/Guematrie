@@ -10,7 +10,10 @@
     <div formArrayName="cards">
         <div *ngFor="let card of cards.controls; let i = index" [formGroupName]="i">
             <div  class="row mb-3">
-                <div  class="col-12">
+                <div  class="col-2">
+                    <input type="number" formControlName="vibrationNumber" placeholder="Numero de carte" min="0" required>
+                </div>
+                <div  class="col-10">
                     <input formControlName="name" placeholder="Nom de la carte" required>
                 </div>
             </div>
