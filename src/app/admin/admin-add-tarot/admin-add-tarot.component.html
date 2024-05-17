@@ -10,11 +10,22 @@
     <div formArrayName="cards">
         <div *ngFor="let card of cards.controls; let i = index" [formGroupName]="i">
             <div  class="row mb-3">
-                <div  class="col-2">
-                    <input type="number" formControlName="vibrationNumber" placeholder="Numero de carte" min="0" required>
+                <div  class="col-4">
+                    <input type="number" formControlName="number" placeholder="Numero de carte" min="0" required>
                 </div>
-                <div  class="col-10">
+                <div  class="col-8">
                     <input formControlName="name" placeholder="Nom de la carte" required>
+                </div>
+         
+            </div>
+            <div  class="row mb-3">
+                <div  class="col-12">
+                    <select formControlName="vibrationId" class="form-control">
+                        <option value="">Sélectionner une vibration</option>
+                        <option *ngFor="let vibration of vibrations" [value]="vibration.id">
+                            {{ vibration.vibrationNumber }}{{ vibration.letter ? ' - ' + vibration.letter : '' }} - {{vibration.description}}
+                        </option>
+                    </select>
                 </div>
             </div>
             <div class="row mb-3">

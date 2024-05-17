@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Vibration } from 'src/models/vibration.model';
 import { TarotService } from 'src/services/tarot.service';
+import { VibrationService } from 'src/services/vibration.service';
 
 @Component({
   selector: 'app-admin-add-tarot',
@@ -11,16 +13,23 @@ export class AdminAddTarotComponent implements OnInit {
 
   public tarotForm: FormGroup;
   public uploadedFile: File[] = [] ;
-  constructor(private fb: FormBuilder, private tarotService: TarotService) {
+  public vibrations: Vibration[] = []; 
+
+  constructor(private fb: FormBuilder, private tarotService: TarotService, private vibrationService:VibrationService) {
     this.tarotForm = this.fb.group({
       cards: this.fb.array([this.newCard()])
     });
   }
 
   ngOnInit(): void {
-  
+    this.loadVibrations();
   }
-  
+
+  loadVibrations(): void {
+    this.vibrationService.getAll().subscribe(data => {
+      this.vibrations = data;
+    });
+  }
   get cards(): FormArray {
     return this.tarotForm.get('cards') as FormArray;
   }
@@ -32,8 +41,10 @@ export class AdminAddTarotComponent implements OnInit {
   newCard(): FormGroup {
     return this.fb.group({
       id: [crypto.randomUUID()],
+      number: ['', Validators.required],
       name: ['', Validators.required],
       description: ['', Validators.required],
+      vibrationId: [''],
       image: [null, Validators.required]  // Stocker le fichier réel ici
     });
   }
