@@ -44,7 +44,7 @@ export class AdminAddTarotComponent implements OnInit {
       number: ['', Validators.required],
       name: ['', Validators.required],
       description: ['', Validators.required],
-      vibrationId: [''],
+      vibrationId: [null],
       image: [null, Validators.required]  // Stocker le fichier réel ici
     });
   }
@@ -57,7 +57,7 @@ export class AdminAddTarotComponent implements OnInit {
     this.cards.removeAt(index);
   }
 
-  onFileChange(event: Event, card: AbstractControl): void {
+  onFileChange(event: Event): void {
     debugger;
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;
@@ -75,14 +75,18 @@ export class AdminAddTarotComponent implements OnInit {
   onSubmit(): void {
     debugger;
     const formData = new FormData();
+    
     this.cards.controls.forEach((card, index) => {
       debugger;
       const cardData = card.value;
-      formData.append(`cards[${index}].name`, cardData.name);
-    
-      formData.append(`cards[${index}].file`, this.uploadedFile[index]);
-
-    });
+      formData.append(`tarots[${index}].Name`, cardData.name);
+      formData.append(`tarots[${index}].Number`, cardData.number.toString());
+      formData.append(`tarots[${index}].Description`, cardData.description || '');
+      formData.append(`tarots[${index}].Image`, this.uploadedFile[index]);
+      if (cardData.vibrationId) {
+        formData.append(`tarots[${index}].VibrationId`, cardData.vibrationId);
+      }
+   });
 
     this.tarotService.saveTarotCards(formData).subscribe({
       next: (response) => console.log('Success:', response),

@@ -14,10 +14,10 @@ import { InnerVibrationResult } from "src/models/innerVibrationResult.model";
     constructor(private http: HttpClient) { }
     
     getAll(): Observable<any> {
-        return this.http.get(`${this.apiUrl}/tarot`);
+        return this.http.get(`${this.apiUrl}/tarots`);
       }
 
     saveTarotCards(formData: FormData): Observable<any> {
-      return this.http.post(this.apiUrl, formData);
+      return this.http.post(`${this.apiUrl}/tarots`, formData);
     }
   }
