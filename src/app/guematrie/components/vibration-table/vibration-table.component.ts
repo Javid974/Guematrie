@@ -27,7 +27,7 @@ export class VibrationTableComponent {
       this.guematrieService.generate(this.firstName).subscribe(
         {
           next: (vibrationResult: InnerVibrationResult) => {
-            debugger;
+
             this.innerVibrationResult = vibrationResult;
           },
           error: (v) => {

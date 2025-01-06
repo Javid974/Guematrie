@@ -34,7 +34,7 @@
               "node_modules/toastr/build/toastr.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [ "node_modules/toastr/build/toastr.min.js"]
           },
           "configurations": {
             "production": {
@@ -101,7 +101,7 @@
               "node_modules/toastr/build/toastr.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [ "node_modules/toastr/build/toastr.min.js"]
           }
         }
       }

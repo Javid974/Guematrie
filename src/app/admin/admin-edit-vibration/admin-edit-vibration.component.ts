@@ -82,6 +82,7 @@ export class AdminEditVibrationComponent {
             console.log('Vibrations supprimé avec succès', v);
             this.isSubmitted = false;
             const message = 'Vibrations suprrimé avec succès'
+        
             this.displayService.showSuccessToast(message);
             this.router.navigate(['/admin']);
           },

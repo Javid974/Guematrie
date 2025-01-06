@@ -3,6 +3,7 @@ import { VibrationColor } from 'src/app/emum/vibration-color.enum';
 import { VibrationType } from 'src/app/emum/vibration-type.enum';
 import { Color } from 'src/models/color.model';
 import { Type } from 'src/models/type.model';
+import * as toastr from 'toastr'
 
 @Injectable({
   providedIn: 'root',

@@ -58,7 +58,7 @@ export class AdminAddTarotComponent implements OnInit {
   }
 
   onFileChange(event: Event): void {
-    debugger;
+   
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;
   
@@ -73,11 +73,11 @@ export class AdminAddTarotComponent implements OnInit {
   }
 
   onSubmit(): void {
-    debugger;
+
     const formData = new FormData();
     
     this.cards.controls.forEach((card, index) => {
-      debugger;
+ 
       const cardData = card.value;
       formData.append(`tarots[${index}].Name`, cardData.name);
       formData.append(`tarots[${index}].Number`, cardData.number.toString());
