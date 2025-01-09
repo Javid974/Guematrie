@@ -93,6 +93,8 @@ export class AdminDashboardComponent implements OnInit {
         return this.vibrationService.getAll();
       }),
       catchError(error => {
+        debugger;
+        this.errorMessage = error.error;
         console.error('Erreur lors de l\'importation ou de la récupération des données', error);
         return throwError(() => new Error('Erreur lors de l\'opération'));
       })

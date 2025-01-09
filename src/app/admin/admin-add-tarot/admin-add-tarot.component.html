@@ -7,6 +7,11 @@
 </div>
 
 <form class="row g-3" [formGroup]="tarotForm" (ngSubmit)="onSubmit()">
+
+    <div *ngIf="errorMessage" class="error-message">
+        <p>{{ errorMessage }}</p>
+      </div>
+  
     <div formArrayName="cards">
         <div *ngFor="let card of cards.controls; let i = index" [formGroupName]="i">
             <div  class="row mb-3">

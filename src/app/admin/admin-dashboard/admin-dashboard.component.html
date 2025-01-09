@@ -3,6 +3,10 @@
   <h1>Tableau des vibrations</h1>
 </div>
 
+<div *ngIf="errorMessage" class="error-message">
+  <p>{{ errorMessage }}</p>
+</div>
+
 <div class="edit-mode-toggle">
   <a [routerLink]="'/admin/add'" class="edit-mode-toggle-link">Ajouter vibration</a>
   <span class="separator">|</span>
@@ -13,9 +17,6 @@
 
 <div *ngIf="majorVibrations && majorVibrations.length > 0" class="title-container">
   <h2>Vibration Majeure</h2>
-</div>
-<div *ngIf="errorMessage" class="error-message">
-  <p>{{ errorMessage }}</p>
 </div>
 
 <div *ngIf="majorVibrations && majorVibrations.length > 0">

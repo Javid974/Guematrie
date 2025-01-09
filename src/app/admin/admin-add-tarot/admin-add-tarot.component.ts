@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Vibration } from 'src/models/vibration.model';
+import { DisplayService } from 'src/services/display.service';
 import { TarotService } from 'src/services/tarot.service';
 import { VibrationService } from 'src/services/vibration.service';
 
@@ -14,8 +15,9 @@ export class AdminAddTarotComponent implements OnInit {
   public tarotForm: FormGroup;
   public uploadedFile: File[] = [] ;
   public vibrations: Vibration[] = []; 
+  public errorMessage: string = '';
 
-  constructor(private fb: FormBuilder, private tarotService: TarotService, private vibrationService:VibrationService) {
+  constructor(private fb: FormBuilder, private tarotService: TarotService, private vibrationService:VibrationService,  private displayService: DisplayService) {
     this.tarotForm = this.fb.group({
       cards: this.fb.array([this.newCard()])
     });
@@ -64,16 +66,16 @@ export class AdminAddTarotComponent implements OnInit {
   
     if (fileList && fileList.length > 0) {
       const file = fileList[0];
-
-      // Ajouter le fichier à la liste s'il n'est pas déjà présent
       if (!this.uploadedFile.includes(file)) {
         this.uploadedFile.push(file);
       }
+      
     }
   }
 
   onSubmit(): void {
 
+    this.errorMessage = '';
     const formData = new FormData();
     
     this.cards.controls.forEach((card, index) => {
@@ -86,11 +88,22 @@ export class AdminAddTarotComponent implements OnInit {
       if (cardData.vibrationId) {
         formData.append(`tarots[${index}].VibrationId`, cardData.vibrationId);
       }
-   });
+    });
 
     this.tarotService.saveTarotCards(formData).subscribe({
-      next: (response) => console.log('Success:', response),
-      error: (error) => console.error('Error:', error)
+      next: (response) => {
+        this.tarotForm.reset(); // Réinitialise le formulaire
+        this.uploadedFile = [];  // Vide la liste des fichiers uploadés
+        this.cards.clear(); 
+        const message = 'Carte de tarot mise à jour avec succès'
+        this.displayService.showSuccessToast(message);
+        this.addCard();
+      },
+      error: (error) => {
+        this.errorMessage = error.error;
+
+        this.displayService.showErrorToast('Erreur lors de la mise à jour de la carte de taror');
+      }
     });
   }
 

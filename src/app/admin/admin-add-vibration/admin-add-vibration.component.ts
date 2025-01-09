@@ -7,7 +7,7 @@ import { Type } from 'src/models/type.model';
 import { Vibration } from 'src/models/vibration.model';
 import { DisplayService } from 'src/services/display.service';
 import { VibrationService } from 'src/services/vibration.service';
-import * as toastr from 'toastr';
+
 @Component({
   selector: 'app-admin-add-vibration',
   templateUrl: './admin-add-vibration.component.html',

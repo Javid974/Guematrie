@@ -12,7 +12,7 @@
   
 <div class="gallery">
     <div *ngFor="let card of cards" class="tarot-card">
-      <img [src]="card.image" [alt]="card.name">
+      <img [src]="card.imagePath" [alt]="card.name">
       <p>{{ card.name }}</p>
     </div>
 </div>
