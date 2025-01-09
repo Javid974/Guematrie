@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Vibration } from 'src/models/vibration.model';
 import { DisplayService } from 'src/services/display.service';
 import { TarotService } from 'src/services/tarot.service';
@@ -8,7 +8,7 @@ import { VibrationService } from 'src/services/vibration.service';
 @Component({
   selector: 'app-admin-add-tarot',
   templateUrl: './admin-add-tarot.component.html',
-  styleUrl: './admin-add-tarot.component.css'
+  styleUrls: ['./admin-add-tarot.component.css']
 })
 export class AdminAddTarotComponent implements OnInit {
 
@@ -17,7 +17,7 @@ export class AdminAddTarotComponent implements OnInit {
   public vibrations: Vibration[] = []; 
   public errorMessage: string = '';
 
-  constructor(private fb: FormBuilder, private tarotService: TarotService, private vibrationService:VibrationService,  private displayService: DisplayService) {
+  constructor(private fb: FormBuilder, private tarotService: TarotService, private vibrationService: VibrationService, private displayService: DisplayService) {
     this.tarotForm = this.fb.group({
       cards: this.fb.array([this.newCard()])
     });
@@ -32,12 +32,13 @@ export class AdminAddTarotComponent implements OnInit {
       this.vibrations = data;
     });
   }
+
   get cards(): FormArray {
     return this.tarotForm.get('cards') as FormArray;
   }
   
   get cardsControls() {
-    return (this.tarotForm.get('cards') as FormArray).controls;
+    return this.cards.controls;
   }
   
   newCard(): FormGroup {
@@ -45,9 +46,9 @@ export class AdminAddTarotComponent implements OnInit {
       id: [crypto.randomUUID()],
       number: ['', Validators.required],
       name: ['', Validators.required],
-      description: ['', Validators.required],
+      description: [''],
       vibrationId: [null],
-      image: [null, Validators.required]  // Stocker le fichier réel ici
+      image: [null, Validators.required]
     });
   }
 
@@ -59,28 +60,29 @@ export class AdminAddTarotComponent implements OnInit {
     this.cards.removeAt(index);
   }
 
-  onFileChange(event: Event): void {
-   
-    const element = event.currentTarget as HTMLInputElement;
-    let fileList: FileList | null = element.files;
-  
+  onFileChange(event: Event, index: number): void {
+    const element = event.target as HTMLInputElement;
+    const fileList: FileList | null = element.files;
     if (fileList && fileList.length > 0) {
       const file = fileList[0];
-      if (!this.uploadedFile.includes(file)) {
-        this.uploadedFile.push(file);
-      }
-      
+      this.uploadedFile[index] = file;
+      this.cards.at(index).get('image')?.setValue(file);
     }
   }
 
   onSubmit(): void {
-
     this.errorMessage = '';
-    const formData = new FormData();
+
+    if (this.tarotForm.invalid) {
+      this.tarotForm.markAllAsTouched();  // Marque tous les champs comme "touchés" pour afficher les erreurs
+      this.errorMessage = 'Veuillez remplir tous les champs obligatoires.';
+      return;
+    }
     
+    const formData = new FormData();
     this.cards.controls.forEach((card, index) => {
- 
       const cardData = card.value;
+      formData.append(`tarots[${index}].Id`, cardData.id);
       formData.append(`tarots[${index}].Name`, cardData.name);
       formData.append(`tarots[${index}].Number`, cardData.number.toString());
       formData.append(`tarots[${index}].Description`, cardData.description || '');
@@ -91,20 +93,17 @@ export class AdminAddTarotComponent implements OnInit {
     });
 
     this.tarotService.saveTarotCards(formData).subscribe({
-      next: (response) => {
-        this.tarotForm.reset(); // Réinitialise le formulaire
-        this.uploadedFile = [];  // Vide la liste des fichiers uploadés
-        this.cards.clear(); 
-        const message = 'Carte de tarot mise à jour avec succès'
-        this.displayService.showSuccessToast(message);
+      next: () => {
+        this.tarotForm.reset();
+        this.uploadedFile = [];
+        this.cards.clear();
+        this.displayService.showSuccessToast('Carte de tarot ajoutée avec succès');
         this.addCard();
       },
       error: (error) => {
         this.errorMessage = error.error;
-
-        this.displayService.showErrorToast('Erreur lors de la mise à jour de la carte de taror');
+        this.displayService.showErrorToast('Erreur lors de l’ajout de la carte de tarot.');
       }
     });
   }
-
 }

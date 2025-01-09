@@ -10,21 +10,30 @@
 
     <div *ngIf="errorMessage" class="error-message">
         <p>{{ errorMessage }}</p>
-      </div>
+    </div>
   
     <div formArrayName="cards">
         <div *ngFor="let card of cards.controls; let i = index" [formGroupName]="i">
-            <div  class="row mb-3">
-                <div  class="col-4">
-                    <input type="number" formControlName="number" placeholder="Numero de carte" min="0" required>
+            <div class="row mb-3">
+                <!-- Numéro de carte -->
+                <div class="col-4">
+                    <input type="number" formControlName="number" placeholder="Numéro de carte" min="0" required>
+                    <div *ngIf="card.get('number')?.invalid && card.get('number')?.touched" class="text-danger">
+                        Le numéro de carte est requis.
+                    </div>
                 </div>
-                <div  class="col-8">
+                <!-- Nom de la carte -->
+                <div class="col-8">
                     <input formControlName="name" placeholder="Nom de la carte" required>
+                    <div *ngIf="card.get('name')?.invalid && card.get('name')?.touched" class="text-danger">
+                        Le nom de la carte est requis.
+                    </div>
                 </div>
-         
             </div>
-            <div  class="row mb-3">
-                <div  class="col-12">
+
+            <!-- Vibration -->
+            <div class="row mb-3">
+                <div class="col-12">
                     <select formControlName="vibrationId" class="form-control">
                         <option value="">Sélectionner une vibration</option>
                         <option *ngFor="let vibration of vibrations" [value]="vibration.id">
@@ -33,26 +42,34 @@
                     </select>
                 </div>
             </div>
+
+            <!-- Description -->
             <div class="row mb-3">
-                <div  class="col-12">
-                    <textarea formControlName="description" placeholder="Description de la carte" required></textarea>
+                <div class="col-12">
+                    <textarea formControlName="description" placeholder="Description de la carte"></textarea>
                 </div>
             </div>
+
+            <!-- Fichier -->
             <div class="row mb-3">
-                <div  class="col-12">
-                    <input type="file" (change)="onFileChange($event )" formControlName="image"  accept="image/*" required>
+                <div class="col-12">
+                    <input type="file" (change)="onFileChange($event, i)" formControlName="image" accept="image/*" required>
+                    <div *ngIf="card.get('image')?.invalid && card.get('image')?.touched" class="text-danger">
+                        Le fichier est requis.
+                    </div>
                 </div>
             </div>
             
+            <!-- Boutons Ajouter/Retirer -->
             <button type="button" class="remove-btn btn btn-light mb-2" (click)="removeCard(i)" [disabled]="cardsControls.length <= 1">
-                <i class="bi bi-arrow-up"></i>
-                Retirer
+                <i class="bi bi-arrow-up"></i> Retirer
             </button>
             <button type="button" class="add-btn btn btn-light" *ngIf="i === cardsControls.length - 1" (click)="addCard()">
-                <i class="bi bi-arrow-down"></i>
-                Ajouter
+                <i class="bi bi-arrow-down"></i> Ajouter
             </button>
         </div>
     </div>
+
+    <!-- Bouton de soumission -->
     <button class="submit-btn btn btn-primary" type="submit">Submit</button>
 </form>
