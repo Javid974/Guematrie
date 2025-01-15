@@ -1,19 +1,17 @@
 
 <div class="title-container">
     <h1>Carte du tarot</h1>
-  </div>
-  
-  <div class="edit-mode-toggle">
+</div>
+
+<div class="edit-mode-toggle">
     <a [routerLink]="'/admin/tarot/add'" class="edit-mode-toggle-link">Ajouter carte</a>
     <span class="separator">|</span>
     <a [routerLink]="'/admin'" class="edit-mode-toggle-link">Administration dashboard</a>
-  </div>
+</div>
 
-  
 <div class="gallery">
     <div *ngFor="let card of cards" class="tarot-card">
-      <img [src]="card.imagePath" [alt]="card.name">
-      <p>{{ card.name }}</p>
+        <img [src]="card.imagePath" [alt]="card.name">
+        <p>{{ card.name }}</p>
     </div>
 </div>
-  
