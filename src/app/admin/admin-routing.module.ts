@@ -5,6 +5,7 @@ import { AdminEditVibrationComponent } from './admin-edit-vibration/admin-edit-v
 import { AdminAddVibrationComponent } from './admin-add-vibration/admin-add-vibration.component';
 import { AdminTarotComponent } from './admin-tarot/admin-tarot.component';
 import { AdminAddTarotComponent } from './admin-add-tarot/admin-add-tarot.component';
+import { AdminEditTarotComponent } from './admin-edit-tarot/admin-edit-tarot.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'add', component: AdminAddVibrationComponent },
   { path: 'tarot', component: AdminTarotComponent },
   { path: 'tarot/add', component: AdminAddTarotComponent },
+  { path: 'tarot/edit/:id', component: AdminEditTarotComponent }
 ];
 
 

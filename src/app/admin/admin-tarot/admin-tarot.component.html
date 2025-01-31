@@ -11,7 +11,9 @@
 
 <div class="gallery">
     <div *ngFor="let card of cards" class="tarot-card">
-        <img [src]="card.imagePath" [alt]="card.name">
+        <a [routerLink]="['/admin/tarot/edit', card.id]">
+            <img [src]="card.imagePath" [alt]="card.name">
+        </a>
         <p>{{ card.name }}</p>
     </div>
 </div>

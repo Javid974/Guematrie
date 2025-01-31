@@ -8,6 +8,7 @@ import { AdminAddVibrationComponent } from './admin-add-vibration/admin-add-vibr
 import { HttpClientModule } from '@angular/common/http';
 import { AdminTarotComponent } from './admin-tarot/admin-tarot.component';
 import { AdminAddTarotComponent } from './admin-add-tarot/admin-add-tarot.component';
+import { AdminEditTarotComponent } from './admin-edit-tarot/admin-edit-tarot.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { AdminAddTarotComponent } from './admin-add-tarot/admin-add-tarot.compon
     AdminEditVibrationComponent,
     AdminAddVibrationComponent,
     AdminTarotComponent, 
-    AdminAddTarotComponent
+    AdminAddTarotComponent,
+    AdminEditTarotComponent
   ],
   imports: [
     CommonModule,
