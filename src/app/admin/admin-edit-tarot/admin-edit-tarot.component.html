@@ -1,56 +1,66 @@
-
-<div class="title-container">
+﻿<div class="title-container">
     <h1>Modifier la carte du tarot</h1>
 </div>
 
 <div class="edit-mode-toggle">
     <a [routerLink]="'/admin/tarot'" class="edit-mode-toggle-link">Visualiser les cartes</a>
 </div>
+
 <form class="row g-3" [formGroup]="tarotForm" (ngSubmit)="onSubmit()">
     <div *ngIf="errorMessage" class="error-message">
         <p>{{ errorMessage }}</p>
     </div>
+
     <div class="row mb-3">
-        <!-- Numéro de carte -->
         <div class="col-4">
-            <input type="number" [(ngModel)]="card.number" formControlName="number" placeholder="Numéro de carte" min="0" required>
-            <div *ngIf="this.tarotForm.get('number')?.invalid && tarotForm.get('number')?.touched" class="text-danger">
-                Le numéro de carte est requis.
+            <input type="number" [(ngModel)]="card.number" formControlName="number" placeholder="Numero de carte" min="0" required>
+            <div *ngIf="tarotForm.get('number')?.invalid && tarotForm.get('number')?.touched" class="text-danger">
+                Le numero de carte est requis.
             </div>
         </div>
-        <!-- Nom de la carte -->
+
         <div class="col-8">
             <input formControlName="name" [(ngModel)]="card.name" placeholder="Nom de la carte" required>
-            <div *ngIf="this.tarotForm.get('name')?.invalid && tarotForm.get('name')?.touched" class="text-danger">
+            <div *ngIf="tarotForm.get('name')?.invalid && tarotForm.get('name')?.touched" class="text-danger">
                 Le nom de la carte est requis.
             </div>
         </div>
-        
     </div>
 
-     <!-- Vibration -->
-     <div class="row mb-3">
+    <div class="row mb-3">
         <div class="col-12">
-            <select formControlName="vibrationId" class="form-control"  [(ngModel)]="card.vibrationId" >
-                <option value="">Sélectionner une vibration</option>
+            <select formControlName="vibrationId" class="form-control" [(ngModel)]="card.vibrationId">
+                <option value="">Selectionner une vibration</option>
                 <option *ngFor="let vibration of vibrations" [value]="vibration.id">
-                    {{ vibration.vibrationNumber }}{{ vibration.letter ? ' - ' + vibration.letter : '' }} - {{vibration.description}}
+                    {{ vibration.vibrationNumber }}{{ vibration.letter ? ' - ' + vibration.letter : '' }} - {{ vibration.description }}
                 </option>
             </select>
         </div>
     </div>
 
-     <!-- Description -->
-     <div class="row mb-3">
+    <div class="row mb-3">
         <div class="col-12">
-            <textarea formControlName="description"  [(ngModel)]="card.description" placeholder="Description de la carte"></textarea>
+            <textarea formControlName="description" [(ngModel)]="card.description" placeholder="Description de la carte"></textarea>
         </div>
     </div>
 
-    <div>
-        <button class="submit-btn btn btn-primary" type="submit">Mettre à jour</button>
+    <div class="col-md-6">
+        <label class="form-label">Image existante</label>
+        <div *ngIf="previewImagePath">
+            <img [src]="previewImagePath" alt="Image actuelle" class="img-thumbnail" style="max-width: 200px;">
+        </div>
     </div>
-    
+
+    <div class="col-md-6">
+        <label for="imagePath" class="form-label">Nouvelle image</label>
+        <input id="imagePath" type="file" (change)="onFileChange($event)" class="form-control" accept="image/*">
+        <p *ngIf="selectedFileName">{{ selectedFileName }}</p>
+    </div>
+
+    <div>
+        <button class="submit-btn btn btn-primary" type="submit">Mettre a jour</button>
+    </div>
+
     <div>
       <button class="submit-btn btn btn-primary" type="button" (click)="openModal()">Supprimer</button>
     </div>
@@ -67,7 +77,7 @@
             </button>
             </div>
             <div class="modal-body">
-            Êtes-vous sûr de vouloir supprimer cet élément ?
+            Etes-vous sur de vouloir supprimer cet element ?
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
