@@ -16,7 +16,7 @@ export class VibrationTableComponent {
   @Input() firstName: string = '';
   @Input() title: string = '';
   errorMessage : string = '';
-  innerVibrationResult: InnerVibrationResult = { syllabes: [], innerVibration: [[]], growthStage:{stageDetail:[[]], stage:[]}, vibrationSummation:{summationDetail:[], summation:0, summationTarot:0} };
+  innerVibrationResult: InnerVibrationResult = { syllabes: [], innerVibration: [[]], growthStage:{stageDetail:[[]], stage:[]}, vibrationSummation:{summationDetail:[], summation:0}, vibrationTarot: {summationTarot:0} };
 
 
   constructor(private guematrieService: GuematrieService) {}
@@ -62,10 +62,11 @@ export class VibrationTableComponent {
     }
     return formattedNumber;
   }
-
+
+
   getSummationTarotExpression(): string {
     const summation = this.innerVibrationResult?.vibrationSummation?.summation;
-    const summationTarot = this.innerVibrationResult?.vibrationSummation?.summationTarot;
+    const summationTarot = this.innerVibrationResult?.vibrationTarot?.summationTarot;
 
     if (summation === null || summation === undefined) {
       return '';
