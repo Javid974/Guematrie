@@ -33,4 +33,14 @@ import { Tarot } from "src/models/tarot.model";
       return this.http.delete(`${this.apiUrl}/tarots/${id}`);
     }
 
+    downloadFile(): Observable<any> {
+      return this.http.get(`${this.apiUrl}/tarots/download`, { responseType: 'blob' });
+    }
+
+    importFile(file: File): Observable<any> {
+      const formData = new FormData();
+      formData.append('file', file, file.name);
+      return this.http.post(`${this.apiUrl}/tarots/import`, formData);
+    }
+
   }
