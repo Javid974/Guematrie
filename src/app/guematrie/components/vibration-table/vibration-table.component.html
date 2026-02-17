@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let syllable of innerVibrationResult?.syllabes; let i = index">
+        <tr *ngFor="let syllable of innerVibrationResult.syllabes; let i = index">
           <td class="narrow-column">
             <div *ngFor="let letter of syllable.split('')">
               {{ letter }}
