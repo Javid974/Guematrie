@@ -68,6 +68,21 @@
               <tr class="no-bottom-border">
                 <td>{{ getSummationTarotExpression() }}</td>
               </tr>
+              <tr class="no-bottom-border">
+                <td>
+                  <div class="tarot-card-preview" *ngIf="innerVibrationResult.vibrationTarot.tarotCard as tarotCard">
+                    <img
+                      *ngIf="getTarotImageUrl()"
+                      class="tarot-card-image"
+                      [src]="getTarotImageUrl()"
+                      [alt]="tarotCard.name || 'Carte de tarot'"
+                    />
+                    <div class="tarot-card-description" *ngIf="tarotCard.description">
+                      {{ tarotCard.description }}
+                    </div>
+                  </div>
+                </td>
+              </tr>
             </table>
           </td>
         </tr>

@@ -1,73 +1,113 @@
-
-
 /* Style pour le tableau */
 .table-container table {
   border-collapse: collapse; /* Pour s'assurer que les bordures des cellules se collent */
 }
+
 .table-container {
-  width: 90%; /* Définit la largeur du conteneur à 90% de la largeur du parent */
+  width: 90%; /* Definit la largeur du conteneur a 90% de la largeur du parent */
 }
-/* Éliminer la bordure de la première colonne (colonne étroite) */
-.table-container table th:first-child, 
+
+/* Eliminer la bordure de la premiere colonne (colonne etroite) */
+.table-container table th:first-child,
 .table-container table td:first-child {
-  border-left: none; /* Pas de bordure à gauche pour la première colonne */
+  border-left: none; /* Pas de bordure a gauche pour la premiere colonne */
 }
+
 .title-container h1 {
-    font-family: 'Roboto', sans-serif; /* Police élégante et moderne */
-    font-size: 28px; /* Taille de la police */
-    color: #333; /* Couleur du texte */
-    /* Vous pouvez ajouter d'autres styles comme letter-spacing, font-weight, etc. */
+  font-family: 'Roboto', sans-serif; /* Police elegante et moderne */
+  font-size: 28px; /* Taille de la police */
+  color: #333; /* Couleur du texte */
 }
-  
+
 table {
-    width: 100%;
-    border-collapse: collapse; /* Pour éliminer l'espace entre les bordures */
+  width: 100%;
+  border-collapse: collapse; /* Pour eliminer l'espace entre les bordures */
 }
-  
-th, td {
-    border-bottom: 1px solid #ddd; /* Ligne de séparation subtile */
+
+.table-container > table {
+  table-layout: fixed;
 }
-  
+
+th,
+td {
+  border-bottom: 1px solid #ddd; /* Ligne de separation subtile */
+}
+
 .narrow-column {
-    width: 5%; /* Ajustez selon vos besoins */
+  width: 8%;
+}
+
+.table-container > table .bordered-column {
+  width: 30.66%;
 }
 
 .narrow-column div {
-    display: block; /* Chaque lettre sur une nouvelle ligne */
-  }
-  
+  display: block; /* Chaque lettre sur une nouvelle ligne */
+}
+
 .no-bottom-border td {
   border-bottom: none;
 }
 
 .no-padding {
-    padding: 0 !important; /* Éliminer le rembourrage pour les cellules */
-  }
-  
-  .circleLarge {
-    display: inline-flex;
-    justify-content: center; /* Centre horizontalement */
-    align-items: center;     /* Centre verticalement */
-    text-align: center;      /* Assure le centrage du texte si nécessaire */
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin: 5px;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .circleWhiteLarge {
-    display: inline-flex;
-    justify-content: center; /* Centre horizontalement */
-    align-items: center;     /* Centre verticalement */
-    text-align: center;      /* Assure le centrage du texte si nécessaire */
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin: 5px;
-    color: black;            /* Couleur du texte en noir */
-    font-weight: bold;       /* Texte en gras */
-    background-color: white; /* Fond blanc du cercle */
-    border: 1px solid black; /* Bordure noire */
-  }
+  padding: 0 !important; /* Eliminer le rembourrage pour les cellules */
+}
+
+.no-padding > table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.circleLarge {
+  display: inline-flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  text-align: center; /* Assure le centrage du texte si necessaire */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 5px;
+  color: white;
+  font-weight: bold;
+}
+
+.circleWhiteLarge {
+  display: inline-flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  text-align: center; /* Assure le centrage du texte si necessaire */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 5px;
+  color: black; /* Couleur du texte en noir */
+  font-weight: bold; /* Texte en gras */
+  background-color: white; /* Fond blanc du cercle */
+  border: 1px solid black; /* Bordure noire */
+}
+
+.tarot-card-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.tarot-card-image {
+  width: 80px;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  object-fit: cover;
+}
+
+.tarot-card-description {
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: left;
+  color: #333;
+  width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
