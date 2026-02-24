@@ -1,4 +1,3 @@
-
 <div class="table-container">
   <div *ngIf="errorMessage" class="error-message">
     <p class="center"><b>{{ errorMessage }}</b></p>
@@ -8,7 +7,7 @@
         <tr>
           <th class="narrow-column"></th>
           <th class="bordered-column">Vibration Interieure</th>
-          <th class="bordered-column">Étape de croissance</th>
+          <th class="bordered-column">Etape de croissance</th>
           <th class="bordered-column">Sommation vibration</th>
         </tr>
       </thead>
@@ -19,29 +18,29 @@
               {{ letter }}
             </div>
           </td>
-          
+
           <td class="bordered-column">
             <div *ngFor="let vibration of innerVibrationResult.innerVibration[i]">
               <div class="circleLarge" [ngStyle]="{'background-color': getColor(vibration.vibrationColor)}">
-           
                 <span>{{ getFormattedVibrationNumber(vibration) }}</span>
               </div>
               &nbsp;<span>{{ vibration.description }}</span>
             </div>
           </td>
-    
+
           <td class="bordered-column">
-            <div> <div *ngIf="innerVibrationResult.growthStage.stage[i] as vibrationNumber" class="circleWhiteLarge">{{ vibrationNumber }}</div>
+            <div>
+              <div *ngIf="innerVibrationResult.growthStage.stage[i] as vibrationNumber" class="circleWhiteLarge">{{ vibrationNumber }}</div>
               <div *ngFor="let detail of innerVibrationResult.growthStage.stageDetail[i]; let isLast = last">
                 <div class="circleLarge" [ngStyle]="{'background-color': getColor(detail.vibrationColor)}">
                   <span>{{ getFormattedVibrationNumber(detail)}}</span>
                 </div>
                 &nbsp;<span>{{detail.description}}</span>
-                <span *ngIf="!isLast" style="font-weight: bold;"> lié à</span>
+                <span *ngIf="!isLast" style="font-weight: bold;"> lie a </span>
               </div>
             </div>
           </td>
-          
+
           <td
             class="bordered-column no-padding"
             *ngIf="i === 0"
@@ -57,9 +56,9 @@
                       <span>{{ getFormattedVibrationNumber(detail)}}</span>
                     </div>
                     &nbsp;<span>{{detail.description}}</span>
-                    <span *ngIf="!isLast" style="font-weight: bold;"> lié à</span>
+                    <span *ngIf="!isLast" style="font-weight: bold;"> lie a </span>
                   </div>
-          
+
                 </td>
               </tr>
               <tr>
@@ -86,24 +85,26 @@
             </table>
           </td>
         </tr>
-        <tr class="no-bottom-border">
+        <tr class="no-bottom-border" *ngIf="innerVibrationResult.vibrationAdvices?.length">
           <th colspan="4" style="text-align: center;">Conseils</th>
         </tr>
-        <tr class="no-bottom-border">
-          <td colspan="4" style="text-align: left;">conseil1</td>
+        <tr class="no-bottom-border" *ngFor="let advice of innerVibrationResult.vibrationAdvices; let idx = index">
+          <td colspan="4" style="text-align: left;">
+            <div style="font-weight: bold; margin-bottom: 4px;">Conseil {{ idx + 1 }}:</div>
+            <div class="advice-row">
+              <div class="circleWhiteLarge">{{ advice.advice }}</div>
+              <div class="advice-chain">
+                <ng-container *ngFor="let detail of advice.adviceDetail; let isLast = last">
+                  <div class="circleLarge" [ngStyle]="{'background-color': getColor(detail.vibrationColor)}">
+                    <span>{{ getFormattedVibrationNumber(detail) }}</span>
+                  </div>
+                  <span>{{ detail.description }}</span>
+                  <span *ngIf="!isLast" style="font-weight: bold; margin-right: 8px;"> lie a </span>
+                </ng-container>
+              </div>
+            </div>
+          </td>
         </tr>
-        <tr class="no-bottom-border">
-          <td colspan="4" style="text-align: left;">conseil2</td>
-        </tr>
-        <!-- Autres lignes de données -->
       </tbody>
     </table>
 </div>
-
-
-
-
-
-
-
-

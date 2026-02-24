@@ -111,3 +111,21 @@ td {
   white-space: normal;
   overflow-wrap: anywhere;
 }
+
+.advice-chain {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.advice-chain .circleLarge {
+  margin: 5px 2px 5px 0;
+}
+
+.advice-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}

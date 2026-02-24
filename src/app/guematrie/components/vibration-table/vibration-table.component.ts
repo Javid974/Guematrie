@@ -33,7 +33,8 @@ export class VibrationTableComponent {
         imagePath: '',
         vibrationId: null
       }
-    }
+    },
+    vibrationAdvices: []
   };
 
 
@@ -107,4 +108,5 @@ export class VibrationTableComponent {
 
     return `${environment.imageBaseUrl}${imagePath}`;
   }
+
 }
