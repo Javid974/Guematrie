@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
-import { InnerVibrationResult } from "src/models/innerVibrationResult.model";
+import { VibrationResult } from "src/models/vibrationResult.model";
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +13,7 @@ import { InnerVibrationResult } from "src/models/innerVibrationResult.model";
 
     constructor(private http: HttpClient) { }
     
-    generate(prenom: string): Observable<InnerVibrationResult> {
-        return this.http.get<InnerVibrationResult>(`${this.apiUrl}/guematrie/${prenom}`);
+    generate(prenom: string): Observable<VibrationResult> {
+        return this.http.get<VibrationResult>(`${this.apiUrl}/guematrie/${prenom}`);
     }
   }

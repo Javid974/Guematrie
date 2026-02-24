@@ -2,4 +2,22 @@
   <h1>Vibration Exterieure</h1>
 </div>
 
-<p class="placeholder">Composant externe cree.</p>
+<app-vibration-table
+  [vibrationResult]="vibrationResult"
+  [errorMessage]="errorMessage"
+  [title]="'Vibration Exterieure'"
+></app-vibration-table>
+
+<div class="nav-buttons">
+  <button
+    type="button"
+    class="arrow-button"
+    (click)="goToInnerVibration()"
+    aria-label="Precedent"
+  >
+    &#8592;
+  </button>
+  <button type="button" class="arrow-button" disabled aria-label="Suivant">
+    &#8594;
+  </button>
+</div>

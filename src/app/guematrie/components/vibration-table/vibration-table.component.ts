@@ -1,12 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { VibrationColor } from 'src/app/emum/vibration-color.enum';
+import { VibrationResult } from 'src/models/vibrationResult.model';
 import { environment } from 'src/environments/environment';
-import { VibrationType } from 'src/app/emum/vibration-type.enum';
-import { GrowthStage } from 'src/models/growthStage.model';
-import { InnerVibrationResult } from 'src/models/innerVibrationResult.model';
-import { Tarot } from 'src/models/tarot.model';
-import { Vibration } from 'src/models/vibration.model';
-import { GuematrieService } from 'src/services/guematrie.service';
 
 @Component({
   selector: 'app-vibration-table',
@@ -14,11 +9,9 @@ import { GuematrieService } from 'src/services/guematrie.service';
   styleUrls: ['./vibration-table.component.css'],
 })
 export class VibrationTableComponent {
-
-  @Input() firstName: string = '';
-  @Input() title: string = '';
-  errorMessage : string = '';
-  innerVibrationResult: InnerVibrationResult = {
+  @Input() title: string = 'Vibration';
+  @Input() errorMessage: string = '';
+  @Input() vibrationResult: VibrationResult = {
     syllabes: [],
     innerVibration: [[]],
     growthStage: { stageDetail: [[]], stage: [] },
@@ -31,32 +24,13 @@ export class VibrationTableComponent {
         number: 0,
         description: null,
         imagePath: '',
-        vibrationId: null
-      }
+        vibrationId: null,
+      },
     },
-    vibrationAdvices: []
+    vibrationAdvices: [],
   };
 
-
-  constructor(private guematrieService: GuematrieService) {}
-
-  ngOnInit(): void {
- 
-    if (this.title === 'Vibration Interieure'){
-      this.guematrieService.generate(this.firstName).subscribe(
-        {
-          next: (vibrationResult: InnerVibrationResult) => {
-            debugger;
-            this.innerVibrationResult = vibrationResult;
-          },
-          error: (v) => {
-            this.errorMessage = v.error;
-          }
-      });
-    }
-  }
-
- getColor(vibrationColor: VibrationColor): string {
+  getColor(vibrationColor: VibrationColor): string {
     switch (vibrationColor) {
       case VibrationColor.Red:
         return 'red';
@@ -82,10 +56,9 @@ export class VibrationTableComponent {
     return formattedNumber;
   }
 
-
   getSummationTarotExpression(): string {
-    const summation = this.innerVibrationResult?.vibrationSummation?.summation;
-    const summationTarot = this.innerVibrationResult?.vibrationTarot?.summationTarot;
+    const summation = this.vibrationResult?.vibrationSummation?.summation;
+    const summationTarot = this.vibrationResult?.vibrationTarot?.summationTarot;
 
     if (summation === null || summation === undefined) {
       return '';
@@ -96,7 +69,7 @@ export class VibrationTableComponent {
   }
 
   getTarotImageUrl(): string {
-    const imagePath = this.innerVibrationResult?.vibrationTarot?.tarotCard?.imagePath;
+    const imagePath = this.vibrationResult?.vibrationTarot?.tarotCard?.imagePath;
 
     if (!imagePath) {
       return '';
@@ -108,5 +81,4 @@ export class VibrationTableComponent {
 
     return `${environment.imageBaseUrl}${imagePath}`;
   }
-
 }

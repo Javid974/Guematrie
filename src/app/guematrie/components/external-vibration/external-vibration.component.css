@@ -4,7 +4,26 @@
   margin-bottom: 20px;
 }
 
-.placeholder {
+.nav-buttons {
   width: 90%;
-  margin: 0 auto;
+  margin: 20px auto 0;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.arrow-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #333;
+  background-color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.arrow-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

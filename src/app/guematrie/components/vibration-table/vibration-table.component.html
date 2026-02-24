@@ -6,13 +6,13 @@
       <thead>
         <tr>
           <th class="narrow-column"></th>
-          <th class="bordered-column">Vibration Interieure</th>
+          <th class="bordered-column">{{ title }}</th>
           <th class="bordered-column">Etape de croissance</th>
           <th class="bordered-column">Sommation vibration</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let syllable of innerVibrationResult.syllabes; let i = index">
+        <tr *ngFor="let syllable of vibrationResult.syllabes; let i = index">
           <td class="narrow-column">
             <div *ngFor="let letter of syllable.split('')">
               {{ letter }}
@@ -20,7 +20,7 @@
           </td>
 
           <td class="bordered-column">
-            <div *ngFor="let vibration of innerVibrationResult.innerVibration[i]">
+            <div *ngFor="let vibration of vibrationResult.innerVibration[i]">
               <div class="circleLarge" [ngStyle]="{'background-color': getColor(vibration.vibrationColor)}">
                 <span>{{ getFormattedVibrationNumber(vibration) }}</span>
               </div>
@@ -30,8 +30,8 @@
 
           <td class="bordered-column">
             <div>
-              <div *ngIf="innerVibrationResult.growthStage.stage[i] as vibrationNumber" class="circleWhiteLarge">{{ vibrationNumber }}</div>
-              <div *ngFor="let detail of innerVibrationResult.growthStage.stageDetail[i]; let isLast = last">
+              <div *ngIf="vibrationResult.growthStage.stage[i] as vibrationNumber" class="circleWhiteLarge">{{ vibrationNumber }}</div>
+              <div *ngFor="let detail of vibrationResult.growthStage.stageDetail[i]; let isLast = last">
                 <div class="circleLarge" [ngStyle]="{'background-color': getColor(detail.vibrationColor)}">
                   <span>{{ getFormattedVibrationNumber(detail)}}</span>
                 </div>
@@ -50,8 +50,8 @@
               <tr></tr>
               <tr>
                 <td>
-                  <div class="circleWhiteLarge">{{innerVibrationResult.vibrationSummation.summation}}</div>
-                  <div *ngFor="let detail of innerVibrationResult.vibrationSummation.summationDetail; let isLast = last">
+                  <div class="circleWhiteLarge">{{vibrationResult.vibrationSummation.summation}}</div>
+                  <div *ngFor="let detail of vibrationResult.vibrationSummation.summationDetail; let isLast = last">
                     <div class="circleLarge" [ngStyle]="{'background-color': getColor(detail.vibrationColor)}">
                       <span>{{ getFormattedVibrationNumber(detail)}}</span>
                     </div>
@@ -69,7 +69,7 @@
               </tr>
               <tr class="no-bottom-border">
                 <td>
-                  <div class="tarot-card-preview" *ngIf="innerVibrationResult.vibrationTarot.tarotCard as tarotCard">
+                  <div class="tarot-card-preview" *ngIf="vibrationResult.vibrationTarot.tarotCard as tarotCard">
                     <img
                       *ngIf="getTarotImageUrl()"
                       class="tarot-card-image"
@@ -85,10 +85,10 @@
             </table>
           </td>
         </tr>
-        <tr class="no-bottom-border" *ngIf="innerVibrationResult.vibrationAdvices?.length">
+        <tr class="no-bottom-border" *ngIf="vibrationResult.vibrationAdvices?.length">
           <th colspan="4" style="text-align: center;">Conseils</th>
         </tr>
-        <tr class="no-bottom-border" *ngFor="let advice of innerVibrationResult.vibrationAdvices; let idx = index">
+        <tr class="no-bottom-border" *ngFor="let advice of vibrationResult.vibrationAdvices; let idx = index">
           <td colspan="4" style="text-align: left;">
             <div style="font-weight: bold; margin-bottom: 4px;">Conseil {{ idx + 1 }}:</div>
             <div class="advice-row">
