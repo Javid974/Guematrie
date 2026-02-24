@@ -6,9 +6,15 @@ import { GuematrieFormComponent } from './components/guematrie-form/guematrie-fo
 import { InnerVibrationComponent } from './components/inner-vibration/inner-vibration.component';
 import { FormsModule } from '@angular/forms';
 import { VibrationTableComponent } from './components/vibration-table/vibration-table.component';
+import { ExternalVibrationComponent } from './components/external-vibration/external-vibration.component';
 
 @NgModule({
-  declarations: [GuematrieFormComponent, InnerVibrationComponent, VibrationTableComponent],
+  declarations: [
+    GuematrieFormComponent,
+    InnerVibrationComponent,
+    VibrationTableComponent,
+    ExternalVibrationComponent,
+  ],
   imports: [CommonModule, GuematrieRoutingModule, FormsModule],
 })
 export class GuematrieModule {}

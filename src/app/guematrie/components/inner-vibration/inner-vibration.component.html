@@ -6,3 +6,17 @@
   [firstName]="this.guematrieParams.firstName"
   [title]="'Vibration Interieure'"
 ></app-vibration-table>
+
+<div class="nav-buttons">
+  <button type="button" class="arrow-button" disabled aria-label="Precedent">
+    &#8592;
+  </button>
+  <button
+    type="button"
+    class="arrow-button"
+    (click)="goToExternalVibration()"
+    aria-label="Suivant"
+  >
+    &#8594;
+  </button>
+</div>
