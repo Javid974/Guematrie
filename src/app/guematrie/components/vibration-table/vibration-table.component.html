@@ -85,7 +85,7 @@
             </table>
           </td>
         </tr>
-        <tr class="no-bottom-border" *ngIf="vibrationResult.vibrationAdvices?.length">
+        <tr class="no-bottom-border" *ngIf="vibrationResult.vibrationAdvices.length">
           <th colspan="4" style="text-align: center;">Conseils</th>
         </tr>
         <tr class="no-bottom-border" *ngFor="let advice of vibrationResult.vibrationAdvices; let idx = index">
@@ -108,3 +108,4 @@
       </tbody>
     </table>
 </div>
+
