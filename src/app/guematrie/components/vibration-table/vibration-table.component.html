@@ -20,7 +20,7 @@
           </td>
 
           <td class="bordered-column">
-            <div *ngFor="let vibration of vibrationResult.innerVibration[i]">
+            <div *ngFor="let vibration of vibrationResult.vibration[i]">
               <div class="circleLarge" [ngStyle]="{'background-color': getColor(vibration.vibrationColor)}">
                 <span>{{ getFormattedVibrationNumber(vibration) }}</span>
               </div>

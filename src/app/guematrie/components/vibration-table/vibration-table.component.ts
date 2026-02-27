@@ -13,7 +13,7 @@ export class VibrationTableComponent {
   @Input() errorMessage: string = '';
   @Input() vibrationResult: VibrationResult = {
     syllabes: [],
-    innerVibration: [[]],
+    vibration: [[]],
     growthStage: { stageDetail: [[]], stage: [] },
     vibrationSummation: { summationDetail: [], summation: 0 },
     vibrationTarot: {

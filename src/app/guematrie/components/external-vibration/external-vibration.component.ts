@@ -49,7 +49,7 @@ export class ExternalVibrationComponent implements OnInit {
       return;
     }
 
-    this.guematrieService.generate(this.guematrieParams.lastName).subscribe({
+    this.guematrieService.generateExternal(this.guematrieParams.lastName).subscribe({
       next: (result) => {
         this.vibrationResult = result;
       },
@@ -62,7 +62,7 @@ export class ExternalVibrationComponent implements OnInit {
   private createEmptyResult(): VibrationResult {
     return {
       syllabes: [],
-      innerVibration: [[]],
+      vibration: [[]],
       growthStage: { stage: [], stageDetail: [[]] },
       vibrationSummation: { summation: 0, summationDetail: [] },
       vibrationTarot: {

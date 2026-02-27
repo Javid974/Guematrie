@@ -10,7 +10,7 @@ export interface VibrationAdvice {
 
 export interface VibrationResult {
   syllabes: string[];
-  innerVibration: Vibration[][];
+  vibration: Vibration[][];
   growthStage: GrowthStage;
   vibrationSummation: VibrationSummation;
   vibrationTarot: vibrationTarot;
