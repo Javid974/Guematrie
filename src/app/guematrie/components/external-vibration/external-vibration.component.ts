@@ -41,6 +41,17 @@ export class ExternalVibrationComponent implements OnInit {
     });
   }
 
+  goToFinalVibration(): void {
+    this.router.navigate(['/final-vibration'], {
+      queryParams: {
+        firstName: this.guematrieParams.firstName,
+        lastName: this.guematrieParams.lastName,
+        birthDate: this.guematrieParams.birthDate,
+        birthTime: this.guematrieParams.birthTime,
+      },
+    });
+  }
+
   private loadExternalVibration(): void {
     this.errorMessage = '';
     this.vibrationResult = this.createEmptyResult();

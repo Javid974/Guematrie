@@ -7,6 +7,7 @@ import { InnerVibrationComponent } from './components/inner-vibration/inner-vibr
 import { FormsModule } from '@angular/forms';
 import { VibrationTableComponent } from './components/vibration-table/vibration-table.component';
 import { ExternalVibrationComponent } from './components/external-vibration/external-vibration.component';
+import { FinalVibrationComponent } from './components/final-vibration/final-vibration.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ExternalVibrationComponent } from './components/external-vibration/exte
     InnerVibrationComponent,
     VibrationTableComponent,
     ExternalVibrationComponent,
+    FinalVibrationComponent,
   ],
   imports: [CommonModule, GuematrieRoutingModule, FormsModule],
 })
