@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { ExternalVibrationResult } from "src/models/externalVibrationResult.model";
+import { FinalVibrationResult } from "src/models/finalVibrationResult.model";
 import { InnerVibrationResult } from "src/models/innerVibrationResult.model";
 
 @Injectable({
@@ -20,5 +21,9 @@ import { InnerVibrationResult } from "src/models/innerVibrationResult.model";
 
     generateExternal(lastName: string): Observable<ExternalVibrationResult> {
         return this.http.get<ExternalVibrationResult>(`${this.apiUrl}/guematrie/external/${lastName}`);
+    }
+
+    generateFinal(firstName: string, lastName: string) {
+        return this.http.get<FinalVibrationResult>(`${environment.apiUrl}/guematrie/final/${firstName}/${lastName}`);
     }
   }

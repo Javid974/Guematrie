@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FinalVibrationResult } from 'src/models/finalVibrationResult.model';
 import { GuematrieParameters } from 'src/models/GuematrieParameters';
+import { GuematrieService } from 'src/services/guematrie.service';
 
 @Component({
   selector: 'app-final-vibration',
@@ -9,8 +11,14 @@ import { GuematrieParameters } from 'src/models/GuematrieParameters';
 })
 export class FinalVibrationComponent implements OnInit {
   guematrieParams: GuematrieParameters = new GuematrieParameters();
+  finalVibrationResult: FinalVibrationResult = this.createEmptyResult();
+  errorMessage: string = '';
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private guematrieService: GuematrieService
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -18,6 +26,8 @@ export class FinalVibrationComponent implements OnInit {
       this.guematrieParams.lastName = params['lastName'];
       this.guematrieParams.birthDate = params['birthDate'];
       this.guematrieParams.birthTime = params['birthTime'];
+      debugger;
+      this.loadFinalVibration();
     });
   }
 
@@ -30,5 +40,34 @@ export class FinalVibrationComponent implements OnInit {
         birthTime: this.guematrieParams.birthTime,
       },
     });
+  }
+
+  private loadFinalVibration(): void {
+    this.errorMessage = '';
+    this.finalVibrationResult = this.createEmptyResult();
+
+    if (!this.guematrieParams.firstName || !this.guematrieParams.lastName) {
+      return;
+    }
+
+    this.guematrieService
+      .generateFinal(this.guematrieParams.firstName, this.guematrieParams.lastName)
+      .subscribe({
+        next: (result) => {
+          this.finalVibrationResult = result;
+        },
+        error: (v) => {
+          this.errorMessage = v?.error ?? 'Une erreur est survenue.';
+        },
+      });
+  }
+
+  private createEmptyResult(): FinalVibrationResult {
+    return {
+      shouldBeReturn: 0,
+      evolvingKarma: 0,
+      shouldBeReturnDetail: [],
+      evolvingKarmaDetail: [],
+    };
   }
 }
