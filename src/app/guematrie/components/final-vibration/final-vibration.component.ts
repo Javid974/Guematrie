@@ -26,7 +26,6 @@ export class FinalVibrationComponent implements OnInit {
       this.guematrieParams.lastName = params['lastName'];
       this.guematrieParams.birthDate = params['birthDate'];
       this.guematrieParams.birthTime = params['birthTime'];
-      debugger;
       this.loadFinalVibration();
     });
   }

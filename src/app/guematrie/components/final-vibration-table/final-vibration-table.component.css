@@ -1,0 +1,160 @@
+.table-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  vertical-align: top;
+}
+
+thead th {
+  background-color: #fafafa;
+}
+
+.main-column {
+  padding: 14px 12px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.result-panel,
+.tarot-panel,
+.interpretation-panel {
+  min-height: 100%;
+}
+
+.result-panel,
+.tarot-panel {
+  padding: 16px 14px;
+}
+
+.result-panel {
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.panel-value {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.detail-chain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chain-separator {
+  font-weight: 700;
+}
+
+.circleLarge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 5px 2px 5px 0;
+  color: white;
+  font-weight: bold;
+}
+
+.circleWhiteLarge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: black;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.tarot-panel {
+  text-align: center;
+}
+
+.section-title {
+  margin: -16px -14px 12px;
+  padding: 10px 12px;
+  font-weight: 700;
+  text-align: center;
+  background-color: #fafafa;
+  border-bottom: 1px solid #ddd;
+}
+
+.tarot-expression {
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.tarot-card-placeholder {
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border: 1px dashed #c6c6c6;
+  border-radius: 8px;
+  color: #666;
+  background-color: #fcfcfc;
+}
+
+.interpretation-column {
+  width: 28%;
+}
+
+.interpretation-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.interpretation-panel {
+  border-bottom: 1px solid #ddd;
+}
+
+.interpretation-panel:last-child {
+  border-bottom: none;
+}
+
+.interpretation-panel {
+  min-height: 120px;
+  padding: 16px 14px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.interpretation-panel p {
+  margin: 0;
+  color: #666;
+}
+
+.error-message {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  .table-container {
+    width: 95%;
+    overflow-x: auto;
+  }
+
+  .table-container table {
+    min-width: 980px;
+  }
+}

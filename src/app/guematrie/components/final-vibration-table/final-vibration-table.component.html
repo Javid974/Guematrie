@@ -1,0 +1,100 @@
+<div class="table-container">
+  <div *ngIf="errorMessage" class="error-message">
+    <p class="center"><b>{{ errorMessage }}</b></p>
+  </div>
+
+  <table *ngIf="!errorMessage">
+    <thead>
+      <tr>
+        <th class="main-column">Ce qui doit etre rendu, developpe</th>
+        <th class="main-column">Karma evolutif</th>
+        <th class="main-column interpretation-column">Astrologie</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="result-panel">
+            <div class="panel-value">
+              <div class="circleWhiteLarge">
+                {{ finalVibrationResult.shouldBeReturn }}
+              </div>
+            </div>
+            <div class="detail-chain">
+              <ng-container
+                *ngFor="
+                  let detail of finalVibrationResult.shouldBeReturnDetail;
+                  let isLast = last
+                "
+              >
+                <div
+                  class="circleLarge"
+                  [ngStyle]="{ 'background-color': getColor(detail.vibrationColor) }"
+                >
+                  <span>{{ getFormattedVibrationNumber(detail) }}</span>
+                </div>
+                <span>{{ detail.description }}</span>
+                <span *ngIf="!isLast" class="chain-separator">lie a</span>
+              </ng-container>
+            </div>
+          </div>
+
+          <div class="tarot-panel">
+            <div class="section-title">Tarot</div>
+            <div class="tarot-expression">A venir</div>
+            <div class="tarot-card-placeholder">
+              La carte et son interpretation seront ajoutees ici.
+            </div>
+          </div>
+        </td>
+
+        <td>
+          <div class="result-panel">
+            <div class="panel-value">
+              <div class="circleWhiteLarge">
+                {{ finalVibrationResult.evolvingKarma }}
+              </div>
+            </div>
+            <div class="detail-chain">
+              <ng-container
+                *ngFor="
+                  let detail of finalVibrationResult.evolvingKarmaDetail;
+                  let isLast = last
+                "
+              >
+                <div
+                  class="circleLarge"
+                  [ngStyle]="{ 'background-color': getColor(detail.vibrationColor) }"
+                >
+                  <span>{{ getFormattedVibrationNumber(detail) }}</span>
+                </div>
+                <span>{{ detail.description }}</span>
+                <span *ngIf="!isLast" class="chain-separator">lie a</span>
+              </ng-container>
+            </div>
+          </div>
+
+          <div class="tarot-panel">
+            <div class="section-title">Tarot</div>
+            <div class="tarot-expression">A venir</div>
+            <div class="tarot-card-placeholder">
+              La carte et son interpretation seront ajoutees ici.
+            </div>
+          </div>
+        </td>
+
+        <td>
+          <div class="interpretation-cell">
+          <section
+            *ngFor="let section of interpretationSections"
+            class="interpretation-panel"
+          >
+            <div class="section-title">{{ section }}</div>
+            <p>Contenu a venir.</p>
+          </section>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
