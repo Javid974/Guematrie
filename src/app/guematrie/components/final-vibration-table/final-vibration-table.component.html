@@ -27,14 +27,22 @@
                   let isLast = last
                 "
               >
-                <div
-                  class="circleLarge"
-                  [ngStyle]="{ 'background-color': getColor(detail.vibrationColor) }"
-                >
-                  <span>{{ getFormattedVibrationNumber(detail) }}</span>
+                <div class="detail-item">
+                  <div
+                    class="circleLarge"
+                    [ngStyle]="{ 'background-color': getColor(detail.vibrationColor) }"
+                  >
+                    <span>{{ getFormattedVibrationNumber(detail) }}</span>
+                  </div>
+                  <span class="detail-text">
+                    {{ detail.description }}<span
+                      *ngIf="!isLast"
+                      class="chain-separator"
+                    >
+                      &nbsp;lie a
+                    </span>
+                  </span>
                 </div>
-                <span>{{ detail.description }}</span>
-                <span *ngIf="!isLast" class="chain-separator">lie a</span>
               </ng-container>
             </div>
           </div>
@@ -62,14 +70,22 @@
                   let isLast = last
                 "
               >
-                <div
-                  class="circleLarge"
-                  [ngStyle]="{ 'background-color': getColor(detail.vibrationColor) }"
-                >
-                  <span>{{ getFormattedVibrationNumber(detail) }}</span>
+                <div class="detail-item">
+                  <div
+                    class="circleLarge"
+                    [ngStyle]="{ 'background-color': getColor(detail.vibrationColor) }"
+                  >
+                    <span>{{ getFormattedVibrationNumber(detail) }}</span>
+                  </div>
+                  <span class="detail-text">
+                    {{ detail.description }}<span
+                      *ngIf="!isLast"
+                      class="chain-separator"
+                    >
+                      &nbsp;lie a
+                    </span>
+                  </span>
                 </div>
-                <span>{{ detail.description }}</span>
-                <span *ngIf="!isLast" class="chain-separator">lie a</span>
               </ng-container>
             </div>
           </div>
