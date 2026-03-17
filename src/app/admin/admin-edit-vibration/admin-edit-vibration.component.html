@@ -13,7 +13,7 @@
 
   <div  class="row mb-3">
       <div  class="col-md-3">
-          <input formControlName="letter"  [(ngModel)]="vibration.letter" placeholder="Lettre" required  maxlength="1" pattern="^[A-Za-z]$">
+          <input formControlName="letter"  [(ngModel)]="vibration.letter" placeholder="Lettre" required  maxlength="2" pattern="^[A-Za-z]{1,2}$">
           <span *ngIf="isControlInvalid('letter')" class="error small-text">Lettre requise.</span>
       </div>
 

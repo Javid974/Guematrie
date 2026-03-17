@@ -49,11 +49,29 @@
 
           <div class="tarot-panel">
             <div class="section-title">Tarot</div>
-            <div class="tarot-expression">A venir</div>
-            <div class="tarot-card-placeholder">
-              La carte et son interpretation seront ajoutees ici.
-            </div>
-          </div>
+              <div class="tarot-expression">
+                {{
+                  getSummationTarotExpression(
+                    finalVibrationResult.shouldBeReturn,
+                    finalVibrationResult.shouldBeReturnTarot
+                  )
+                }}
+              </div>
+              <div
+                class="tarot-card-preview"
+                *ngIf="finalVibrationResult.shouldBeReturnTarot.tarotCard as tarotCard"
+              >
+                <img
+                  *ngIf="getTarotImageUrl(finalVibrationResult.shouldBeReturnTarot)"
+                  class="tarot-card-image"
+                  [src]="getTarotImageUrl(finalVibrationResult.shouldBeReturnTarot)"
+                  [alt]="tarotCard.name || 'Carte de tarot'"
+                />
+                <div class="tarot-card-description" *ngIf="tarotCard.description">
+                  {{ tarotCard.description }}
+                </div>
+              </div>
+          </div> 
         </td>
 
         <td>
@@ -92,9 +110,27 @@
 
           <div class="tarot-panel">
             <div class="section-title">Tarot</div>
-            <div class="tarot-expression">A venir</div>
-            <div class="tarot-card-placeholder">
-              La carte et son interpretation seront ajoutees ici.
+            <div class="tarot-expression">
+              {{
+                getSummationTarotExpression(
+                  finalVibrationResult.evolvingKarma,
+                  finalVibrationResult.evolvingKarmaTarot
+                )
+              }}
+            </div>
+            <div
+              class="tarot-card-preview"
+              *ngIf="finalVibrationResult.evolvingKarmaTarot.tarotCard as tarotCard"
+            >
+              <img
+                *ngIf="getTarotImageUrl(finalVibrationResult.evolvingKarmaTarot)"
+                class="tarot-card-image"
+                [src]="getTarotImageUrl(finalVibrationResult.evolvingKarmaTarot)"
+                [alt]="tarotCard.name || 'Carte de tarot'"
+              />
+              <div class="tarot-card-description" *ngIf="tarotCard.description">
+                {{ tarotCard.description }}
+              </div>
             </div>
           </div>
         </td>

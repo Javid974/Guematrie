@@ -65,6 +65,28 @@ export class FinalVibrationComponent implements OnInit {
     return {
       shouldBeReturn: 0,
       evolvingKarma: 0,
+      shouldBeReturnTarot: {
+        summationTarot: 0,
+        tarotCard: {
+          id: '',
+          name: '',
+          number: 0,
+          description: null,
+          imagePath: '',
+          vibrationId: null,
+        },
+      },
+      evolvingKarmaTarot: {
+        summationTarot: 0,
+        tarotCard: {
+          id: '',
+          name: '',
+          number: 0,
+          description: null,
+          imagePath: '',
+          vibrationId: null,
+        },
+      },
       shouldBeReturnDetail: [],
       evolvingKarmaDetail: [],
     };

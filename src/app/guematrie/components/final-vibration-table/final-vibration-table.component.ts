@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { VibrationColor } from 'src/app/emum/vibration-color.enum';
 import { FinalVibrationResult } from 'src/models/finalVibrationResult.model';
+import { vibrationTarot } from 'src/models/vibrationTarot.model';
 import { Vibration } from 'src/models/vibration.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-final-vibration-table',
@@ -13,6 +15,28 @@ export class FinalVibrationTableComponent {
   @Input() finalVibrationResult: FinalVibrationResult = {
     shouldBeReturn: 0,
     evolvingKarma: 0,
+    shouldBeReturnTarot: {
+      summationTarot: 0,
+      tarotCard: {
+        id: '',
+        name: '',
+        number: 0,
+        description: null,
+        imagePath: '',
+        vibrationId: null,
+      },
+    },
+    evolvingKarmaTarot: {
+      summationTarot: 0,
+      tarotCard: {
+        id: '',
+        name: '',
+        number: 0,
+        description: null,
+        imagePath: '',
+        vibrationId: null,
+      },
+    },
     shouldBeReturnDetail: [],
     evolvingKarmaDetail: [],
   };
@@ -47,5 +71,31 @@ export class FinalVibrationTableComponent {
       formattedNumber += '**';
     }
     return formattedNumber;
+  }
+
+  getSummationTarotExpression(
+    summation: number,
+    vibrationTarot: vibrationTarot | null | undefined
+  ): string {
+    if (summation === null || summation === undefined) {
+      return '';
+    }
+
+    const digits = `${summation}`.split('');
+    return `${digits.join('+')}=${vibrationTarot?.summationTarot ?? ''}`;
+  }
+
+  getTarotImageUrl(vibrationTarot: vibrationTarot | null | undefined): string {
+    const imagePath = vibrationTarot?.tarotCard?.imagePath;
+
+    if (!imagePath) {
+      return '';
+    }
+
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+      return imagePath;
+    }
+
+    return `${environment.imageBaseUrl}${imagePath}`;
   }
 }

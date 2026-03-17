@@ -16,6 +16,28 @@ class FinalVibrationTableStubComponent {
   @Input() finalVibrationResult: FinalVibrationResult = {
     shouldBeReturn: 0,
     evolvingKarma: 0,
+    shouldBeReturnTarot: {
+      summationTarot: 0,
+      tarotCard: {
+        id: '',
+        name: '',
+        number: 0,
+        description: null,
+        imagePath: '',
+        vibrationId: null,
+      },
+    },
+    evolvingKarmaTarot: {
+      summationTarot: 0,
+      tarotCard: {
+        id: '',
+        name: '',
+        number: 0,
+        description: null,
+        imagePath: '',
+        vibrationId: null,
+      },
+    },
     shouldBeReturnDetail: [],
     evolvingKarmaDetail: [],
   };
@@ -48,6 +70,28 @@ describe('FinalVibrationComponent', () => {
               of({
                 shouldBeReturn: 11,
                 evolvingKarma: 9,
+                shouldBeReturnTarot: {
+                  summationTarot: 2,
+                  tarotCard: {
+                    id: '',
+                    name: '',
+                    number: 0,
+                    description: null,
+                    imagePath: '',
+                    vibrationId: null,
+                  },
+                },
+                evolvingKarmaTarot: {
+                  summationTarot: 9,
+                  tarotCard: {
+                    id: '',
+                    name: '',
+                    number: 0,
+                    description: null,
+                    imagePath: '',
+                    vibrationId: null,
+                  },
+                },
                 shouldBeReturnDetail: [],
                 evolvingKarmaDetail: [],
               }),

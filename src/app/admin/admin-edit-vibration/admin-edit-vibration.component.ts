@@ -45,7 +45,11 @@ export class AdminEditVibrationComponent {
     }
 
     this.vibrationsForm = new FormGroup({
-      letter: new FormControl('', [Validators.required]),
+      letter: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(2),
+        Validators.pattern(/^[A-Za-z]{1,2}$/),
+      ]),
       vibrationNumber: new FormControl('', [Validators.required, Validators.min(1)]), 
       vibrationType: new FormControl('', [Validators.required]),
       vibrationColor:new FormControl('', [Validators.required]),
