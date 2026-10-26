@@ -26,6 +26,8 @@ export class ExternalVibrationComponent implements OnInit {
       this.guematrieParams.lastName = params['lastName'];
       this.guematrieParams.birthDate = params['birthDate'];
       this.guematrieParams.birthTime = params['birthTime'];
+      this.guematrieParams.firstNameSyllables = params['firstNameSyllables'] ?? '';
+      this.guematrieParams.lastNameSyllables = params['lastNameSyllables'] ?? '';
       this.loadExternalVibration();
     });
   }
@@ -37,6 +39,8 @@ export class ExternalVibrationComponent implements OnInit {
         lastName: this.guematrieParams.lastName,
         birthDate: this.guematrieParams.birthDate,
         birthTime: this.guematrieParams.birthTime,
+        firstNameSyllables: this.guematrieParams.firstNameSyllables,
+        lastNameSyllables: this.guematrieParams.lastNameSyllables,
       },
     });
   }
@@ -48,6 +52,8 @@ export class ExternalVibrationComponent implements OnInit {
         lastName: this.guematrieParams.lastName,
         birthDate: this.guematrieParams.birthDate,
         birthTime: this.guematrieParams.birthTime,
+        firstNameSyllables: this.guematrieParams.firstNameSyllables,
+        lastNameSyllables: this.guematrieParams.lastNameSyllables,
       },
     });
   }
@@ -60,12 +66,12 @@ export class ExternalVibrationComponent implements OnInit {
       return;
     }
 
-    this.guematrieService.generateExternal(this.guematrieParams.lastName).subscribe({
+    this.guematrieService.generateExternal(this.guematrieParams.lastName, this.guematrieParams.lastNameSyllables).subscribe({
       next: (result) => {
         this.vibrationResult = result;
       },
       error: (v) => {
-        this.errorMessage = v?.error ?? 'Une erreur est survenue.';
+        this.errorMessage = typeof v?.error === 'string' ? v.error : v?.message ?? 'Une erreur est survenue.';
       },
     });
   }

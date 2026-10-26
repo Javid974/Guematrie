@@ -44,6 +44,34 @@
         </div>
       </div>
       <div class="form-group">
+        <label for="manualSyllables">
+          <input type="checkbox" id="manualSyllables" name="manualSyllables" [(ngModel)]="manualSyllables" />
+          Saisir les syllabes manuellement
+        </label>
+      </div>
+      <fieldset *ngIf="manualSyllables" class="syllable-fields">
+        <legend>Découpage des syllabes</legend>
+        <p id="syllableHelp">Séparez les syllabes par des tirets (ex. : Ma-rie, Du-pont). Un champ vide conserve le découpage automatique.</p>
+        <div class="form-group">
+          <label for="firstNameSyllables">Syllabes du prénom</label>
+          <input type="text" id="firstNameSyllables" name="firstNameSyllables" class="form-control"
+            [(ngModel)]="guematrieParams.firstNameSyllables" placeholder="Ma-rie"
+            aria-describedby="syllableHelp firstNameSyllablesError"
+            [attr.aria-invalid]="!!syllableError(guematrieParams.firstName, guematrieParams.firstNameSyllables)" />
+          <div id="firstNameSyllablesError" class="error-message" role="alert"
+            *ngIf="syllableError(guematrieParams.firstName, guematrieParams.firstNameSyllables) as error">{{ error }}</div>
+        </div>
+        <div class="form-group">
+          <label for="lastNameSyllables">Syllabes du nom</label>
+          <input type="text" id="lastNameSyllables" name="lastNameSyllables" class="form-control"
+            [(ngModel)]="guematrieParams.lastNameSyllables" placeholder="Du-pont"
+            aria-describedby="syllableHelp lastNameSyllablesError"
+            [attr.aria-invalid]="!!syllableError(guematrieParams.lastName, guematrieParams.lastNameSyllables)" />
+          <div id="lastNameSyllablesError" class="error-message" role="alert"
+            *ngIf="syllableError(guematrieParams.lastName, guematrieParams.lastNameSyllables) as error">{{ error }}</div>
+        </div>
+      </fieldset>
+      <div class="form-group">
         <label for="birthDate">Date de Naissance</label>
         <input
           type="date"

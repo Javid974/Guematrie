@@ -26,6 +26,8 @@ export class FinalVibrationComponent implements OnInit {
       this.guematrieParams.lastName = params['lastName'];
       this.guematrieParams.birthDate = params['birthDate'];
       this.guematrieParams.birthTime = params['birthTime'];
+      this.guematrieParams.firstNameSyllables = params['firstNameSyllables'] ?? '';
+      this.guematrieParams.lastNameSyllables = params['lastNameSyllables'] ?? '';
       this.loadFinalVibration();
     });
   }
@@ -37,6 +39,8 @@ export class FinalVibrationComponent implements OnInit {
         lastName: this.guematrieParams.lastName,
         birthDate: this.guematrieParams.birthDate,
         birthTime: this.guematrieParams.birthTime,
+        firstNameSyllables: this.guematrieParams.firstNameSyllables,
+        lastNameSyllables: this.guematrieParams.lastNameSyllables,
       },
     });
   }
@@ -50,13 +54,16 @@ export class FinalVibrationComponent implements OnInit {
     }
 
     this.guematrieService
-      .generateFinal(this.guematrieParams.firstName, this.guematrieParams.lastName)
+      .generateFinal(
+        this.guematrieParams.firstName, this.guematrieParams.lastName,
+        this.guematrieParams.firstNameSyllables, this.guematrieParams.lastNameSyllables
+      )
       .subscribe({
         next: (result) => {
           this.finalVibrationResult = result;
         },
         error: (v) => {
-          this.errorMessage = v?.error ?? 'Une erreur est survenue.';
+          this.errorMessage = typeof v?.error === 'string' ? v.error : v?.message ?? 'Une erreur est survenue.';
         },
       });
   }

@@ -1,6 +1,8 @@
 import { Time } from '@angular/common';
 
 export class GuematrieParameters {
+  firstNameSyllables: string = '';
+  lastNameSyllables: string = '';
   firstName: string;
   lastName: string;
   birthDate: Date | null;

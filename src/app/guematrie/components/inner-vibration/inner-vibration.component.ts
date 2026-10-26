@@ -26,6 +26,8 @@ export class InnerVibrationComponent implements OnInit {
       this.guematrieParams.lastName = params['lastName'];
       this.guematrieParams.birthDate = params['birthDate'];
       this.guematrieParams.birthTime = params['birthTime'];
+      this.guematrieParams.firstNameSyllables = params['firstNameSyllables'] ?? '';
+      this.guematrieParams.lastNameSyllables = params['lastNameSyllables'] ?? '';
       this.loadInnerVibration();
     });
   }
@@ -37,6 +39,8 @@ export class InnerVibrationComponent implements OnInit {
         lastName: this.guematrieParams.lastName,
         birthDate: this.guematrieParams.birthDate,
         birthTime: this.guematrieParams.birthTime,
+        firstNameSyllables: this.guematrieParams.firstNameSyllables,
+        lastNameSyllables: this.guematrieParams.lastNameSyllables,
       },
     });
   }
@@ -49,12 +53,12 @@ export class InnerVibrationComponent implements OnInit {
       return;
     }
 
-    this.guematrieService.generateInner(this.guematrieParams.firstName).subscribe({
+    this.guematrieService.generateInner(this.guematrieParams.firstName, this.guematrieParams.firstNameSyllables).subscribe({
       next: (result) => {
         this.vibrationResult = result;
       },
       error: (v) => {
-        this.errorMessage = v?.error ?? 'Une erreur est survenue.';
+        this.errorMessage = typeof v?.error === 'string' ? v.error : v?.message ?? 'Une erreur est survenue.';
       },
     });
   }
