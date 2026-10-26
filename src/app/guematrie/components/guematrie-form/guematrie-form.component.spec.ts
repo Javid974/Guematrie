@@ -65,4 +65,12 @@ describe('GuematrieFormComponent', () => {
       queryParams: jasmine.objectContaining({ firstNameSyllables: undefined, lastNameSyllables: undefined }),
     });
   });
+  it('preserves the date-only input in the parameters sent to the first result page', () => {
+    component.guematrieParams.birthDate = '1990-10-25';
+    component.onSubmit();
+    expect(router.navigate).toHaveBeenCalledWith(['/inner-vibration'], {
+      queryParams: jasmine.objectContaining({ birthDate: '1990-10-25' }),
+    });
+  });
+
 });

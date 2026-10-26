@@ -38,12 +38,15 @@ export class ManualGuematrieCalculator {
     };
   }
 
-  static calculateFinal(inner: VibrationResult, external: VibrationResult, vibrations: Vibration[], tarots: Tarot[]): FinalVibrationResult {
+  static calculateFinal(inner: VibrationResult, external: VibrationResult, vibrations: Vibration[], tarots: Tarot[], birthDate: string | null = null): FinalVibrationResult {
+    const dateDetailGroups = this.calculateDateDetailGroups(birthDate, vibrations);
     const first = inner.vibrationSummation.summation;
     const last = external.vibrationSummation.summation;
     const shouldBeReturn = first + last;
     const evolvingKarma = Math.abs(first - last);
     return {
+      dateDetailGroups,
+      dateDetails: dateDetailGroups.flat(),
       shouldBeReturn,
       evolvingKarma,
       shouldBeReturnTarot: this.tarot(shouldBeReturn, tarots),
@@ -51,6 +54,25 @@ export class ManualGuematrieCalculator {
       shouldBeReturnDetail: this.detail(shouldBeReturn, vibrations),
       evolvingKarmaDetail: this.detail(evolvingKarma, vibrations),
     };
+  }
+
+  static calculateDateDetails(birthDate: string | null, vibrations: Vibration[]): Vibration[] {
+    return this.calculateDateDetailGroups(birthDate, vibrations).flat();
+  }
+
+  static calculateDateDetailGroups(birthDate: string | null, vibrations: Vibration[]): Vibration[][] {
+    if (!birthDate) return [];
+    const parts = /^(\d{4})-(\d{2})-(\d{2})$/.exec(birthDate);
+    if (!parts) throw new Error('La date de naissance doit être au format AAAA-MM-JJ.');
+    const [year, month, day] = parts.slice(1).map(Number);
+    const leapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+    const daysPerMonth = [31, leapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    if (year < 1 || month < 1 || month > 12 || day < 1 || day > daysPerMonth[month - 1]) {
+      throw new Error('La date de naissance est invalide.');
+    }
+    return [day, month, Math.floor(year / 100), year % 100]
+      .filter(value => value !== 0)
+      .map(value => this.detail(value, vibrations));
   }
 
   private static matchVibrations(syllable: string, vibrations: Vibration[]): Vibration[] {

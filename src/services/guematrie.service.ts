@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { defer, forkJoin, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -49,25 +49,77 @@ export class GuematrieService {
       : this.http.get<ExternalVibrationResult>(this.apiUrl + '/guematrie/external/' + encodeURIComponent(lastName));
   }
 
-  generateFinal(firstName: string, lastName: string, firstNameSyllables: string = '', lastNameSyllables: string = ''): Observable<FinalVibrationResult> {
+  generateFinal(
+    firstName: string,
+    lastName: string,
+    firstNameSyllables: string = '',
+    lastNameSyllables: string = '',
+    birthDate: string | null = null
+  ): Observable<FinalVibrationResult> {
     const first = this.manualSyllables(firstNameSyllables);
     const last = this.manualSyllables(lastNameSyllables);
+
     if (first === null && last === null) {
+      const params = birthDate
+        ? new HttpParams().set('birthDate', birthDate)
+        : new HttpParams();
+
       return this.http.get<FinalVibrationResult>(
-        this.apiUrl + '/guematrie/final/' + encodeURIComponent(firstName) + '/' + encodeURIComponent(lastName));
+        this.apiUrl + '/guematrie/final/' + encodeURIComponent(firstName) + '/' + encodeURIComponent(lastName),
+        { params }
+      ).pipe(map(result => {
+        const dateDetails = result.dateDetails ?? [];
+        if (birthDate && !Array.isArray(result.dateDetailGroups)) {
+          throw new Error('Le backend ne fournit pas encore les groupes de date. Recompilez et redémarrez GuematrieAPI, puis rechargez cette page.');
+        }
+        return { ...result, dateDetails, dateDetailGroups: result.dateDetailGroups ?? [] };
+      }));
     }
+
+    return this.calculateFinalWithManualSyllables(firstName, lastName, first, last, birthDate);
+  }
+
+  private calculateFinalWithManualSyllables(
+    firstName: string,
+    lastName: string,
+    first: string[] | null,
+    last: string[] | null,
+    birthDate: string | null
+  ): Observable<FinalVibrationResult> {
     return defer(() => {
-      const firstSyllables = first !== null ? Calculator.validateSyllables(firstName, first) : null;
-      const lastSyllables = last !== null ? Calculator.validateSyllables(lastName, last) : null;
-      return forkJoin({
+      const firstSyllables = first !== null
+        ? Calculator.validateSyllables(firstName, first)
+        : null;
+      const lastSyllables = last !== null
+        ? Calculator.validateSyllables(lastName, last)
+        : null;
+
+      const calculationData = forkJoin({
         references: this.referenceData(),
         inner: firstSyllables !== null ? of(null) : this.generateInner(firstName),
         external: lastSyllables !== null ? of(null) : this.generateExternal(lastName),
-      }).pipe(map(({ references: { vibrations, tarots }, inner, external }) => {
-        const innerResult = firstSyllables !== null ? Calculator.calculate(firstSyllables, vibrations, tarots) : inner!;
-        const externalResult = lastSyllables !== null ? Calculator.calculate(lastSyllables, vibrations, tarots) : external!;
-        return Calculator.calculateFinal(innerResult, externalResult, vibrations, tarots);
-      }));
+      });
+
+      return calculationData.pipe(
+        map(data => {
+          const { vibrations, tarots } = data.references;
+
+          const innerResult = firstSyllables !== null
+            ? Calculator.calculate(firstSyllables, vibrations, tarots)
+            : data.inner!;
+          const externalResult = lastSyllables !== null
+            ? Calculator.calculate(lastSyllables, vibrations, tarots)
+            : data.external!;
+
+          return Calculator.calculateFinal(
+            innerResult,
+            externalResult,
+            vibrations,
+            tarots,
+            birthDate
+          );
+        })
+      );
     });
   }
 }

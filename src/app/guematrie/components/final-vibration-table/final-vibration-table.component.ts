@@ -13,6 +13,8 @@ import { environment } from 'src/environments/environment';
 export class FinalVibrationTableComponent {
   @Input() errorMessage: string = '';
   @Input() finalVibrationResult: FinalVibrationResult = {
+    dateDetails: [],
+    dateDetailGroups: [],
     shouldBeReturn: 0,
     evolvingKarma: 0,
     shouldBeReturnTarot: {
@@ -41,11 +43,7 @@ export class FinalVibrationTableComponent {
     evolvingKarmaDetail: [],
   };
 
-  readonly interpretationSections: string[] = [
-    'Lecture A',
-    'Lecture B',
-    'Lecture C',
-  ];
+  readonly upcomingReadings: string[] = ['Lecture B', 'Lecture C'];
 
   getColor(vibrationColor: VibrationColor): string {
     switch (vibrationColor) {
@@ -71,6 +69,11 @@ export class FinalVibrationTableComponent {
       formattedNumber += '**';
     }
     return formattedNumber;
+  }
+
+  getFormattedDateVibrationNumber(vibration: Vibration, decomposed: boolean = false): string {
+    const formatted = this.getFormattedVibrationNumber(vibration);
+    return decomposed ? formatted : formatted.replace(/^\d+/, digits => digits.padStart(2, '0'));
   }
 
   getSummationTarotExpression(

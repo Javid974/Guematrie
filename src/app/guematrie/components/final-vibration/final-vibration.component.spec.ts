@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 
 import { FinalVibrationComponent } from './final-vibration.component';
@@ -14,6 +14,8 @@ import { GuematrieService } from 'src/services/guematrie.service';
 })
 class FinalVibrationTableStubComponent {
   @Input() finalVibrationResult: FinalVibrationResult = {
+    dateDetails: [],
+    dateDetailGroups: [],
     shouldBeReturn: 0,
     evolvingKarma: 0,
     shouldBeReturnTarot: {
@@ -52,6 +54,7 @@ describe('FinalVibrationComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [FinalVibrationComponent, FinalVibrationTableStubComponent],
       providers: [
+        { provide: Router, useValue: jasmine.createSpyObj('Router', ['navigate']) },
         {
           provide: ActivatedRoute,
           useValue: {
@@ -68,6 +71,8 @@ describe('FinalVibrationComponent', () => {
           useValue: {
             generateFinal: () =>
               of({
+                dateDetails: [],
+    dateDetailGroups: [],
                 shouldBeReturn: 11,
                 evolvingKarma: 9,
                 shouldBeReturnTarot: {
@@ -133,4 +138,11 @@ describe('FinalVibrationComponent', () => {
 
     expect(button.nativeElement.disabled).toBeTrue();
   });
+  it('passes the birth date through to the final service call', () => {
+    const service = TestBed.inject(GuematrieService);
+    const generate = spyOn(service, 'generateFinal').and.callThrough();
+    component.ngOnInit();
+    expect(generate).toHaveBeenCalledWith('Jean', 'Dupont', '', '', '2000-01-01');
+  });
+
 });

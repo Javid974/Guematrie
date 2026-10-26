@@ -133,7 +133,7 @@ describe('GuematrieService local manual calculation', () => {
   });
 
   it('preserves manual syllables through all result pages without calling any generation route', () => {
-    const params = { firstName: 'CH', lastName: 'CH', firstNameSyllables: 'C-H', lastNameSyllables: 'CH' };
+    const params = { firstName: 'CH', lastName: 'CH', firstNameSyllables: 'C-H', lastNameSyllables: 'CH', birthDate: '1990-10-25' };
     const route = { queryParams: of(params) } as unknown as ActivatedRoute;
     const router = jasmine.createSpyObj<Router>('Router', ['navigate']);
     const inner = new InnerVibrationComponent(route, router, service);
@@ -148,7 +148,9 @@ describe('GuematrieService local manual calculation', () => {
     external.goToFinalVibration();
     const final = new FinalVibrationComponent(route, router, service);
     final.ngOnInit();
+    expectNoGenerationRequest();
     flushReferences();
+    expect(final.finalVibrationResult.dateDetails.map(item => item.vibrationNumber)).toEqual([25, 10, 19, 90]);
     expect(final.finalVibrationResult.shouldBeReturn).toBe(31);
     final.goToExternalVibration();
     for (const call of router.navigate.calls.allArgs()) {
@@ -156,4 +158,51 @@ describe('GuematrieService local manual calculation', () => {
     }
     expectNoGenerationRequest();
   });
+  it('sends the optional birth date to the automatic final endpoint', () => {
+    let result: any;
+    service.generateFinal('CH', 'H', '', '', '1990-10-25').subscribe(value => result = value);
+    const request = http.expectOne(req => req.url === api + '/guematrie/final/CH/H');
+    expect(request.request.params.get('birthDate')).toBe('1990-10-25');
+    request.flush({ dateDetails: [vibrations[24], vibrations[9], vibrations[18], vibrations[89]],
+      dateDetailGroups: [[vibrations[24]], [vibrations[9]], [vibrations[18]], [vibrations[89]]] });
+    expect(result.dateDetails.map((item: Vibration) => item.vibrationNumber)).toEqual([25, 10, 19, 90]);
+  });
+
+  it('omits the birth date query parameter when no date is supplied', () => {
+    service.generateFinal('CH', 'H').subscribe();
+    const request = http.expectOne(api + '/guematrie/final/CH/H');
+    expect(request.request.params.has('birthDate')).toBeFalse();
+    request.flush({ dateDetails: [] });
+  });
+
+  it('calculates date details locally in mixed mode while preserving manual syllables', () => {
+    let result: any;
+    service.generateFinal('CH', 'H', 'C-H', '', '1990-10-25').subscribe(value => result = value);
+    flushReferences();
+    http.expectOne(api + '/guematrie/external/H').flush({ vibrationSummation: { summation: 8 } });
+    expect(result.dateDetails.map((item: Vibration) => item.vibrationNumber)).toEqual([25, 10, 19, 90]);
+    expect(result.shouldBeReturn).toBe(19);
+    http.expectNone(req => req.url.includes('/guematrie/final/'));
+    http.expectNone(req => req.url.includes('/guematrie/inner/'));
+    http.expectNone(req => req.url.includes('/date-details'));
+  });
+
+  it('reports an outdated backend instead of passing undefined date groups to the table', () => {
+    const error = jasmine.createSpy('error');
+    const next = jasmine.createSpy('next');
+    service.generateFinal('CH', 'H', '', '', '1983-08-11').subscribe({ next, error });
+    http.expectOne(req => req.url === api + '/guematrie/final/CH/H')
+      .flush({ dateDetails: [vibrations[10], vibrations[7], vibrations[18], vibrations[79], vibrations[2]] });
+    expect(next).not.toHaveBeenCalled();
+    expect(error.calls.mostRecent().args[0].message).toContain('redémarrez GuematrieAPI');
+  });
+
+  it('initializes missing date arrays when no date is supplied to an older backend', () => {
+    let result: any;
+    service.generateFinal('CH', 'H').subscribe(value => result = value);
+    http.expectOne(api + '/guematrie/final/CH/H').flush({});
+    expect(result.dateDetails).toEqual([]);
+    expect(result.dateDetailGroups).toEqual([]);
+  });
+
 });

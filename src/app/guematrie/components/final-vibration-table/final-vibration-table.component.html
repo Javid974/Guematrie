@@ -137,13 +137,35 @@
 
         <td>
           <div class="interpretation-cell">
-          <section
-            *ngFor="let section of interpretationSections"
-            class="interpretation-panel"
-          >
-            <div class="section-title">{{ section }}</div>
-            <p>Contenu a venir.</p>
-          </section>
+            <section class="interpretation-panel">
+              <div class="section-title">Lecture A</div>
+
+              <p *ngIf="!(finalVibrationResult.dateDetailGroups || []).length">
+                Aucun détail de date disponible.
+              </p>
+
+              <div class="detail-chain">
+                <div
+                  *ngFor="let group of finalVibrationResult.dateDetailGroups"
+                  class="detail-chain date-detail-group"
+                >
+                  <div *ngFor="let detail of group; let isLast = last" class="detail-item">
+                    <div class="circleLarge" [ngStyle]="{ 'background-color': getColor(detail.vibrationColor) }">
+                      <span>{{ getFormattedDateVibrationNumber(detail, group.length > 1) }}</span>
+                    </div>
+                    <span class="detail-text">
+                      {{ detail.description }}
+                      <span *ngIf="!isLast" class="chain-separator"> &nbsp;lie a</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section *ngFor="let reading of upcomingReadings" class="interpretation-panel">
+              <div class="section-title">{{ reading }}</div>
+              <p>Contenu a venir.</p>
+            </section>
           </div>
         </td>
       </tr>

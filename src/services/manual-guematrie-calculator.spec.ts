@@ -46,4 +46,41 @@ describe('ManualGuematrieCalculator', () => {
     expect(() => Calculator.calculate(['a'], vibrations, []))
       .toThrowError(/carte de tarot/);
   });
+  it('calculates the four birth-date parts locally in the same order as the backend', () => {
+    expect(Calculator.calculateDateDetails('1990-10-25', vibrations).map(item => item.vibrationNumber))
+      .toEqual([25, 10, 19, 90]);
+    const inner = Calculator.calculate(['a'], vibrations, tarots);
+    const final = Calculator.calculateFinal(inner, inner, vibrations, tarots, '1990-10-25');
+    expect(final.dateDetails.map(item => item.vibrationNumber)).toEqual([25, 10, 19, 90]);
+  });
+
+  it('handles absent dates, leap days and a zero year suffix without timezone conversion', () => {
+    expect(Calculator.calculateDateDetails(null, vibrations)).toEqual([]);
+    expect(Calculator.calculateDateDetails('2000-02-29', vibrations).map(item => item.vibrationNumber))
+      .toEqual([29, 2, 20]);
+    expect(Calculator.calculateDateDetails('0001-01-01', vibrations).map(item => item.vibrationNumber))
+      .toEqual([1, 1, 1]);
+  });
+
+  it('rejects impossible dates instead of silently changing the day', () => {
+    for (const date of ['1990-02-29', '1900-02-29', '1990-04-31', '1990-13-01', '1990-01-00', '0000-01-01', '25/10/1990']) {
+      expect(() => Calculator.calculateDateDetails(date, vibrations)).toThrowError();
+    }
+  });
+
+  it('preserves 11, 08, 19 and 83 as exact date parts', () => {
+    expect(Calculator.calculateDateDetails('1983-08-11', vibrations).map(item => item.vibrationNumber))
+      .toEqual([11, 8, 19, 83]);
+  });
+
+  it('keeps decomposed date parts in separate groups', () => {
+    const references = vibrations.filter(item => item.vibrationNumber !== 83);
+    const groups = Calculator.calculateDateDetailGroups('1983-08-11', references);
+    expect(groups.map(group => group.map(item => item.vibrationNumber))).toEqual([[11], [8], [19], [80, 3]]);
+    const inner = Calculator.calculate(['a'], references, tarots);
+    const final = Calculator.calculateFinal(inner, inner, references, tarots, '1983-08-11');
+    expect(final.dateDetails.map(item => item.vibrationNumber)).toEqual([11, 8, 19, 80, 3]);
+    expect(final.dateDetailGroups).toEqual(groups);
+  });
+
 });

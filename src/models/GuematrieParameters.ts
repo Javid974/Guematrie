@@ -5,13 +5,13 @@ export class GuematrieParameters {
   lastNameSyllables: string = '';
   firstName: string;
   lastName: string;
-  birthDate: Date | null;
+  birthDate: string | null;
   birthTime: Time | null;
 
   constructor(
     firstName: string = '',
     lastName: string = '',
-    birthDate: Date | null = null,
+    birthDate: string | null = null,
     birthTime: Time | null = null
   ) {
     this.firstName = firstName;

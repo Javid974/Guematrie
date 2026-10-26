@@ -24,7 +24,7 @@ export class FinalVibrationComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.guematrieParams.firstName = params['firstName'];
       this.guematrieParams.lastName = params['lastName'];
-      this.guematrieParams.birthDate = params['birthDate'];
+      this.guematrieParams.birthDate = params['birthDate'] ?? null;
       this.guematrieParams.birthTime = params['birthTime'];
       this.guematrieParams.firstNameSyllables = params['firstNameSyllables'] ?? '';
       this.guematrieParams.lastNameSyllables = params['lastNameSyllables'] ?? '';
@@ -56,7 +56,8 @@ export class FinalVibrationComponent implements OnInit {
     this.guematrieService
       .generateFinal(
         this.guematrieParams.firstName, this.guematrieParams.lastName,
-        this.guematrieParams.firstNameSyllables, this.guematrieParams.lastNameSyllables
+        this.guematrieParams.firstNameSyllables, this.guematrieParams.lastNameSyllables,
+        this.guematrieParams.birthDate
       )
       .subscribe({
         next: (result) => {
@@ -70,7 +71,9 @@ export class FinalVibrationComponent implements OnInit {
 
   private createEmptyResult(): FinalVibrationResult {
     return {
-      shouldBeReturn: 0,
+      dateDetails: [],
+    dateDetailGroups: [],
+    shouldBeReturn: 0,
       evolvingKarma: 0,
       shouldBeReturnTarot: {
         summationTarot: 0,
