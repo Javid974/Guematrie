@@ -11,9 +11,11 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./final-vibration-table.component.css'],
 })
 export class FinalVibrationTableComponent {
+  @Input() birthDate: string | null = null;
   @Input() errorMessage: string = '';
   @Input() finalVibrationResult: FinalVibrationResult = {
     lectureA: [],
+    lectureB: [],
     lectureAGroups: [],
     shouldBeReturn: 0,
     evolvingKarma: 0,
@@ -43,7 +45,15 @@ export class FinalVibrationTableComponent {
     evolvingKarmaDetail: [],
   };
 
-  readonly upcomingReadings: string[] = ['Lecture B', 'Lecture C'];
+  readonly upcomingReadings: string[] = ['Lecture C'];
+
+  getLectureBExpression(): string {
+    if (!this.birthDate) return '';
+    const [year, month, day] = this.birthDate.split('-');
+    const parts = [day, month, year.slice(0, 2), year.slice(2)];
+    const sum = parts.reduce((total, part) => total + Number(part), 0);
+    return parts.join('+') + '=' + sum;
+  }
 
   getColor(vibrationColor: VibrationColor): string {
     switch (vibrationColor) {

@@ -72,6 +72,7 @@ export class FinalVibrationComponent implements OnInit {
   private createEmptyResult(): FinalVibrationResult {
     return {
       lectureA: [],
+    lectureB: [],
     lectureAGroups: [],
     shouldBeReturn: 0,
       evolvingKarma: 0,

@@ -45,7 +45,7 @@ export class GuematrieService {
       if (birthDate && !Array.isArray(result.lectureAGroups)) {
         throw new Error('Le backend ne fournit pas encore les groupes de date. Recompilez et redémarrez GuematrieAPI, puis rechargez cette page.');
       }
-      return { ...result, lectureA: result.lectureA ?? [], lectureAGroups: result.lectureAGroups ?? [] };
+      return { ...result, lectureA: result.lectureA ?? [], lectureB: result.lectureB ?? [], lectureAGroups: result.lectureAGroups ?? [] };
     }));
   }
 }

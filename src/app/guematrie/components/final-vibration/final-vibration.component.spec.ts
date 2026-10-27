@@ -13,8 +13,10 @@ import { GuematrieService } from 'src/services/guematrie.service';
   template: '',
 })
 class FinalVibrationTableStubComponent {
+  @Input() birthDate: string | null = null;
   @Input() finalVibrationResult: FinalVibrationResult = {
     lectureA: [],
+    lectureB: [],
     lectureAGroups: [],
     shouldBeReturn: 0,
     evolvingKarma: 0,
@@ -72,6 +74,7 @@ describe('FinalVibrationComponent', () => {
             generateFinal: () =>
               of({
                 lectureA: [],
+    lectureB: [],
     lectureAGroups: [],
                 shouldBeReturn: 11,
                 evolvingKarma: 9,

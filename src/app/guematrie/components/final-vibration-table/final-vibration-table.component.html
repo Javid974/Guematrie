@@ -162,6 +162,27 @@
               </div>
             </section>
 
+            <section class="interpretation-panel lecture-b-panel">
+              <div class="section-title">Lecture B</div>
+              <div class="tarot-expression" *ngIf="getLectureBExpression() as expression">
+                {{ expression }}
+              </div>
+              <p *ngIf="!(finalVibrationResult.lectureB || []).length">
+                Aucune vibration disponible pour la lecture B.
+              </p>
+              <div class="detail-chain">
+                <div *ngFor="let detail of finalVibrationResult.lectureB; let isLast = last" class="detail-item">
+                  <div class="circleLarge" [ngStyle]="{ 'background-color': getColor(detail.vibrationColor) }">
+                    <span>{{ getFormattedVibrationNumber(detail) }}</span>
+                  </div>
+                  <span class="detail-text">
+                    {{ detail.description }}
+                    <span *ngIf="!isLast" class="chain-separator"> &nbsp;lie a</span>
+                  </span>
+                </div>
+              </div>
+            </section>
+
             <section *ngFor="let reading of upcomingReadings" class="interpretation-panel">
               <div class="section-title">{{ reading }}</div>
               <p>Contenu a venir.</p>

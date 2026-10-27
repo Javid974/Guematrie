@@ -44,7 +44,42 @@ describe('FinalVibrationTableComponent', () => {
     const values = panels[0].queryAll(By.css('.circleLarge')).map(value => value.nativeElement.textContent.trim());
     expect(values).toEqual(['25', '10', '19', '90']);
     expect(panels[0].nativeElement.textContent).toContain('Date 25');
-    expect(panels[1].nativeElement.textContent).toContain('Contenu a venir.');
+    expect(panels[2].nativeElement.textContent).toContain('Contenu a venir.');
+  });
+
+  it('renders the original date sum and Lecture B vibrations without a tarot card', () => {
+    component.birthDate = '1983-08-11';
+    component.finalVibrationResult.lectureB = [100, 21].map(number => ({
+      id: String(number), letter: '', vibrationNumber: number, description: 'Lecture B ' + number,
+      vibrationType: 0, vibrationColor: 0, karmic: number === 21, consciousness: false,
+    }));
+    fixture.detectChanges();
+    const panel = fixture.debugElement.query(By.css('.lecture-b-panel'));
+    expect(panel.query(By.css('.tarot-expression')).nativeElement.textContent.trim()).toBe('11+08+19+83=121');
+    expect(panel.queryAll(By.css('.circleLarge')).map(value => value.nativeElement.textContent.trim()))
+      .toEqual(['100', '21*']);
+    expect(panel.nativeElement.textContent).toContain('Lecture B 100');
+    expect(panel.nativeElement.textContent).toContain('Lecture B 21');
+    expect(panel.queryAll(By.css('.chain-separator')).length).toBe(1);
+    expect(panel.query(By.css('img'))).toBeNull();
+  });
+
+  it('renders an exact Lecture B vibration without a separator', () => {
+    component.birthDate = '1983-08-11';
+    component.finalVibrationResult.lectureB = [{
+      id: '121', letter: '', vibrationNumber: 121, description: 'Exact',
+      vibrationType: 0, vibrationColor: 0, karmic: false, consciousness: false,
+    }];
+    fixture.detectChanges();
+    const panel = fixture.debugElement.query(By.css('.lecture-b-panel'));
+    expect(panel.query(By.css('.circleLarge')).nativeElement.textContent.trim()).toBe('121');
+    expect(panel.queryAll(By.css('.chain-separator')).length).toBe(0);
+  });
+
+  it('shows no Lecture B calculation without a birth date', () => {
+    const panel = fixture.debugElement.query(By.css('.lecture-b-panel'));
+    expect(panel.query(By.css('.tarot-expression'))).toBeNull();
+    expect(panel.nativeElement.textContent).toContain('Aucune vibration disponible');
   });
 
   it('renders an empty state when no date details are present', () => {

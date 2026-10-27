@@ -3,6 +3,7 @@ import { vibrationTarot } from "./vibrationTarot.model";
 
 export interface FinalVibrationResult {
   lectureA: Vibration[];
+  lectureB: Vibration[];
   lectureAGroups: Vibration[][];
   shouldBeReturn: number;
   evolvingKarma: number;
