@@ -46,9 +46,9 @@ describe('GuematrieService API generation', () => {
       expect(req.request.params.get('firstNameSyllables')).toBe(first || null);
       expect(req.request.params.get('lastNameSyllables')).toBe(last || null);
       expect(req.request.params.get('birthDate')).toBe('1990-10-25');
-      req.flush({ shouldBeReturn: 31, dateDetails: [], dateDetailGroups: [[], [], [], []] });
+      req.flush({ shouldBeReturn: 31, lectureA: [], lectureAGroups: [[], [], [], []] });
       expect(result.shouldBeReturn).toBe(31);
-      expect(result.dateDetailGroups.length).toBe(4);
+      expect(result.lectureAGroups.length).toBe(4);
       http.expectNone(() => true);
     });
   }
@@ -69,7 +69,7 @@ describe('GuematrieService API generation', () => {
   it('reports an outdated backend when birth date groups are missing', () => {
     const error = jasmine.createSpy('error');
     service.generateFinal('CH', 'H', '', '', '1983-08-11').subscribe({ error });
-    http.expectOne(req => req.url === api + '/final/CH/H').flush({ dateDetails: [] });
+    http.expectOne(req => req.url === api + '/final/CH/H').flush({ lectureA: [] });
     expect(error.calls.mostRecent().args[0].message).toContain('redémarrez GuematrieAPI');
   });
 });

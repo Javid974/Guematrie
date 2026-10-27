@@ -13,8 +13,8 @@ import { environment } from 'src/environments/environment';
 export class FinalVibrationTableComponent {
   @Input() errorMessage: string = '';
   @Input() finalVibrationResult: FinalVibrationResult = {
-    dateDetails: [],
-    dateDetailGroups: [],
+    lectureA: [],
+    lectureAGroups: [],
     shouldBeReturn: 0,
     evolvingKarma: 0,
     shouldBeReturnTarot: {

@@ -2,8 +2,8 @@ import { Vibration } from "./vibration.model";
 import { vibrationTarot } from "./vibrationTarot.model";
 
 export interface FinalVibrationResult {
-  dateDetails: Vibration[];
-  dateDetailGroups: Vibration[][];
+  lectureA: Vibration[];
+  lectureAGroups: Vibration[][];
   shouldBeReturn: number;
   evolvingKarma: number;
   shouldBeReturnTarot: vibrationTarot;

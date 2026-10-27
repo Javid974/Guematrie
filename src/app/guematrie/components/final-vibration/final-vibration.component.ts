@@ -71,8 +71,8 @@ export class FinalVibrationComponent implements OnInit {
 
   private createEmptyResult(): FinalVibrationResult {
     return {
-      dateDetails: [],
-    dateDetailGroups: [],
+      lectureA: [],
+    lectureAGroups: [],
     shouldBeReturn: 0,
       evolvingKarma: 0,
       shouldBeReturnTarot: {

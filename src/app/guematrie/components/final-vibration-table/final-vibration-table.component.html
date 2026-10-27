@@ -140,13 +140,13 @@
             <section class="interpretation-panel">
               <div class="section-title">Lecture A</div>
 
-              <p *ngIf="!(finalVibrationResult.dateDetailGroups || []).length">
+              <p *ngIf="!(finalVibrationResult.lectureAGroups || []).length">
                 Aucun détail de date disponible.
               </p>
 
               <div class="detail-chain">
                 <div
-                  *ngFor="let group of finalVibrationResult.dateDetailGroups"
+                  *ngFor="let group of finalVibrationResult.lectureAGroups"
                   class="detail-chain date-detail-group"
                 >
                   <div *ngFor="let detail of group; let isLast = last" class="detail-item">

@@ -14,8 +14,8 @@ import { GuematrieService } from 'src/services/guematrie.service';
 })
 class FinalVibrationTableStubComponent {
   @Input() finalVibrationResult: FinalVibrationResult = {
-    dateDetails: [],
-    dateDetailGroups: [],
+    lectureA: [],
+    lectureAGroups: [],
     shouldBeReturn: 0,
     evolvingKarma: 0,
     shouldBeReturnTarot: {
@@ -71,8 +71,8 @@ describe('FinalVibrationComponent', () => {
           useValue: {
             generateFinal: () =>
               of({
-                dateDetails: [],
-    dateDetailGroups: [],
+                lectureA: [],
+    lectureAGroups: [],
                 shouldBeReturn: 11,
                 evolvingKarma: 9,
                 shouldBeReturnTarot: {
